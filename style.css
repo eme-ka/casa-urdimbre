@@ -1,37 +1,75 @@
+/* Tipografías y colores */
 body {
-  font-family: sans-serif;
-  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #fefcf9;
-  color: #333;
+  background-color: #fffdf8;
+  color: #3e3e3e;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #4a3b2c;
 }
 
 header {
-  background-color: #d8c3a5;
-  color: #3e3e3e;
-  padding: 2rem;
+  background: linear-gradient(135deg, #e8d8c3, #f6f0e1);
   text-align: center;
+  padding: 2rem 1rem;
+}
+
+header .hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+header nav {
+  margin-top: 1.5rem;
 }
 
 nav a {
   margin: 0 1rem;
   text-decoration: none;
-  color: #5e503f;
+  color: #5a493c;
   font-weight: bold;
 }
 
 main {
   padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
 section {
   margin-bottom: 3rem;
 }
 
+section img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background-color: #fdfaf4;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1rem;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
 footer {
-  background-color: #eae7dc;
   text-align: center;
+  background-color: #f3ede7;
   padding: 1rem;
   font-size: 0.9rem;
 }
