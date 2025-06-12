@@ -6,6 +6,11 @@ body {
   color: #3e3e3e;
 }
 
+nav a.activo {
+  font-weight: bold;
+  color: #996633;
+}
+
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   color: #4a3b2c;
