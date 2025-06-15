@@ -162,3 +162,47 @@ footer a:hover {
   font-size: 2rem;
   letter-spacing: 0.5px;
 }
+
+
+.item-contacto {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.item-contacto:hover {
+  transform: scale(1.10);
+}
+
+.item-contacto svg {
+  min-width: 28px;
+}
+
+
+/* Colores por red */
+.mapa svg {
+  color: #f13939;
+}
+
+.instagram svg {
+  color: #d6249f;
+}
+
+.whatsapp svg {
+  color: #25D366;
+}
+
+.gmail svg {
+  color: #EA4335;
+}
+
+
+footer {
+  font-family: Arial, sans-serif;
+}
+
+
