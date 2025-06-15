@@ -89,3 +89,29 @@ footer a:hover {
   text-decoration: underline;
 }
 
+.formulario-contacto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.columna-imagen,
+.columna-formulario {
+  flex: 1 1 45%;
+  min-width: 300px;
+}
+
+.columna-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .formulario-contacto {
+    flex-direction: column;
+  }
+}
