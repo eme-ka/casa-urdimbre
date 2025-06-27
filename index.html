@@ -9,20 +9,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+<nav>
+  <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+  <div class="nav-links">
+    <a href="#sobre">Sobre Casa Urdimbre</a>
+    <a href="#actividades">Actividades</a>
+    <a href="manifiesto.html">Manifiesto</a>
+    <a href="calendario.html">Calendario</a>
+    <a href="quienessomos.html">Quiénes Somos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
   <header>
     <div class="hero">
       <div class="overlay"></div>
       <h1>Casa Urdimbre</h1>
       <p>Un espacio para tejer cuerpo, mente y comunidad</p>
     </div>
-    <nav>
-      <a href="#sobre">Sobre Nosotros</a>
-      <a href="#actividades">Actividades</a>
-      <a href="#blog">Blog</a>
-      <a href="manifiesto.html">Manifiesto</a>
-      <a href="calendario.html">Calendario</a>
-      <a href="#contacto">Contacto</a>
-	</nav>
+
   </header>
 
   <main>
@@ -52,24 +57,8 @@
         </div>
       </div>
     </section>
-    
-    <section id="blog">
-	  <h2>Publicaciones</h2>
-	  <div class="cards">
-      <a href="blog/circulo-luna-llena.html" class="blog-card">
-        <h3>🌕 Círculo de Luna Llena</h3>
-        <p>Reflexiones sobre nuestro último encuentro de mujeres, ciclos y rituales compartidos.</p>
-        <small>Publicado el 5 de junio de 2025</small>
-      </a>
-    <a href="blog/plantas-que-nos-cuidan.html" class="blog-card">
-        <h3>🌿 Las plantas que nos cuidan</h3>
-        <p>Bitácora de nuestro taller de medicina natural. Infusiones, tinturas y saberes populares.</p>
-        <small>Publicado el 28 de mayo de 2025</small>
-    </a>
-	  </div>
-	</section>
 
-<section class="formulario-contacto">
+<section id="contacto" class="formulario-contacto">
   <div class="columna-imagen">
     <img src="imagenes/form.jpeg" alt="Formulario" />
   </div>
@@ -120,5 +109,6 @@
   </div>
 </footer>
 
+<script src="js/main.js"></script>
 </body>
 </html>

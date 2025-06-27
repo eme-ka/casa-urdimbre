@@ -12,6 +12,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   padding: 6rem 1rem;
+  padding-top: 8rem;
   color: white;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
   border-bottom: 3px solid #e8d8c3;
@@ -30,7 +31,7 @@ h1, h2, h3 {
 header {
   background: linear-gradient(135deg, #e8d8c3, #f6f0e1);
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 0 1rem;
 }
 
 header .hero h1 {
@@ -42,12 +43,82 @@ header nav {
   margin-top: 1.5rem;
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #fff4ed;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Para que el contenido no quede oculto detrás del nav */
+.hero {
+  padding-top: 100px; /* Ajustalo según el alto real del nav */
+}
+
+
 nav a {
   margin: 0 1rem;
   text-decoration: none;
   color: #5a493c;
   font-weight: bold;
 }
+
+/* Contenedor de enlaces */
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  flex: 1 1 100%;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #5a493c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .menu-toggle {
+    display: block;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #fff4ed;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.mostrar {
+    display: flex;
+  }
+
+  nav a {
+    margin: 0.5rem 0;
+  }
+}
+
 
 main {
   padding: 2rem;
@@ -142,6 +213,10 @@ footer a:hover {
 @media (max-width: 768px) {
   .formulario-contacto {
     flex-direction: column;
+  }
+
+  .columna-imagen {
+    display: none;
   }
 }
 
