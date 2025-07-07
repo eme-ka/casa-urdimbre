@@ -51,7 +51,17 @@ nav {
   z-index: 1000;
   background-color: #fff4ed;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el logo */
+.logo img {
+  height: 55px;
+  width: auto;
 }
 
 /* Para que el contenido no quede oculto detrás del nav */
@@ -68,12 +78,12 @@ nav a {
 }
 
 /* Contenedor de enlaces */
+/* Alineación de links */
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 1rem;
-  flex: 1 1 100%;
+  flex: 1 1 auto;
+  justify-content: center;
 }
 
 /* Botón hamburguesa */
