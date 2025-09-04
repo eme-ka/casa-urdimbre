@@ -60,7 +60,7 @@ nav {
 
 /* Estilo para el logo */
 .logo img {
-  height: 55px;
+  height: 35px;
   width: auto;
 }
 
@@ -372,4 +372,10 @@ footer {
   .bio-content {
     flex: 1;
   }
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; /* makes sure the link takes the whole card */
 }

@@ -15,3 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+window.addEventListener('load', function () {
+  if (!location.hash) return;
+  var id = decodeURIComponent(location.hash.slice(1));
+  var el = document.getElementById(id);
+  if (!el) return;
+  // small delay to let any late layout shifts finish
+  setTimeout(function () {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 30);
+});
