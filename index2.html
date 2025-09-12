@@ -36,6 +36,99 @@
   </header>
 
   <main>
+
+    <!-- Popup -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span id="closePopup" class="close">&times;</span>
+        <a href="https://forms.gle/ECemQFT4DUQ22tRx6" target="_blank">
+    <img src="imagenes/inauguración.png" alt="Imagen del popup">
+    </a>
+  </div>
+</div>
+
+<!-- Estilos -->
+<style>
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;  /* 🔑 límite real del contenedor */
+  overflow: hidden;  /* evita que la imagen se salga */
+  border-radius: 8px;
+  background: #fff;
+  padding: 0; /* opcional: sin padding extra */
+}
+
+.popup-content img {
+  max-width: 90vw;
+  max-height: 90vh;  /* 🔑 la imagen nunca supera al contenedor */
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain; /* asegura que se ajuste sin recortar */
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+
+  .close:hover {
+    color: #000;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+
+<!-- Script -->
+<script>
+  const popup = document.getElementById('popup');
+  const closeBtn = document.getElementById('closePopup');
+
+  // Abrir automáticamente al cargar la página
+  window.addEventListener('load', () => {
+    popup.style.display = 'flex';
+  });
+
+  // Cerrar al hacer clic en la X
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Cerrar al hacer clic fuera del contenido
+  window.addEventListener('click', (e) => {
+    if(e.target === popup){
+      popup.style.display = 'none';
+    }
+  });
+</script>
+
+
+
     <section id="sobre">
       <h2>Sobre Casa Urdimbre</h2>
       <p>Casa Urdimbre nace como un refugio de cuidado, creatividad y encuentro. Un espacio cálido donde convergen talleres artísticos, prácticas corporales y salud con perspectiva integral.</p>
@@ -45,11 +138,12 @@
 <section id="actividades">
   <h2>Actividades</h2>
   <div class="cards">
-    <a href="talleres.html" class="card-link">
+    
+    <a href="consultorio.html" class="card-link">
       <div class="card">
-        <img src="imagenes/circulo.webp" alt="Talleres artísticos" />
-        <h3>Talleres</h3>
-        <p>Arte, escritura, tejido, plantas medicinales. Facilitadores locales con enfoque comunitario.</p>
+        <img src="imagenes/consultorio.jpg" alt="Consultorio" />
+        <h3>Consultorio</h3>
+        <p>Atención con perspectiva de género y salud integral. Turnos disponibles semanalmente.</p>
       </div>
     </a>
 
@@ -61,13 +155,15 @@
       </div>
     </a>
 
-    <a href="consultorio.html" class="card-link">
+    
+    <a href="talleres.html" class="card-link">
       <div class="card">
-        <img src="imagenes/consultorio.jpg" alt="Consultorio" />
-        <h3>Consultorio ginecológico</h3>
-        <p>Atención con perspectiva de género y salud integral. Turnos disponibles semanalmente.</p>
+        <img src="imagenes/circulo.webp" alt="Talleres artísticos" />
+        <h3>Talleres</h3>
+        <p>Arte, escritura, tejido, plantas medicinales. Facilitadores locales con enfoque comunitario.</p>
       </div>
     </a>
+
   </div>
 </section>
 
