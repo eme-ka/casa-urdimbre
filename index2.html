@@ -10,12 +10,14 @@
 </head>
 <body>
 <nav>
+  <!-- logo
     <div class="logo">
     <a href="index.html">
       <img src="imagenes/logo.jpg" alt="Casa Urdimbre" />
     </a>
-  </div>
-  <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+  </div> -->
+  <!-- botón de hamburguesa
+  <button class="menu-toggle" aria-label="Abrir menú">☰</button> -->
   <div class="nav-links">
     <a href="#sobre">Sobre Casa Urdimbre</a>
     <a href="#actividades">Actividades</a>
@@ -49,85 +51,8 @@
 
 <!-- Estilos -->
 <style>
-.popup {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
-}
 
-.popup-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;  /* 🔑 límite real del contenedor */
-  overflow: hidden;  /* evita que la imagen se salga */
-  border-radius: 8px;
-  background: #fff;
-  padding: 0; /* opcional: sin padding extra */
-}
-
-.popup-content img {
-  max-width: 90vw;
-  max-height: 90vh;  /* 🔑 la imagen nunca supera al contenedor */
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  object-fit: contain; /* asegura que se ajuste sin recortar */
-}
-
-.close {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  color: #333;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-
-  .close:hover {
-    color: #000;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
 </style>
-
-<!-- Script -->
-<script defer>
-  const popup = document.getElementById('popup');
-  const closeBtn = document.getElementById('closePopup');
-
-  // Abrir automáticamente al cargar la página
-  window.addEventListener('load', () => {
-    popup.style.display = 'flex';
-  });
-
-  // Cerrar al hacer clic en la X
-  closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-  });
-
-  // Cerrar al hacer clic fuera del contenido
-  window.addEventListener('click', (e) => {
-    if(e.target === popup){
-      popup.style.display = 'none';
-    }
-  });
-</script>
-
-
 
     <section id="sobre">
       <h2>Sobre Casa Urdimbre</h2>
@@ -221,5 +146,28 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- Script -->
+<script>
+  const popup = document.getElementById('popup');
+  const closeBtn = document.getElementById('closePopup');
+
+  // Abrir automáticamente al cargar la página
+  window.addEventListener('load', () => {
+    popup.style.display = 'flex';
+  });
+
+  // Cerrar al hacer clic en la X
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Cerrar al hacer clic fuera del contenido
+  window.addEventListener('click', (e) => {
+    if(e.target === popup){
+      popup.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>

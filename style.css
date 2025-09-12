@@ -86,7 +86,19 @@ nav a {
   justify-content: center;
 }
 
-/* Botón hamburguesa */
+/* Por defecto, el nav se ve en pantallas grandes */
+nav {
+  display: block;
+}
+
+/* En celulares (pantallas chicas, <768px) se oculta */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+}
+
+/* Botón hamburguesa
 .menu-toggle {
   display: none;
   background: none;
@@ -96,7 +108,7 @@ nav a {
   color: #5a493c;
 }
 
-/* Responsive */
+/* Responsive 
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -127,7 +139,8 @@ nav a {
   nav a {
     margin: 0.5rem 0;
   }
-}
+} */
+
 
 
 main {
@@ -379,3 +392,59 @@ footer {
   color: inherit;
   display: block; /* makes sure the link takes the whole card */
 }
+
+
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;  /* 🔑 límite real del contenedor */
+  overflow: hidden;  /* evita que la imagen se salga */
+  border-radius: 8px;
+  background: #fff;
+  padding: 0; /* opcional: sin padding extra */
+}
+
+.popup-content img {
+  max-width: 90vw;
+  max-height: 90vh;  /* 🔑 la imagen nunca supera al contenedor */
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain; /* asegura que se ajuste sin recortar */
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+
+  .close:hover {
+    color: #000;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
