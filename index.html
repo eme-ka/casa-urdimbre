@@ -1,51 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Inauguración - Casa Urdimbre</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inauguración - Casa Urdimbre</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* evita scroll */
+    }
 
-      img {
-        display: block;
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-      }
-    </style>
-  </head>
-  <body>
-     <a href="https://forms.gle/ECemQFT4DUQ22tRx6" target="_blank">
-    <img id="imagen" src="/imagenes/inauguración.png" alt="Inauguración" />
-     </a>
-    <script>
-      const img = document.getElementById("imagen");
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111; /* color de fondo */
+    }
 
-      function ajustarImagen() {
-        const ventanaAspecto = window.innerWidth / window.innerHeight;
-        const imagenAspecto = img.naturalWidth / img.naturalHeight;
-
-        if (ventanaAspecto > imagenAspecto) {
-          // Pantalla más ancha que la imagen → ajustar por alto
-          img.style.width = "auto";
-          img.style.height = "50%";
-        } else {
-          // Pantalla más alta que la imagen → ajustar por ancho
-          img.style.width = "50%";
-          img.style.height = "auto";
-        }
-      }
-
-      img.addEventListener("load", ajustarImagen);
-      window.addEventListener("resize", ajustarImagen);
-    </script>
-  </body>
+    img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain; /* ajusta la imagen sin recortarla */
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <a href="https://forms.gle/ECemQFT4DUQ22tRx6" target="_blank">
+    <img src="imagenes/inauguración.png" alt="Imagen fullscreen">
+  </a>
+</body>
 </html>

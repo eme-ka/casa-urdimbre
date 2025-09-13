@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Inauguración - Casa Urdimbre</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+     <a href="https://forms.gle/ECemQFT4DUQ22tRx6" target="_blank">
+    <img id="imagen" src="/imagenes/inauguración.png" alt="Inauguración" />
+     </a>
+    <script>
+      const img = document.getElementById("imagen");
+
+      function ajustarImagen() {
+        const ventanaAspecto = window.innerWidth / window.innerHeight;
+        const imagenAspecto = img.naturalWidth / img.naturalHeight;
+
+        if (ventanaAspecto > imagenAspecto) {
+          // Pantalla más ancha que la imagen → ajustar por alto
+          img.style.width = "auto";
+          img.style.height = "50%";
+        } else {
+          // Pantalla más alta que la imagen → ajustar por ancho
+          img.style.width = "50%";
+          img.style.height = "auto";
+        }
+      }
+
+      img.addEventListener("load", ajustarImagen);
+      window.addEventListener("resize", ajustarImagen);
+    </script>
+  </body>
+</html>
