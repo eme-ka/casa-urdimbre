@@ -3,70 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casa Urdimbre</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Consultorio – Casa Urdimbre</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav>
-  <!-- logo
-    <div class="logo">
-    <a href="index.html">
-      <img src="imagenes/logo.jpg" alt="Casa Urdimbre" />
-    </a>
-  </div> -->
-  <!-- botón de hamburguesa
-  <button class="menu-toggle" aria-label="Abrir menú">☰</button> -->
   <div class="nav-links">
-    <a href="#sobre">Sobre Casa Urdimbre</a>
-    <a href="#actividades">Actividades</a>
+    <a href="index.html">Inicio</a>
+    <a href="" class="activo">Consultorio</a>
     <a href="manifiesto.html">Manifiesto</a>
     <a href="quienessomos.html">Quiénes Somos</a>
-    <a href="#contacto">Contacto</a>
+    <a href="index.html#contacto">Contacto</a>
   </div>
 </nav>
 
   <header>
     <div class="hero">
-      <div class="overlay"></div>
       <h1>Casa Urdimbre</h1>
-      <p>Un espacio para tejer cuerpo, mente y comunidad</p>
+      <p>Osteopatía y Masajes</p>
     </div>
 
   </header>
 
   <main>
+<section id="osteopatia" class="bios">
+  <h2>Osteopatía y Masajes</h2>
+      <div class="bio-card">
+    <img src="imagenes/osteo-rosaura.jpg" alt="Foto de Osteopatía">
+    <div class="bio-content">
+      <h3>Osteopatía</h3>
+      <p class="bio-intro">
+        Brindado por <a href="quienessomos.html#rosaura">Rosaura</a>
+      </p>
+      <div class="bio-more">
+        <p>
+  La osteopatía es una medicina que trabaja con la fuerza de autocuración presente en cada persona.
+</p>
+<p>
+  Comenzamos la sesión con una charla en la que hago varias preguntas con el fin de ir reconstruyendo la historia clínica de la persona. Esta parte de la sesión es sumamente rica ya que vamos desentrañando el por qué de sus trabas, dolencias o molestias. En este acto de presencia mutua nos vamos acercando a la raíz del conflicto que está generando un bloqueo para que la salud, inherente a todo ser vivo, pueda manifestarse.
+</p>
+<p>
+  A continuación pasamos a los testeos osteopáticos en los que, mediante diversos contactos en quietud o en movimiento, vamos viendo cómo es la expresión del cuerpo; la intención no está puesta en encontrar “fallas” o estructuras que estén desajustadas, sino en entender cómo está organizado el sistema.
+</p>
+<p>
+  Finalmente, pasamos al tratamiento que es de carácter no invasivo, suave, preciso y profundo. Una vez terminada esa sesión, que dura (dependiendo el caso) entre 1:15 o 1:45 hs., la persona seguirá asimilando el tratamiento durante dos o tres días, ya que, al mover diversos tejidos, el cuerpo continúa solo el proceso permitiendo que la sangre lleve…
+</p>
+      </div>
+      <button class="toggle-bio">Ver más</button>
+    </div>
+    
+  </div>
 
-    <!-- Popup -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <span id="closePopup" class="close">&times;</span>
-        <a href="https://forms.gle/ECemQFT4DUQ22tRx6" target="_blank">
-    <img src="imagenes/inauguración.png" alt="Imagen del popup">
-    </a>
+  <div class="bio-card">
+  <img src="imagenes/osteo-meri.jpg" alt="Osteopatía">
+  <div class="bio-content">
+    <h3>Osteopatía</h3>
+    <p class="bio-intro">
+      Brindado por <a href="quienessomos.html#meri">María Díaz Ringlestein</a>
+    </p>
+    <div class="bio-more">
+      <p>
+        La osteopatía es una medicina manual que tiene un abordaje global sobre la persona y la salud. 
+        Considera que el cuerpo actúa como una gran unidad en la cual todos los sistemas y sus partes 
+        están interrelacionadas, buscando ir más allá del síntoma o motivo de consulta específico para 
+        encontrar el origen de la dolencia y restablecer el equilibrio y la salud en todo el cuerpo, 
+        tanto a nivel físico como emocional y mental.
+      </p>
+      <p>
+        El abordaje es a través de un contacto preciso y suave, respetando el ritmo individual y la 
+        vitalidad de cada persona, sin necesidad de ejercer fuerza ni realizar maniobras bruscas.
+      </p>
+      <p>
+        Con mis manos voy escuchando los tejidos para percibir zonas donde haya pérdida de movilidad, 
+        bloqueos osteoarticulares o restricciones en los distintos sistemas del cuerpo, y voy ofreciendo 
+        puntos de apoyo para que el cuerpo se reorganice en torno a la salud, liberando las tensiones.
+      </p>
+    </div>
+    <button class="toggle-bio">Ver más</button>
   </div>
 </div>
 
-<!-- Estilos -->
-<style>
-
-</style>
-
-    <section id="sobre">
-      <h2>¿Qué es Casa Urdimbre?</h2>
-      <p>Es un espacio de salud, ubicado en el barrio de devoto, donde suceden prácticas de salud diversas, que van desde atención médica integrativa, fonoaudiología, osteopatía, masajes y terapias 1:1 a clases de yoga y movimiento, talleres de meditación, de tantra, de respiración y muchos otros.</p>
-      <img src="imagenes/portada.jpg" alt="Espacio interior cálido" />
-      <h2>Nuestro espíritu:</h2>
-      <p>Casa Urdimbre es un espacio que nace del deseo por recuperar la cooperación y la empatía como principios orgánicos humanos y así construir una experiencia vital conjunta que nos nutra y nos reúna en armonía.</p>
-      <p>En este espacio de salud priorizamos la soberanía de los cuerpos.</p>
-      <p>Acompañamos con respeto cada proceso y cada vivencia particular.</p>
-      <p>Ponemos nuestros saberes al servicio de la autogestión de las personas, con escucha activa e información clara y accesible porque confiamos en la sabiduría de cada ser para (re)unirse en paz con quién es ó quién está siendo hoy (y eso es salud). </p>
-      <p>En Casa Urdimbre brindamos refugio y cuenco de conexión humana para tender los hilos de una vida más creativa, placentera y alineada con la naturaleza.</p>
-    </section>
+<div class="bio-card">
+  <img src="imagenes/masaje-thai.jpeg" alt="Masaje Thai">
+  <div class="bio-content">
+    <h3>Masaje Thai</h3>
+    <p class="bio-intro">
+      Brindado por <a href="quienessomos.html#gabi">Gabi</a>
+    </p>
+    <div class="bio-more">
+      <p>
+        El masaje tradicional tailandés constituye un trabajo corporal ancestral y sagrado, 
+        conocido en Tailandia como <em>nuat thai</em>. Es una rama importante de la medicina 
+        tradicional tailandesa y reúne cualidades de disciplinas orientales como el yoga, 
+        la digitopresión y la meditación.
+      </p>
+      <p>
+        Se fundamenta en principios energéticos y en una concepción holística del ser humano. 
+        Su objetivo principal es restablecer la circulación de la energía vital para lograr un 
+        equilibrio físico, mental y emocional. La sesión se desarrolla de manera secuencial y 
+        dinámica, con un ritmo pausado acompañado de respiración consciente. Se realiza en un 
+        futón sobre el suelo, con ropa cómoda de algodón.
+      </p>
+      <p>
+        Es un trabajo corporal lento y dinámico, que implica estiramientos pasivos y 
+        compresiones estáticas utilizando manos, dedos, codos, rodillas y pies. Estas presiones 
+        y estiramientos activan el flujo de la energía vital y favorecen la autorregulación 
+        natural del cuerpo.
+      </p>
+      <p>
+        El masaje contribuye al buen funcionamiento del organismo, atendiendo aspectos físicos, 
+        mentales y emocionales. Es un método preventivo y curativo que mejora la movilidad, 
+        la flexibilidad y la energía vital, reduce el riesgo de lesiones y libera tensiones 
+        del estrés, armonizando los aspectos psicofísicos y sutiles del ser humano.
+      </p>
+    </div>
+    <button class="toggle-bio">Ver más</button>
+  </div>
+</div>
 
 <section id="actividades">
-  <h2>Actividades</h2>
+  <h2>Otras actividades</h2>
   <div class="cards">
     
     <a href="consultorio.html" class="card-link">
@@ -74,15 +131,6 @@
         <img src="imagenes/consultorio.jpg" alt="Consultorio" />
         <h3>Consultorios</h3>
       <p>Medicina Integral con enfoque Ayurveda, Medicina General y Familiar y Fonoaudiología integral. <u>Conocé</u> a profesionales que brindan su espacio de consulta bajo un paradigma integral de la salud.</p>
-    </div> 
-    </a>
-
-      
-    <a href="osteopatia.html" class="card-link">
-      <div class="card">
-        <img src="imagenes/osteo-index.JPEG" alt="Consultorio" />
-        <h3>Osteopatía y masajes</h3>
-      <p>Distintas terapias que abordan la mecánica y la salud de los tejidos corporales. <u>Enterate</u> qué técnicas y modalidades trabajamos y quiénes son les terapeutas.</p>
     </div> 
     </a>
 
@@ -105,18 +153,12 @@
   </div>
 </section>
 
-
-
-<section id="contacto" class="formulario-contacto">
-  <div class="columna-imagen">
-    <img src="imagenes/form.jpeg" alt="Formulario" />
-  </div>
-  <div class="columna-formulario">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvcBDoNApLCu10J2OKbEiExCfr8F8DbxvoU6qDt019H-9lVA/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-  </div>
 </section>
 
   </main>
+
+<script src="/js/script.js"></script>
+
 
 <footer style="display: flex; gap: 20px; padding: 20px; background: #f9f9f9;">
   <!-- Columna mapa -->
@@ -160,27 +202,6 @@
 
 <script src="js/main.js"></script>
 
-<!-- Script -->
-<script>
-  const popup = document.getElementById('popup');
-  const closeBtn = document.getElementById('closePopup');
 
-  // Abrir automáticamente al cargar la página
-  window.addEventListener('load', () => {
-    popup.style.display = 'flex';
-  });
-
-  // Cerrar al hacer clic en la X
-  closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-  });
-
-  // Cerrar al hacer clic fuera del contenido
-  window.addEventListener('click', (e) => {
-    if(e.target === popup){
-      popup.style.display = 'none';
-    }
-  });
-</script>
 </body>
 </html>

@@ -7,7 +7,7 @@ body {
 }
 
 .hero {
-  background-image: url('imagenes/hero.avif');
+  background-image: url('imagenes/hero.JPEG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,7 +15,7 @@ body {
   padding-top: 8rem;
   color: white;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-  border-bottom: 3px solid #e8d8c3;
+  border-bottom: 3px solid #faf5ef;
 }
 
 nav a.activo {
@@ -23,7 +23,13 @@ nav a.activo {
   color: #996633;
 }
 
-h1, h2, h3 {
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+}
+
+h2, h3 {
   font-family: 'Playfair Display', serif;
   color: #4a3b2c;
 }
