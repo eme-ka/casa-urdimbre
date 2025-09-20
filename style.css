@@ -190,17 +190,35 @@ section img {
   display: block;
 }
 
+
 .video-overlay {
   position: absolute;
-  top: 50%;           /* centrado vertical */
-  left: 50%;          /* centrado horizontal */
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  background: rgba(0,0,0,0.4); /* fondo semitransparente para legibilidad */
+  background: rgba(0,0,0,0.4);
   padding: 1.5rem;
   border-radius: 8px;
   max-width: 80%;
+}
+
+/* 🔹 Mobile: texto debajo del video */
+@media (max-width: 768px) {
+  .video-section {
+    max-height: none; /* deja crecer el contenedor */
+  }
+
+  .video-overlay {
+    position: static;      /* ya no está sobre el video */
+    transform: none;
+    max-width: 100%;       /* ocupa todo el ancho */
+    background: none;      /* sin fondo semitransparente */
+    color: black;          /* cambia a negro para que se lea sobre fondo blanco */
+    text-align: left;      /* opcional: alineado normal */
+    padding: 1rem 0;
+  }
 }
 
 
