@@ -492,6 +492,21 @@ footer {
   object-fit: contain; /* asegura que se ajuste sin recortar */
 }
 
+/* popup mobile ... */
+
+@media (max-width: 600px) {
+  .popup-content {
+    max-width: 95vw;   /* ocupa casi todo el ancho */
+    max-height: 95vh;  /* ocupa casi todo el alto */
+  }
+
+  .popup-content img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+
 .close {
   position: absolute;
   top: 5px;
@@ -547,5 +562,13 @@ footer {
   .botones-row img {
     width: 120px;
     height: auto;
+  }
+}
+
+/* footer mapa oculto en mobile */
+
+@media (max-width: 768px) {
+  .footer-mapa {
+    display: none;
   }
 }
