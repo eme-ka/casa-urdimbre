@@ -572,3 +572,52 @@ footer {
     display: none;
   }
 }
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Contenedor del ToC */
+.toc {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Título del ToC */
+.toc h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Lista de enlaces */
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin-bottom: 0.6rem;
+}
+
+/* Estilo de enlaces */
+.toc a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: 500;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+/* Hover */
+.toc a:hover {
+  color: #005999;
+  padding-left: 4px;
+}
