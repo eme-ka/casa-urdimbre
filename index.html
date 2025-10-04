@@ -40,17 +40,6 @@
 
   <main>
 
-
-    <!-- Popup -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <span id="closePopup" class="close">&times;</span>
-        <a href="https://forms.gle/g4bug6YMffTVXc1e7" target="_blank">
-    <img src="imagenes/flyer-clases-gratis.jpg" alt="Imagen del popup">
-    </a>
-  </div>
-</div>
-
 <section id="sobre">
 <h2 class="centered-title">¿Qué es Casa Urdimbre?</h2>
       <p>Es un espacio de salud, ubicado en el barrio de devoto, donde suceden prácticas de salud diversas, que van desde atención médica integrativa, fonoaudiología, osteopatía, masajes y terapias 1:1 a clases de yoga y movimiento, talleres de meditación, de tantra, de respiración y muchos otros.</p>
@@ -169,27 +158,5 @@
 
 <script src="js/main.js"></script>
 
-<!-- Script -->
-<script>
-  const popup = document.getElementById('popup');
-  const closeBtn = document.getElementById('closePopup');
-
-  // Abrir automáticamente al cargar la página
-  window.addEventListener('load', () => {
-    popup.style.display = 'flex';
-  });
-
-  // Cerrar al hacer clic en la X
-  closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-  });
-
-  // Cerrar al hacer clic fuera del contenido
-  window.addEventListener('click', (e) => {
-    if(e.target === popup){
-      popup.style.display = 'none';
-    }
-  });
-</script>
 </body>
 </html>
