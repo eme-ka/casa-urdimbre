@@ -528,42 +528,6 @@ footer {
     to { opacity: 1; }
   }
 
-  /* Por defecto: mostrar iframe, ocultar botones */
-.reservaclase {
-  display: block;
-}
-
-.botones-app {
-  display: none;
-}
-
-/* En mobile: ocultar iframe, mostrar texto + botones en fila */
-@media (max-width: 768px) {
-  .reservaclase {
-    display: none;
-  }
-  .botones-app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1.5rem 0;
-    text-align: center;
-  }
-  .texto-app {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  .botones-row {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  .botones-row img {
-    width: 120px;
-    height: auto;
-  }
-}
 
 /* footer mapa oculto en mobile */
 
