@@ -418,7 +418,13 @@ footer {
   line-height: 1.6;
 }
 
-.toggle-bio {
+
+.bio-buttons a {
+  text-decoration: none;
+}
+
+.toggle-bio,
+.bio-btn {
   display: inline-block;
   margin-top: 1rem;
   background: #5a493c;
@@ -429,9 +435,11 @@ footer {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  text-decoration: none;
 }
 
-.toggle-bio:hover {
+.toggle-bio:hover,
+.bio-btn:hover {
   background: #7a6451;
 }
 
@@ -585,3 +593,4 @@ html {
   color: #005999;
   padding-left: 4px;
 }
+
