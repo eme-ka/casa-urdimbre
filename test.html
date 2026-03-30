@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Ayurveda – Descubrí tu Dosha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --vata-color: #7B6A52;
+    --pitta-color: #B85C2A;
+    --kapha-color: #3D7A52;
+    --bg: #FAF7F1;
+    --card-bg: #FDF9F2;
+    --border: #E2D8C0;
+    --border-strong: #C9BB99;
+    --text: #2A2018;
+    --muted: #6B6050;
+    --accent: #A07840;
+    --warm-white: #FFFDF7;
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #2A2018 0%, #4A3828 60%, #3A2E1C 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(160,120,64,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-symbol {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: #C9A060;
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    color: #F5EDD8;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+  }
+  .hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #B8A880;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+  }
+
+  /* INSTRUCCIONES */
+  .instrucciones {
+    background: var(--warm-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2rem;
+  }
+  .instrucciones-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .instrucciones h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  .instrucciones ol {
+    list-style: none;
+    counter-reset: inst;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .instrucciones li {
+    counter-increment: inst;
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .instrucciones li::before {
+    content: counter(inst);
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+  .inst-tabs {
+    display: flex;
+    gap: 0;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .inst-tab {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: var(--bg);
+    color: var(--muted);
+    transition: all 0.2s;
+    font-family: 'Jost', sans-serif;
+  }
+  .inst-tab.active {
+    background: var(--accent);
+    color: #FDF9F2;
+  }
+  .inst-tab:not(:last-child) {
+    border-right: 1px solid var(--border);
+  }
+  .mode-description {
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  /* QUIZ */
+  .quiz-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .question-block {
+    margin-bottom: 1.4rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .question-block:hover {
+    border-color: var(--border-strong);
+  }
+  .question-block.answered {
+    border-color: var(--border-strong);
+  }
+
+  .q-header {
+    padding: 0.9rem 1.1rem 0.7rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .q-num {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  .q-text {
+    font-size: 0.92rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .q-note {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+
+  .options-list {
+    list-style: none;
+  }
+  .option-item {
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .option-item:last-child {
+    border-bottom: none;
+  }
+  .option-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.75rem 1.1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .option-label:hover {
+    background: rgba(160,120,64,0.05);
+  }
+  .option-dot {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-strong);
+    background: var(--warm-white);
+    margin-top: 1px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .option-dot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.15s;
+  }
+  input:checked + .option-label .option-dot::after {
+    background: var(--accent);
+  }
+  input:checked + .option-label .option-dot {
+    border-color: var(--accent);
+  }
+  input:checked + .option-label {
+    background: rgba(160,120,64,0.07);
+  }
+  .option-dosha {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-top: 2px;
+  }
+  .dosha-v { background: rgba(123,106,82,0.12); color: var(--vata-color); }
+  .dosha-p { background: rgba(184,92,42,0.12); color: var(--pitta-color); }
+  .dosha-k { background: rgba(61,122,82,0.12); color: var(--kapha-color); }
+  .option-text {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--text);
+    flex: 1;
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1.5rem;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .progress-track {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--vata-color), var(--pitta-color));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* SUBMIT */
+  .submit-wrap {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .unanswered-msg {
+    font-size: 0.82rem;
+    color: var(--pitta-color);
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .btn-submit {
+    background: var(--text);
+    color: var(--warm-white);
+    border: none;
+    padding: 0.9rem 2.8rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-submit:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+  .btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* RESULTADO */
+  #resultado {
+    display: none;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .resultado-hero {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .resultado-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .resultado-dosha-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 7vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .resultado-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .score-card {
+    padding: 1rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-align: center;
+    background: var(--warm-white);
+  }
+  .score-card.dominant {
+    border-width: 2px;
+  }
+  .score-card.dominant-v { border-color: var(--vata-color); background: rgba(123,106,82,0.06); }
+  .score-card.dominant-p { border-color: var(--pitta-color); background: rgba(184,92,42,0.06); }
+  .score-card.dominant-k { border-color: var(--kapha-color); background: rgba(61,122,82,0.06); }
+  .score-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .score-name-v { color: var(--vata-color); }
+  .score-name-p { color: var(--pitta-color); }
+  .score-name-k { color: var(--kapha-color); }
+  .score-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .score-bar-wrap {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .score-bar { height: 100%; border-radius: 2px; }
+  .score-bar-v { background: var(--vata-color); }
+  .score-bar-p { background: var(--pitta-color); }
+  .score-bar-k { background: var(--kapha-color); }
+
+  .resultado-desc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .resultado-desc h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: var(--accent);
+  }
+  .resultado-desc p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+  .resultado-desc p + p {
+    margin-top: 0.8rem;
+  }
+
+  .btn-reiniciar {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--muted);
+    padding: 0.7rem 2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    display: block;
+    margin: 0 auto;
+  }
+  .btn-reiniciar:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .disclaimer {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    margin-top: 1.2rem;
+    line-height: 1.6;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 520px) {
+    .hero { padding: 3rem 1.25rem 2rem; }
+    .quiz-wrap, #resultado { padding-left: 1rem; padding-right: 1rem; }
+    .scores-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .score-num { font-size: 1.6rem; }
+    .inst-tabs { flex-direction: column; }
+    .inst-tab:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-symbol">☽ ✦ ☾</span>
+  <h1>Test de Constitución Ayurveda</h1>
+  <p class="hero-sub">Prakruti & Vikruti · Descubrí tu dosha</p>
+</div>
+
+<div class="instrucciones">
+  <div class="instrucciones-inner">
+    <h2>Cómo responder</h2>
+    <ol>
+      <li>En cada opción, las primeras características tienen mayor peso. Si coincidís con las primeras de una opción, marcala aunque el resto no encaje perfectamente.</li>
+      <li>Si te sentís entre dos opciones, podés marcar ambas: cada una contará como medio punto para esa pregunta.</li>
+      <li>Si ninguna opción te representa al 100%, elegí la/s que más se acerquen. Cada respuesta describe un extremo dentro de un espectro.</li>
+      <li>Si realmente ninguna predomina, podés marcar las tres opciones para invalidar la pregunta (no sumará puntaje).</li>
+    </ol>
+    <div class="inst-tabs">
+      <button class="inst-tab active" onclick="setMode('prakruti', this)">Prakruti</button>
+      <button class="inst-tab" onclick="setMode('vikruti', this)">Vikruti</button>
+    </div>
+    <p class="mode-description" id="mode-desc">
+      <strong>Prakruti</strong> – tu constitución de base. Respondé pensando en tu tendencia general a lo largo de la vida, o en tu estado más equilibrado.
+    </p>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-info">
+    <span>Progreso</span>
+    <span id="progress-text">0 / 30</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<form id="quiz-form">
+<div class="quiz-wrap">
+
+  <!-- SECCIÓN: CUERPO -->
+  <div class="section-title">Cuerpo</div>
+
+  <!-- Q1 -->
+  <div class="question-block" id="qb-1">
+    <div class="q-header">
+      <span class="q-num">1</span>
+      <span class="q-text">Tamaño corporal</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q1-v" name="q1" value="v">
+        <label class="option-label" for="q1-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Delgado/a</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q1-p" name="q1" value="p">
+        <label class="option-label" for="q1-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Mediano/a</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q1-k" name="q1" value="k">
+        <label class="option-label" for="q1-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grande</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-block" id="qb-2">
+    <div class="q-header">
+      <span class="q-num">2</span>
+      <span class="q-text">Huesos</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q2-v" name="q2" value="v">
+        <label class="option-label" for="q2-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Prominentes (se marcan a través de los músculos y la piel)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q2-p" name="q2" value="p">
+        <label class="option-label" for="q2-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Medios (no se marcan mucho)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q2-k" name="q2" value="k">
+        <label class="option-label" for="q2-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grandes (esqueleto grande que no se marca demasiado)</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-block" id="qb-3">
+    <div class="q-header">
+      <span class="q-num">3</span>
+      <span class="q-text">Articulaciones</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q3-v" name="q3" value="v">
+        <label class="option-label" for="q3-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Frías, chasquean</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q3-p" name="q3" value="p">
+        <label class="option-label" for="q3-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Moderadas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q3-k" name="q3" value="k">
+        <label class="option-label" for="q3-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grandes, lubricadas</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-block" id="qb-4">
+    <div class="q-header">
+      <span class="q-num">4</span>
+      <span class="q-text">Espalda y caderas</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q4-v" name="q4" value="v">
+        <label class="option-label" for="q4-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Delgadas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q4-p" name="q4" value="p">
+        <label class="option-label" for="q4-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Moderadas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q4-k" name="q4" value="k">
+        <label class="option-label" for="q4-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grandes</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-block" id="qb-5">
+    <div class="q-header">
+      <span class="q-num">5</span>
+      <span class="q-text">Piel</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q5-v" name="q5" value="v">
+        <label class="option-label" for="q5-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Fina, seca, áspera</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q5-p" name="q5" value="p">
+        <label class="option-label" for="q5-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Suave, grasa, cálida</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q5-k" name="q5" value="k">
+        <label class="option-label" for="q5-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Gruesa, grasa, fresca</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-block" id="qb-6">
+    <div class="q-header">
+      <span class="q-num">6</span>
+      <span class="q-text">Tez</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q6-v" name="q6" value="v">
+        <label class="option-label" for="q6-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Mate / oscura</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q6-p" name="q6" value="p">
+        <label class="option-label" for="q6-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Sonrosada</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q6-k" name="q6" value="k">
+        <label class="option-label" for="q6-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Pálida</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-block" id="qb-7">
+    <div class="q-header">
+      <span class="q-num">7</span>
+      <span class="q-text">Cabello</span>
+      <span class="q-note">Las características de espesor y forma tienen mayor peso que el color.</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q7-v" name="q7" value="v">
+        <label class="option-label" for="q7-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Seco, enredado, quebradizo, ondulado/rulos, fino (marrón/negro, oscuro)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q7-p" name="q7" value="p">
+        <label class="option-label" for="q7-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Liso/ondulado, graso (rubio/castaño/cobrizo/rojo)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q7-k" name="q7" value="k">
+        <label class="option-label" for="q7-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Espeso, graso, ondulado/rulos (de cualquier color)</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-block" id="qb-8">
+    <div class="q-header">
+      <span class="q-num">8</span>
+      <span class="q-text">Ojos</span>
+      <span class="q-note">Las primeras características tienen mayor peso que el color.</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q8-v" name="q8" value="v">
+        <label class="option-label" for="q8-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Pequeños, hundidos, secos, activos (oscuros)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q8-p" name="q8" value="p">
+        <label class="option-label" for="q8-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Brillantes, enrojecen, sensibles a la luz (grises, claros)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q8-k" name="q8" value="k">
+        <label class="option-label" for="q8-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grandes, suaves (castaños o colores claros)</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question-block" id="qb-9">
+    <div class="q-header">
+      <span class="q-num">9</span>
+      <span class="q-text">Nariz</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q9-v" name="q9" value="v">
+        <label class="option-label" for="q9-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Irregular, huesuda, desviada</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q9-p" name="q9" value="p">
+        <label class="option-label" for="q9-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Puntiaguda, rosada en la punta</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q9-k" name="q9" value="k">
+        <label class="option-label" for="q9-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Bien redonda, corta, nariz de botón</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q10 -->
+  <div class="question-block" id="qb-10">
+    <div class="q-header">
+      <span class="q-num">10</span>
+      <span class="q-text">Dientes</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q10-v" name="q10" value="v">
+        <label class="option-label" for="q10-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Encías delgadas, dientes grandes, separados</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q10-p" name="q10" value="p">
+        <label class="option-label" for="q10-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Medianos, encías sensibles</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q10-k" name="q10" value="k">
+        <label class="option-label" for="q10-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Blancos, grandes, encías fuertes</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q11 -->
+  <div class="question-block" id="qb-11">
+    <div class="q-header">
+      <span class="q-num">11</span>
+      <span class="q-text">Labios</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q11-v" name="q11" value="v">
+        <label class="option-label" for="q11-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Secos, quebradizos en climas secos, oscuros</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q11-p" name="q11" value="p">
+        <label class="option-label" for="q11-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Rojizos, humectados</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q11-k" name="q11" value="k">
+        <label class="option-label" for="q11-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Pálidos, redondeados, humectados/grasos</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q12 -->
+  <div class="question-block" id="qb-12">
+    <div class="q-header">
+      <span class="q-num">12</span>
+      <span class="q-text">Uñas</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q12-v" name="q12" value="v">
+        <label class="option-label" for="q12-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Secas, ásperas, frágiles, crecimiento lento</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q12-p" name="q12" value="p">
+        <label class="option-label" for="q12-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Flexibles, sonrosadas, crecimiento moderado</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q12-k" name="q12" value="k">
+        <label class="option-label" for="q12-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Espesas, suaves, crecimiento rápido</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q13 -->
+  <div class="question-block" id="qb-13">
+    <div class="q-header">
+      <span class="q-num">13</span>
+      <span class="q-text">Mejillas</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q13-v" name="q13" value="v">
+        <label class="option-label" for="q13-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Delgadas, hundidas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q13-p" name="q13" value="p">
+        <label class="option-label" for="q13-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Lisas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q13-k" name="q13" value="k">
+        <label class="option-label" for="q13-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Rellenas, redondeadas</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q14 -->
+  <div class="question-block" id="qb-14">
+    <div class="q-header">
+      <span class="q-num">14</span>
+      <span class="q-text">Cuello</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q14-v" name="q14" value="v">
+        <label class="option-label" for="q14-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Largo, delgado</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q14-p" name="q14" value="p">
+        <label class="option-label" for="q14-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Mediano</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q14-k" name="q14" value="k">
+        <label class="option-label" for="q14-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grueso, con pliegues</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q15 -->
+  <div class="question-block" id="qb-15">
+    <div class="q-header">
+      <span class="q-num">15</span>
+      <span class="q-text">Mamas (si corresponde)</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q15-v" name="q15" value="v">
+        <label class="option-label" for="q15-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Pequeñas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q15-p" name="q15" value="p">
+        <label class="option-label" for="q15-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Medianas</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q15-k" name="q15" value="k">
+        <label class="option-label" for="q15-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grandes</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q16 -->
+  <div class="question-block" id="qb-16">
+    <div class="q-header">
+      <span class="q-num">16</span>
+      <span class="q-text">Ombligo</span>
+      <span class="q-note">Sin contar cambios post cirugías o gestaciones.</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q16-v" name="q16" value="v">
+        <label class="option-label" for="q16-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Pequeño, irregular, herniado</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q16-p" name="q16" value="p">
+        <label class="option-label" for="q16-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Ovalado, superficial</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q16-k" name="q16" value="k">
+        <label class="option-label" for="q16-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Grande, profundo, redondo</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN: METABOLISMO -->
+  <div class="section-title">Metabolismo & Digestión</div>
+
+  <!-- Q17 -->
+  <div class="question-block" id="qb-17">
+    <div class="q-header">
+      <span class="q-num">17</span>
+      <span class="q-text">Clima en el que te sentís más a gusto</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q17-k" name="q17" value="k">
+        <label class="option-label" for="q17-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Verano</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q17-p" name="q17" value="p">
+        <label class="option-label" for="q17-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Invierno</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q17-v" name="q17" value="v">
+        <label class="option-label" for="q17-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Moderado (primavera/otoño)</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q18 -->
+  <div class="question-block" id="qb-18">
+    <div class="q-header">
+      <span class="q-num">18</span>
+      <span class="q-text">Apetito</span>
+      <span class="q-note">El apetito real es un buen indicio de nuestra constitución metabólica.</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q18-v" name="q18" value="v">
+        <label class="option-label" for="q18-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Irregular (días con mucha hambre y días con nada) o escaso (a veces podés olvidarte de comer)</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q18-p" name="q18" value="p">
+        <label class="option-label" for="q18-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Abundante (sobre todo al mediodía), insoportable si la comida se retrasa</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q18-k" name="q18" value="k">
+        <label class="option-label" for="q18-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Podés tener apetito considerable pero podés esperar largo rato a que esté lista la comida</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q19 -->
+  <div class="question-block" id="qb-19">
+    <div class="q-header">
+      <span class="q-num">19</span>
+      <span class="q-text">Digestión</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q19-v" name="q19" value="v">
+        <label class="option-label" for="q19-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Irregular, gases, inflamación intestinal</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q19-p" name="q19" value="p">
+        <label class="option-label" for="q19-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Rápida, tiende a acidez. Todo lo que comés lo digerís, no solés tener dificultad digestiva.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q19-k" name="q19" value="k">
+        <label class="option-label" for="q19-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Lenta y prolongada, forma mucosidad. Mucho letargo o cansancio después de la comida.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q20 -->
+  <div class="question-block" id="qb-20">
+    <div class="q-header">
+      <span class="q-num">20</span>
+      <span class="q-text">Deposiciones</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q20-v" name="q20" value="v">
+        <label class="option-label" for="q20-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Irregulares. Tendés a estreñimiento / heces secas, oscuras, pequeñas, en bolitas.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q20-p" name="q20" value="p">
+        <label class="option-label" for="q20-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Regular (1 o más veces por día, en general a la misma hora). Heces blandas, color uniforme. Tendés a menor consistencia.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q20-k" name="q20" value="k">
+        <label class="option-label" for="q20-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Lentas. Heces voluminosas, grasas, lentas.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q21 -->
+  <div class="question-block" id="qb-21">
+    <div class="q-header">
+      <span class="q-num">21</span>
+      <span class="q-text">Descanso / Sueño</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q21-v" name="q21" value="v">
+        <label class="option-label" for="q21-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Cuesta conciliar, liviano, errático, fragmentado, insomnio. Siesta corta si se puede.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q21-p" name="q21" value="p">
+        <label class="option-label" for="q21-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Escasa cantidad de horas (aunque se den las condiciones para dormir más), de corrido, profundo. Nunca siesta.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q21-k" name="q21" value="k">
+        <label class="option-label" for="q21-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Larga cantidad de horas (si se dan las condiciones), profundo. Siesta si se puede.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q22 -->
+  <div class="question-block" id="qb-22">
+    <div class="q-header">
+      <span class="q-num">22</span>
+      <span class="q-text">Actividad física</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q22-v" name="q22" value="v">
+        <label class="option-label" for="q22-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Hiperactiva, te cuesta más la quietud</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q22-p" name="q22" value="p">
+        <label class="option-label" for="q22-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Moderada</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q22-k" name="q22" value="k">
+        <label class="option-label" for="q22-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Lentitud o tendés al sedentarismo</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q23 -->
+  <div class="question-block" id="qb-23">
+    <div class="q-header">
+      <span class="q-num">23</span>
+      <span class="q-text">Hora del día con más energía</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q23-v" name="q23" value="v">
+        <label class="option-label" for="q23-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Irregular, cambia cada día</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q23-p" name="q23" value="p">
+        <label class="option-label" for="q23-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Mañana / mediodía</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q23-k" name="q23" value="k">
+        <label class="option-label" for="q23-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Tarde / noche</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN: MENTE -->
+  <div class="section-title">Mente & Carácter</div>
+
+  <!-- Q24 -->
+  <div class="question-block" id="qb-24">
+    <div class="q-header">
+      <span class="q-num">24</span>
+      <span class="q-text">Habla / Discurso</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q24-v" name="q24" value="v">
+        <label class="option-label" for="q24-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Hablás muy rápido, a veces las personas no logran seguir el discurso</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q24-p" name="q24" value="p">
+        <label class="option-label" for="q24-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Hablás bien claro, velocidad moderada, podés explicar bien algo a los demás</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q24-k" name="q24" value="k">
+        <label class="option-label" for="q24-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Hablás lento, discurso calmado</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q25 -->
+  <div class="question-block" id="qb-25">
+    <div class="q-header">
+      <span class="q-num">25</span>
+      <span class="q-text">Memoria</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q25-v" name="q25" value="v">
+        <label class="option-label" for="q25-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Recordás lo reciente mejor que lo remoto. Aprendés rápido. Olvidás rápido.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q25-p" name="q25" value="p">
+        <label class="option-label" for="q25-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Aprendés rápido. Memorizás a largo plazo lo importante, recuerdos claros.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q25-k" name="q25" value="k">
+        <label class="option-label" for="q25-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Muy buena memoria general, recuerdos remotos bien almacenados. Aprendés más lento pero buen almacenamiento.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q26 -->
+  <div class="question-block" id="qb-26">
+    <div class="q-header">
+      <span class="q-num">26</span>
+      <span class="q-text">Pensamientos / Concentración</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q26-v" name="q26" value="v">
+        <label class="option-label" for="q26-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Pasan rápidamente de uno a otro, resolvés rápido, te cuesta concentrarte en una sola cosa a la vez</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q26-p" name="q26" value="p">
+        <label class="option-label" for="q26-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Rápidos o moderados pero focalizás fácilmente. Buena concentración.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q26-k" name="q26" value="k">
+        <label class="option-label" for="q26-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Lentos, te concentrás fácilmente en una cosa y te cuesta pasar a la siguiente</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q27 -->
+  <div class="question-block" id="qb-27">
+    <div class="q-header">
+      <span class="q-num">27</span>
+      <span class="q-text">Constancia en actividades y proyectos</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q27-v" name="q27" value="v">
+        <label class="option-label" for="q27-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Muchas ideas. Fácilmente empezás cosas nuevas pero te cuesta terminar los proyectos empezados.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q27-p" name="q27" value="p">
+        <label class="option-label" for="q27-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Constancia suficiente para terminar lo que empezaste. Buen discernimiento para elegir a qué le ponés el foco.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q27-k" name="q27" value="k">
+        <label class="option-label" for="q27-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">En general muy constante, lo que empezás lo terminás y le das profundidad. Te cuesta empezar algo nuevo.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q28 -->
+  <div class="question-block" id="qb-28">
+    <div class="q-header">
+      <span class="q-num">28</span>
+      <span class="q-text">Emoción (registro inmediato)</span>
+      <span class="q-note">Ante una situación que inesperadamente no coincide con tus expectativas, ¿qué emoción registrás primero?</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q28-v" name="q28" value="v">
+        <label class="option-label" for="q28-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Miedo, ansiedad, incertidumbre / flexibilidad, creatividad</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q28-p" name="q28" value="p">
+        <label class="option-label" for="q28-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Enojo, bronca, culpa / decisión, movimiento</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q28-k" name="q28" value="k">
+        <label class="option-label" for="q28-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Tristeza, angustia, apego / calma, tranquilidad</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q29 -->
+  <div class="question-block" id="qb-29">
+    <div class="q-header">
+      <span class="q-num">29</span>
+      <span class="q-text">Social / Vínculos</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q29-v" name="q29" value="v">
+        <label class="option-label" for="q29-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Te gusta reunirte en grupos grandes, sos de iniciar la conversación e incentivar el plan.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q29-p" name="q29" value="p">
+        <label class="option-label" for="q29-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Preferís ampliamente las reuniones en grupos pequeños o 1:1, sos bastante selectivx con los planes. Podés organizar los encuentros.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q29-k" name="q29" value="k">
+        <label class="option-label" for="q29-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Te gustan tanto los grupos grandes como los pequeños, conocés gente nueva aunque no iniciás la conversación. Aceptás cambios o propuestas sin mucha crítica.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Q30 -->
+  <div class="question-block" id="qb-30">
+    <div class="q-header">
+      <span class="q-num">30</span>
+      <span class="q-text">Tipo de actividad, proyectos o vocación</span>
+      <span class="q-note">Si ninguna respuesta tiene jerarquía sobre las otras, marcá las tres para anular el puntaje de esta pregunta.</span>
+    </div>
+    <ul class="options-list">
+      <li class="option-item">
+        <input type="checkbox" id="q30-v" name="q30" value="v">
+        <label class="option-label" for="q30-v">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-v">Vata</span>
+          <span class="option-text">Distintas disciplinas de arte, danza, música, disciplinas novedosas. Vocaciones creativas, comunicación. Multifacéticx.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q30-p" name="q30" value="p">
+        <label class="option-label" for="q30-p">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-p">Pitta</span>
+          <span class="option-text">Materias duras (exactas, medicina, abogacía). Profundización en artes, deportes o materias de precisión. Buen ojo para diseño, imagen. Maestrxs, oradorxs, guías.</span>
+        </label>
+      </li>
+      <li class="option-item">
+        <input type="checkbox" id="q30-k" name="q30" value="k">
+        <label class="option-label" for="q30-k">
+          <span class="option-dot"></span>
+          <span class="option-dosha dosha-k">Kapha</span>
+          <span class="option-text">Vocaciones tranquilas, de resistencia física o mental. Labores de oficio, paciencia, constancia. Hobbies mantenidos en el tiempo. Expertxs referentes en su materia.</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <div class="submit-wrap">
+    <p class="unanswered-msg" id="unanswered-msg">Por favor respondé todas las preguntas antes de continuar.</p>
+    <button type="button" class="btn-submit" onclick="calcularResultado()">Ver mi constitución</button>
+  </div>
+
+</div>
+</form>
+
+<!-- RESULTADO -->
+<div id="resultado">
+  <div class="resultado-hero">
+    <p class="resultado-label" id="modo-label">Tu Prakruti</p>
+    <div class="resultado-dosha-name" id="resultado-nombre">Vata</div>
+    <p class="resultado-subtitle" id="resultado-subtitulo">Aire & Éter</p>
+    <div class="scores-grid">
+      <div class="score-card" id="score-card-v">
+        <div class="score-name score-name-v">Vata</div>
+        <div class="score-num" id="score-v-num">0</div>
+        <div class="score-bar-wrap"><div class="score-bar score-bar-v" id="score-v-bar" style="width:0%"></div></div>
+      </div>
+      <div class="score-card" id="score-card-p">
+        <div class="score-name score-name-p">Pitta</div>
+        <div class="score-num" id="score-p-num">0</div>
+        <div class="score-bar-wrap"><div class="score-bar score-bar-p" id="score-p-bar" style="width:0%"></div></div>
+      </div>
+      <div class="score-card" id="score-card-k">
+        <div class="score-name score-name-k">Kapha</div>
+        <div class="score-num" id="score-k-num">0</div>
+        <div class="score-bar-wrap"><div class="score-bar score-bar-k" id="score-k-bar" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resultado-desc" id="resultado-desc-box">
+    <h3 id="resultado-desc-titulo">Tu dosha</h3>
+    <div id="resultado-desc-texto"></div>
+  </div>
+
+  <button class="btn-reiniciar" onclick="reiniciar()">Volver a empezar</button>
+  <p class="disclaimer">Este test es una aproximación. Para confirmar tu Prakruti o Vikruti, te recomendamos consultar con unx Médicx o Terapeuta Ayurveda.</p>
+</div>
+
+<script>
+const TOTAL_QUESTIONS = 30;
+let modoActual = 'prakruti';
+
+function setMode(mode, btn) {
+  modoActual = mode;
+  document.querySelectorAll('.inst-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const desc = document.getElementById('mode-desc');
+  if (mode === 'prakruti') {
+    desc.innerHTML = '<strong>Prakruti</strong> – tu constitución de base. Respondé pensando en tu tendencia general a lo largo de la vida, o en tu estado más equilibrado.';
+  } else {
+    desc.innerHTML = '<strong>Vikruti</strong> – tu estado actual. Respondé más literalmente con lo que ocurre hoy en tu día a día.';
+  }
+}
+
+function updateProgress() {
+  let answered = 0;
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+    const checks = document.querySelectorAll(`input[name="q${i}"]:checked`);
+    if (checks.length > 0) {
+      answered++;
+      document.getElementById(`qb-${i}`).classList.add('answered');
+    } else {
+      document.getElementById(`qb-${i}`).classList.remove('answered');
+    }
+  }
+  document.getElementById('progress-text').textContent = `${answered} / ${TOTAL_QUESTIONS}`;
+  document.getElementById('progress-fill').style.width = `${(answered / TOTAL_QUESTIONS) * 100}%`;
+}
+
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', updateProgress);
+});
+
+function calcularResultado() {
+  let scores = { v: 0, p: 0, k: 0 };
+  let unanswered = [];
+
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+    const checks = Array.from(document.querySelectorAll(`input[name="q${i}"]:checked`));
+    if (checks.length === 0) {
+      unanswered.push(i);
+    } else if (checks.length === 3) {
+      // Anulada — no suma
+    } else {
+      const pts = 1 / checks.length;
+      checks.forEach(cb => { scores[cb.value] += pts; });
+    }
+  }
+
+  if (unanswered.length > 0) {
+    document.getElementById('unanswered-msg').style.display = 'block';
+    const firstQ = document.getElementById(`qb-${unanswered[0]}`);
+    firstQ.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  document.getElementById('unanswered-msg').style.display = 'none';
+
+  mostrarResultado(scores);
+}
+
+function mostrarResultado(scores) {
+  const total = scores.v + scores.p + scores.k;
+  const pv = total > 0 ? (scores.v / total) * 100 : 0;
+  const pp = total > 0 ? (scores.p / total) * 100 : 0;
+  const pk = total > 0 ? (scores.k / total) * 100 : 0;
+
+  // Barras
+  document.getElementById('score-v-num').textContent = scores.v.toFixed(1);
+  document.getElementById('score-p-num').textContent = scores.p.toFixed(1);
+  document.getElementById('score-k-num').textContent = scores.k.toFixed(1);
+  document.getElementById('score-v-bar').style.width = pv.toFixed(0) + '%';
+  document.getElementById('score-p-bar').style.width = pp.toFixed(0) + '%';
+  document.getElementById('score-k-bar').style.width = pk.toFixed(0) + '%';
+
+  // Determinar constitución
+  const sorted = [
+    { d: 'v', s: scores.v },
+    { d: 'p', s: scores.p },
+    { d: 'k', s: scores.k }
+  ].sort((a, b) => b.s - a.s);
+
+  const first = sorted[0], second = sorted[1];
+  const diff = first.s - second.s;
+  const threshold = total * 0.12; // 12% del total para considerar monodóshico
+
+  let constitucion, nombre, subtitulo, colorClass;
+
+  const names = { v: 'Vata', p: 'Pitta', k: 'Kapha' };
+  const elements = { v: 'Aire & Éter', p: 'Fuego & Agua', k: 'Agua & Tierra' };
+  const colors = { v: '#7B6A52', p: '#B85C2A', k: '#3D7A52' };
+
+  // Verificar tridóshica
+  const maxDiff = sorted[0].s - sorted[2].s;
+  if (maxDiff <= total * 0.08) {
+    constitucion = 'vpk';
+    nombre = 'Tridóshica';
+    subtitulo = 'Vata · Pitta · Kapha';
+    colorClass = null;
+  } else if (diff < threshold) {
+    // Bidóshica
+    constitucion = first.d + '-' + second.d;
+    const bnames = { 'v-p': 'V-P', 'p-v': 'P-V', 'p-k': 'P-K', 'k-p': 'K-P', 'v-k': 'V-K', 'k-v': 'K-V' };
+    const bsubs = {
+      'v-p': 'Aire & Fuego', 'p-v': 'Fuego & Aire',
+      'p-k': 'Fuego & Agua', 'k-p': 'Agua & Fuego',
+      'v-k': 'Aire & Agua', 'k-v': 'Agua & Aire'
+    };
+    nombre = names[first.d] + '-' + names[second.d];
+    subtitulo = bsubs[constitucion] || '';
+    colorClass = first.d;
+  } else {
+    constitucion = first.d;
+    nombre = names[first.d];
+    subtitulo = elements[first.d];
+    colorClass = first.d;
+  }
+
+  // Highlight card dominante
+  ['v','p','k'].forEach(d => {
+    const card = document.getElementById(`score-card-${d}`);
+    card.className = 'score-card';
+    if (colorClass === d || (constitucion === 'vpk')) {
+      card.classList.add('dominant', `dominant-${d}`);
+    }
+  });
+  if (constitucion.includes('-') && constitucion.length === 3) {
+    document.getElementById(`score-card-${constitucion[2]}`).classList.add('dominant', `dominant-${constitucion[2]}`);
+  }
+
+  // Nombre y color
+  document.getElementById('resultado-nombre').textContent = nombre;
+  document.getElementById('resultado-nombre').style.color = colorClass ? colors[colorClass] : '#A07840';
+  document.getElementById('resultado-subtitulo').textContent = subtitulo;
+  document.getElementById('modo-label').textContent = modoActual === 'prakruti' ? 'Tu Prakruti' : 'Tu Vikruti';
+
+  // Descripción
+  const descs = {
+    'v': {
+      titulo: 'Vata – Aire & Éter',
+      texto: getDescVata()
+    },
+    'p': {
+      titulo: 'Pitta – Fuego & Agua',
+      texto: '<p>Pitta se caracteriza por la intensidad, el foco y el calor. Las personas Pitta tienen una digestión fuerte, mente aguda y gran capacidad de concentración. Son naturalmente líderes y perfeccionistas, con mucha energía sostenida durante el día.</p><p>En equilibrio, son decididas, organizadas y brillantes. En desequilibrio, pueden volverse irritables, críticas o propensas a la acidez y la inflamación.</p>'
+    },
+    'k': {
+      titulo: 'Kapha – Agua & Tierra',
+      texto: '<p>Kapha se caracteriza por la estabilidad, la resistencia y la calma. Las personas Kapha tienen una constitución robusta, digestión lenta y gran capacidad de almacenar energía. Son leales, pacientes y constantes en sus compromisos.</p><p>En equilibrio, son amorosas, resistentes y profundamente confiables. En desequilibrio, pueden caer en la letargia, el apego excesivo o la congestión.</p>'
+    },
+    'vpk': {
+      titulo: 'Tridóshica – Vata · Pitta · Kapha',
+      texto: '<p>La constitución tridóshica es la más rara. Presentás los tres doshas en proporciones muy similares, lo que te otorga una gran versatilidad y adaptabilidad.</p><p>Es importante trabajar con unx terapeuta Ayurveda para identificar cuál de los tres doshas tiende a desequilibrarse primero en tu caso particular, ya que eso será tu principal punto de atención.</p>'
+    }
+  };
+
+  const biDescs = {
+    'v-p': 'V-P: Predominan Vata y Pitta, con Vata ligeramente superior. Combinás la creatividad y velocidad mental de Vata con el foco y la intensidad de Pitta.',
+    'p-v': 'P-V: Predominan Pitta y Vata, con Pitta ligeramente superior. Tenés la agudeza y liderazgo Pitta con la adaptabilidad y creatividad de Vata.',
+    'p-k': 'P-K: Predominan Pitta y Kapha, con Pitta ligeramente superior. Combinás el foco y la determinación Pitta con la resistencia y calma de Kapha.',
+    'k-p': 'K-P: Predominan Kapha y Pitta, con Kapha ligeramente superior. Tenés la estabilidad y paciencia Kapha con la claridad y dirección de Pitta.',
+    'v-k': 'V-K: Predominan Vata y Kapha, con Vata ligeramente superior. Es una combinación poco común que alterna entre la agilidad de Vata y la solidez de Kapha.',
+    'k-v': 'K-V: Predominan Kapha y Vata, con Kapha ligeramente superior. Alternás entre la calma y resistencia Kapha con la creatividad e inquietud de Vata.'
+  };
+
+  let titulo, texto;
+  if (constitucion === 'vpk') {
+    titulo = descs.vpk.titulo; texto = descs.vpk.texto;
+  } else if (constitucion.includes('-')) {
+    titulo = nombre;
+    const bio = biDescs[constitucion] || '';
+    const d1desc = descs[constitucion[0]]?.texto || '';
+    const d2desc = descs[constitucion[2]]?.texto || '';
+    texto = `<p>${bio}</p><p>Las constituciones bidóshicas pueden presentarse de formas muy distintas. A continuación encontrarás el perfil de cada uno de los doshas predominantes para que puedas identificar con cuáles características te identificás más.</p>${d1desc}${d2desc}`;
+  } else {
+    titulo = descs[constitucion]?.titulo || nombre;
+    texto = descs[constitucion]?.texto || '';
+  }
+
+  document.getElementById('resultado-desc-titulo').textContent = titulo;
+  document.getElementById('resultado-desc-texto').innerHTML = texto;
+
+  // Mostrar
+  document.getElementById('quiz-form').style.display = 'none';
+  document.querySelector('.progress-bar-wrap').style.display = 'none';
+  document.getElementById('resultado').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getDescVata() {
+  return `<p>Vata se presenta en físicos delgados, flexibles y movedizos. El tejido subcutáneo es escaso y pueden percibirse con menos fuerza y resistencia que los otros biotipos. La piel suele ser áspera y seca, y tienen tendencia a sentir frío antes que los demás.</p>
+<p>Su mente es rápida y creativa, se adaptan fácilmente al cambio y responden con velocidad. En equilibrio son alegres y entusiastas. Pueden actuar demasiado rápido antes de sopesar las situaciones. Su atención es dispersa.</p>
+<p>En cuanto al descanso, duermen menos horas y su sueño suele ser más liviano que el resto. En desequilibrio es frecuente el insomnio.</p>`;
+}
+
+function reiniciar() {
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.question-block').forEach(b => b.classList.remove('answered'));
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('progress-text').textContent = '0 / 30';
+  document.getElementById('quiz-form').style.display = 'block';
+  document.querySelector('.progress-bar-wrap').style.display = 'block';
+  document.getElementById('resultado').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
