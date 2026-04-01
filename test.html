@@ -553,7 +553,7 @@
     width: 100%;
     height: 100%;
     background: rgba(42, 32, 24, 0.8);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 1000;
@@ -1734,10 +1734,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const quizForm = document.getElementById('quiz-form');
 
   // Hide quiz initially
-  quizForm.style.display = 'none';
+  // quizForm.style.display = 'none';
 
   // Show modal
-  emailModal.style.display = 'flex';
+  // emailModal.style.display = 'flex';
 
   emailForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -1775,9 +1775,9 @@ function setMode(mode, btn) {
   btn.classList.add('active');
   const desc = document.getElementById('mode-desc');
   if (mode === 'prakruti') {
-    desc.innerHTML = '<strong>Prakruti</strong> – tu constitución de base. Respondé pensando en tu tendencia general a lo largo de la vida, o en tu estado más equilibrado.';
+    desc.innerHTML = '<strong>Prakruti</strong> – tu huella digital. Respondé pensando en tu tendencia general a lo largo de la vida, o en tu estado más equilibrado.';
   } else {
-    desc.innerHTML = '<strong>Vikruti</strong> – tu estado actual. Respondé más literalmente con lo que ocurre hoy en tu día a día.';
+    desc.innerHTML = '<strong>Vikruti</strong> – tu estado actual, considerando desequilibrios. Respondé más literalmente con lo que ocurre hoy en tu día a día.';
   }
 }
 
@@ -1906,29 +1906,118 @@ function mostrarResultado(scores) {
   const descs = {
     'v': {
       titulo: 'Vata – Aire & Éter',
-      texto: getDescVata()
+      texto: `<p><strong>Constitución Unidóshica:</strong><br>En las constituciones unidoshicas hay predominancia de un dosha por sobre los otros dos, es probable que te identifiques con varios ejemplos de cómo este dosha se manifiesta. A continuación te dejamos un delineado tu dosha.</p>
+<p><strong>V: Aire + Espacio</strong><br>Es posible que te reconozcas en un cuerpo delgado, liviano y en movimiento, con tendencia a manos y pies fríos y piel seca.</p>
+<p>Tu energía y digestión pueden ser variables, y a veces podés olvidarte de comer o sentir hinchazón o gases.</p>
+<p>Tu mente es rápida, creativa y adaptable, aunque también puede dispersarse con facilidad. Te cuesta la quietud, tendés al movimiento constante y tu descanso suele ser liviano. A nivel emocional, puede aparecer ansiedad o inquietud con facilidad.</p>
+<p>✨ En equilibrio, Vata se expresa como creatividad, entusiasmo y flexibilidad.</p>
+<p>👉 Para saber cómo equilibrar tu Vata con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`
     },
     'p': {
       titulo: 'Pitta – Fuego & Agua',
-      texto: '<p>Pitta se caracteriza por la intensidad, el foco y el calor. Las personas Pitta tienen una digestión fuerte, mente aguda y gran capacidad de concentración. Son naturalmente líderes y perfeccionistas, con mucha energía sostenida durante el día.</p><p>En equilibrio, son decididas, organizadas y brillantes. En desequilibrio, pueden volverse irritables, críticas o propensas a la acidez y la inflamación.</p>'
+      texto: `<p><strong>Constitución Unidóshica:</strong><br>En las constituciones unidoshicas hay predominancia de un dosha por sobre los otros dos, es probable que te identifiques con varios ejemplos de cómo este dosha se manifiesta. A continuación te dejamos un delineado tu dosha.</p>
+<p><strong>P: Fuego + Agua</strong><br>Es posible que te reconozcas en una constitución media, con buena fuerza y desarrollo muscular. La piel puede ser mixta o sensible, con tendencia a enrojecerse, y es común tener temperatura corporal más alta, manos y pies calientes o transpiración frecuente.</p>
+<p>Tu digestión suele ser fuerte y regular: tenés buen apetito (especialmente al mediodía) y te afecta saltear comidas. En desequilibrio, puede aparecer acidez, inflamación en la boca del estómago y llegar a acompañarse de cefaleas o migrañas.</p>
+<p>Tu mente es clara, enfocada y analítica. Tenés buena capacidad de organización, concentración y liderazgo. A nivel emocional, podés tender a la exigencia, la irritación o el enojo cuando algo no sale como esperás.</p>
+<p>✨ En equilibrio, Pitta se expresa como claridad, inteligencia y capacidad de transformación.</p>
+<p>👉 Para saber cómo equilibrar tu Pitta con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`
     },
     'k': {
       titulo: 'Kapha – Agua & Tierra',
-      texto: '<p>Kapha se caracteriza por la estabilidad, la resistencia y la calma. Las personas Kapha tienen una constitución robusta, digestión lenta y gran capacidad de almacenar energía. Son leales, pacientes y constantes en sus compromisos.</p><p>En equilibrio, son amorosas, resistentes y profundamente confiables. En desequilibrio, pueden caer en la letargia, el apego excesivo o la congestión.</p>'
+      texto: `<p><strong>Constitución Unidóshica:</strong><br>En las constituciones unidoshicas hay predominancia de un dosha por sobre los otros dos, es probable que te identifiques con varios ejemplos de cómo este dosha se manifiesta. A continuación te dejamos un delineado tu dosha.</p>
+<p><strong>K: Agua + Tierra</strong><br>Es posible que te reconozcas en un cuerpo fuerte, de contextura grande y buena resistencia. Suelen tener energía estable y, en general, buena salud, aunque con tendencia a la mucosidad o a retener líquidos.</p>
+<p>Tu digestión es más bien lenta y regular: podés saltear comidas sin problema y hay tendencia a acumular peso. Es común la atracción por lo dulce, salado o graso, que suelen agravar los desequilibrios de este dosha. El sueño suele ser profundo y prolongado. Las mañanas pueden costar más, siendo la tarde-noche la hora con más energía.</p>
+<p>Tu ritmo es tranquilo: te tomás tu tiempo para decidir y accionar. Tenés una energía calma, paciente y estable, con buena memoria y gran capacidad de sostén en los vínculos. A nivel emocional, puede aparecer apego, melancolía o dificultad para el cambio.</p>
+<p>✨ En equilibrio, Kapha se expresa como estabilidad, compasión y fortaleza.</p>
+<p>👉 Para saber cómo equilibrar tu Kapha con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`
     },
     'vpk': {
       titulo: 'Tridóshica – Vata · Pitta · Kapha',
-      texto: '<p>La constitución tridóshica es la más rara. Presentás los tres doshas en proporciones muy similares, lo que te otorga una gran versatilidad y adaptabilidad.</p><p>Es importante trabajar con unx terapeuta Ayurveda para identificar cuál de los tres doshas tiende a desequilibrarse primero en tu caso particular, ya que eso será tu principal punto de atención.</p>'
+      texto: `<p><strong>Constitución tridoshica:</strong><br>Si tus resultados dan similares entre Vata, Pitta y Kapha, tu constitución es tridoshica. Esto significa que los tres doshas están presentes de forma bastante equilibrada.<br>No es la constitución más frecuente, pero tiene un gran potencial: cuando encontrás tu equilibrio, te resulta más fácil sostenerlo en el tiempo. A la vez, podés desbalancearte hacia cualquiera de los tres doshas según el contexto.</p>
+<p><strong>V: Aire + Espacio</strong><br>Es posible que te reconozcas en un cuerpo delgado, liviano y en movimiento, con tendencia a manos y pies fríos y piel seca. Tu energía y digestión pueden ser variables, y a veces podés olvidarte de comer o sentir hinchazón o gases. Tu mente es rápida, creativa y adaptable, aunque también puede dispersarse con facilidad. Te cuesta la quietud, tendés al movimiento constante y tu descanso suele ser liviano. A nivel emocional, puede aparecer ansiedad o inquietud con facilidad.</p>
+<p><strong>P: Fuego + Agua</strong><br>Es posible que te reconozcas en una constitución media, con buena fuerza y desarrollo muscular. La piel puede ser mixta o sensible, con tendencia a enrojecerse, y es común tener temperatura corporal más alta, manos y pies calientes o transpiración frecuente. Tu digestión suele ser fuerte y regular: tenés buen apetito (especialmente al mediodía) y te afecta saltear comidas. En desequilibrio, puede aparecer acidez, inflamación en la boca del estómago y llegar a acompañarse de cefaleas o migrañas. Tu mente es clara, enfocada y analítica. Tenés buena capacidad de organización, concentración y liderazgo. A nivel emocional, podés tender a la exigencia, la irritación o el enojo cuando algo no sale como esperás.</p>
+<p><strong>K: Agua + Tierra</strong><br>Es posible que te reconozcas en un cuerpo fuerte, de contextura grande y buena resistencia. Suelen tener energía estable y, en general, buena salud, aunque con tendencia a la mucosidad o a retener líquidos. Tu digestión es más bien lenta y regular: podés saltear comidas sin problema y hay tendencia a acumular peso. Es común la atracción por lo dulce, salado o graso, que suelen agravar los desequilibrios de este dosha. El sueño suele ser profundo y prolongado. Las mañanas pueden costar más, siendo la tarde-noche la hora con más energía. Tu ritmo es tranquilo: te tomás tu tiempo para decidir y accionar. Tenés una energía calma, paciente y estable, con buena memoria y gran capacidad de sostén en los vínculos. A nivel emocional, puede aparecer apego, melancolía o dificultad para el cambio.</p>
+<p>👉 Para profundizar, te recomendamos ir al <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> y leer los posteos de cada dosha. Observá con qué aspectos de Vata, Pitta y Kapha te identificás, y usá esa información para delinear tu perfil único y personal: tu constitución individual</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`
     }
   };
 
   const biDescs = {
-    'v-p': 'V-P: Predominan Vata y Pitta, con Vata ligeramente superior. Combinás la creatividad y velocidad mental de Vata con el foco y la intensidad de Pitta.',
-    'p-v': 'P-V: Predominan Pitta y Vata, con Pitta ligeramente superior. Tenés la agudeza y liderazgo Pitta con la adaptabilidad y creatividad de Vata.',
-    'p-k': 'P-K: Predominan Pitta y Kapha, con Pitta ligeramente superior. Combinás el foco y la determinación Pitta con la resistencia y calma de Kapha.',
-    'k-p': 'K-P: Predominan Kapha y Pitta, con Kapha ligeramente superior. Tenés la estabilidad y paciencia Kapha con la claridad y dirección de Pitta.',
-    'v-k': 'V-K: Predominan Vata y Kapha, con Vata ligeramente superior. Es una combinación poco común que alterna entre la agilidad de Vata y la solidez de Kapha.',
-    'k-v': 'K-V: Predominan Kapha y Vata, con Kapha ligeramente superior. Alternás entre la calma y resistencia Kapha con la creatividad e inquietud de Vata.'
+    'v-p': `<p><strong>Constitución Bidóshica</strong><br>V-P: Individuos con Aire y Fuego predominantes. En este caso, predomina el dosha Vata sobre el Pitta, pero no lo suficiente como para ser una constitución plena Vata. Las constituciones bidóshicas pueden presentarse de formas muy distintas, con lo cual deberás ver con qué características de uno y de otro dosha te identificas y tomar recursos por sistemas corporales, mente y tendencias según tu constitución. A continuación te dejamos un delineado de ambos doshas.</p>
+<p><strong>V: Aire + Espacio</strong><br>Es posible que te reconozcas en un cuerpo delgado, liviano y en movimiento, con tendencia a manos y pies fríos y piel seca. Tu energía y digestión pueden ser variables, y a veces podés olvidarte de comer o sentir hinchazón o gases. Tu mente es rápida, creativa y adaptable, aunque también puede dispersarse con facilidad. Te cuesta la quietud, tendés al movimiento constante y tu descanso suele ser liviano. A nivel emocional, puede aparecer ansiedad o inquietud con facilidad.</p>
+<p>✨ En equilibrio, Vata se expresa como creatividad, entusiasmo y flexibilidad.</p>
+<p><strong>P: Fuego + Agua</strong><br>Es posible que te reconozcas en una constitución media, con buena fuerza y desarrollo muscular. La piel puede ser mixta o sensible, con tendencia a enrojecerse, y es común tener temperatura corporal más alta, manos y pies calientes o transpiración frecuente. Tu digestión suele ser fuerte y regular: tenés buen apetito (especialmente al mediodía) y te afecta saltear comidas. En desequilibrio, puede aparecer acidez, inflamación en la boca del estómago y llegar a acompañarse de cefaleas o migrañas. Tu mente es clara, enfocada y analítica. Tenés buena capacidad de organización, concentración y liderazgo. A nivel emocional, podés tender a la exigencia, la irritación o el enojo cuando algo no sale como esperás.</p>
+<p>✨ En equilibrio, Pitta se expresa como claridad, inteligencia y capacidad de transformación.</p>
+<p>👉 Para saber cómo equilibrar tu Vata-Pitta con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`,
+    'p-v': `<p><strong>Constitución Bidóshica</strong><br>P-V: Individuos con Fuego y Aire predominantes. En este caso, predomina el dosha Pitta sobre el Vata, pero no lo suficiente como para ser una constitución plena Pitta. Las constituciones bidóshicas pueden presentarse de formas muy distintas, con lo cual deberás ver con qué características de uno y de otro dosha te identificas y tomar recursos por sistemas corporales, mente y tendencias según tu constitución. A continuación te dejamos un delineado de ambos doshas.</p>
+<p><strong>P: Fuego + Agua</strong><br>Es posible que te reconozcas en una constitución media, con buena fuerza y desarrollo muscular. La piel puede ser mixta o sensible, con tendencia a enrojecerse, y es común tener temperatura corporal más alta, manos y pies calientes o transpiración frecuente. Tu digestión suele ser fuerte y regular: tenés buen apetito (especialmente al mediodía) y te afecta saltear comidas. En desequilibrio, puede aparecer acidez, inflamación en la boca del estómago y llegar a acompañarse de cefaleas o migrañas. Tu mente es clara, enfocada y analítica. Tenés buena capacidad de organización, concentración y liderazgo. A nivel emocional, podés tender a la exigencia, la irritación o el enojo cuando algo no sale como esperás.</p>
+<p>✨ En equilibrio, Pitta se expresa como claridad, inteligencia y capacidad de transformación.</p>
+<p><strong>V: Aire + Espacio</strong><br>Es posible que te reconozcas en un cuerpo delgado, liviano y en movimiento, con tendencia a manos y pies fríos y piel seca. Tu energía y digestión pueden ser variables, y a veces podés olvidarte de comer o sentir hinchazón o gases. Tu mente es rápida, creativa y adaptable, aunque también puede dispersarse con facilidad. Te cuesta la quietud, tendés al movimiento constante y tu descanso suele ser liviano. A nivel emocional, puede aparecer ansiedad o inquietud con facilidad.</p>
+<p>✨ En equilibrio, Vata se expresa como creatividad, entusiasmo y flexibilidad.</p>
+<p>👉 Para saber cómo equilibrar tu Pitta-Vata con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`,
+    'p-k': `<p><strong>Constitución Bidóshica</strong><br>P-K: Individuos con Fuego y Agua predominantes. En este caso, predomina el dosha Pitta sobre el Kapha, pero no lo suficiente como para ser una constitución plena Pitta. Las constituciones bidóshicas pueden presentarse de formas muy distintas, con lo cual deberás ver con qué características de uno y de otro dosha te identificas y tomar recursos por sistemas corporales, mente y tendencias según tu constitución. A continuación te dejamos un delineado de ambos doshas.</p>
+<p><strong>P: Fuego + Agua</strong><br>Es posible que te reconozcas en una constitución media, con buena fuerza y desarrollo muscular. La piel puede ser mixta o sensible, con tendencia a enrojecerse, y es común tener temperatura corporal más alta, manos y pies calientes o transpiración frecuente. Tu digestión suele ser fuerte y regular: tenés buen apetito (especialmente al mediodía) y te afecta saltear comidas. En desequilibrio, puede aparecer acidez, inflamación en la boca del estómago y llegar a acompañarse de cefaleas o migrañas. Tu mente es clara, enfocada y analítica. Tenés buena capacidad de organización, concentración y liderazgo. A nivel emocional, podés tender a la exigencia, la irritación o el enojo cuando algo no sale como esperás.</p>
+<p>✨ En equilibrio, Pitta se expresa como claridad, inteligencia y capacidad de transformación.</p>
+<p><strong>K: Agua + Tierra</strong><br>Es posible que te reconozcas en un cuerpo fuerte, de contextura grande y buena resistencia. Suelen tener energía estable y, en general, buena salud, aunque con tendencia a la mucosidad o a retener líquidos. Tu digestión es más bien lenta y regular: podés saltear comidas sin problema y hay tendencia a acumular peso. Es común la atracción por lo dulce, salado o graso, que suelen agravar los desequilibrios de este dosha. El sueño suele ser profundo y prolongado. Las mañanas pueden costar más, siendo la tarde-noche la hora con más energía. Tu ritmo es tranquilo: te tomás tu tiempo para decidir y accionar. Tenés una energía calma, paciente y estable, con buena memoria y gran capacidad de sostén en los vínculos. A nivel emocional, puede aparecer apego, melancolía o dificultad para el cambio.</p>
+<p>✨ En equilibrio, Kapha se expresa como estabilidad, compasión y fortaleza.</p>
+<p>👉 Para saber cómo equilibrar tu Pitta-Kapha con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`,
+    'k-p': `<p><strong>Constitución Bidóshica</strong><br>K-P: Individuos con Agua y Fuego predominantes. En este caso, predomina el dosha Kapha sobre el Pitta, pero no lo suficiente como para ser una constitución plena Kapha. Las constituciones bidóshicas pueden presentarse de formas muy distintas, con lo cual deberás ver con qué características de uno y de otro dosha te identificas y tomar recursos por sistemas corporales, mente y tendencias según tu constitución. A continuación te dejamos un delineado de ambos doshas.</p>
+<p><strong>K: Agua + Tierra</strong><br>Es posible que te reconozcas en un cuerpo fuerte, de contextura grande y buena resistencia. Suelen tener energía estable y, en general, buena salud, aunque con tendencia a la mucosidad o a retener líquidos. Tu digestión es más bien lenta y regular: podés saltear comidas sin problema y hay tendencia a acumular peso. Es común la atracción por lo dulce, salado o graso, que suelen agravar los desequilibrios de este dosha. El sueño suele ser profundo y prolongado. Las mañanas pueden costar más, siendo la tarde-noche la hora con más energía. Tu ritmo es tranquilo: te tomás tu tiempo para decidir y accionar. Tenés una energía calma, paciente y estable, con buena memoria y gran capacidad de sostén en los vínculos. A nivel emocional, puede aparecer apego, melancolía o dificultad para el cambio.</p>
+<p>✨ En equilibrio, Kapha se expresa como estabilidad, compasión y fortaleza.</p>
+<p><strong>P: Fuego + Agua</strong><br>Es posible que te reconozcas en una constitución media, con buena fuerza y desarrollo muscular. La piel puede ser mixta o sensible, con tendencia a enrojecerse, y es común tener temperatura corporal más alta, manos y pies calientes o transpiración frecuente. Tu digestión suele ser fuerte y regular: tenés buen apetito (especialmente al mediodía) y te afecta saltear comidas. En desequilibrio, puede aparecer acidez, inflamación en la boca del estómago y llegar a acompañarse de cefaleas o migrañas. Tu mente es clara, enfocada y analítica. Tenés buena capacidad de organización, concentración y liderazgo. A nivel emocional, podés tender a la exigencia, la irritación o el enojo cuando algo no sale como esperás.</p>
+<p>✨ En equilibrio, Pitta se expresa como claridad, inteligencia y capacidad de transformación.</p>
+<p>👉 Para saber cómo equilibrar tu Kapha-Pitta con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`,
+    'v-k': `<p><strong>Constitución Bidóshica</strong><br>V-K: Individuos con Aire y Agua predominantes. En este caso, predomina el dosha Vata sobre el Kapha, pero no lo suficiente como para ser una constitución plena Vata. Las constituciones bidóshicas pueden presentarse de formas muy distintas, con lo cual deberás ver con qué características de uno y de otro dosha te identificas y tomar recursos por sistemas corporales, mente y tendencias según tu constitución. A continuación te dejamos un delineado de ambos doshas.</p>
+<p><strong>V: Aire + Espacio</strong><br>Es posible que te reconozcas en un cuerpo delgado, liviano y en movimiento, con tendencia a manos y pies fríos y piel seca. Tu energía y digestión pueden ser variables, y a veces podés olvidarte de comer o sentir hinchazón o gases. Tu mente es rápida, creativa y adaptable, aunque también puede dispersarse con facilidad. Te cuesta la quietud, tendés al movimiento constante y tu descanso suele ser liviano. A nivel emocional, puede aparecer ansiedad o inquietud con facilidad.</p>
+<p>✨ En equilibrio, Vata se expresa como creatividad, entusiasmo y flexibilidad.</p>
+<p><strong>K: Agua + Tierra</strong><br>Es posible que te reconozcas en un cuerpo fuerte, de contextura grande y buena resistencia. Suelen tener energía estable y, en general, buena salud, aunque con tendencia a la mucosidad o a retener líquidos. Tu digestión es más bien lenta y regular: podés saltear comidas sin problema y hay tendencia a acumular peso. Es común la atracción por lo dulce, salado o graso, que suelen agravar los desequilibrios de este dosha. El sueño suele ser profundo y prolongado. Las mañanas pueden costar más, siendo la tarde-noche la hora con más energía. Tu ritmo es tranquilo: te tomás tu tiempo para decidir y accionar. Tenés una energía calma, paciente y estable, con buena memoria y gran capacidad de sostén en los vínculos. A nivel emocional, puede aparecer apego, melancolía o dificultad para el cambio.</p>
+<p>✨ En equilibrio, Kapha se expresa como estabilidad, compasión y fortaleza.</p>
+<p>👉 Para saber cómo equilibrar tu Vata-Kapha con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`,
+    'k-v': `<p><strong>Constitución Bidóshica</strong><br>K-V: Individuos con Agua y Aire predominantes. En este caso, predomina el dosha Kapha sobre el Vata, pero no lo suficiente como para ser una constitución plena Kapha. Las constituciones bidóshicas pueden presentarse de formas muy distintas, con lo cual deberás ver con qué características de uno y de otro dosha te identificas y tomar recursos por sistemas corporales, mente y tendencias según tu constitución. A continuación te dejamos un delineado de ambos doshas.</p>
+<p><strong>K: Agua + Tierra</strong><br>Es posible que te reconozcas en un cuerpo fuerte, de contextura grande y buena resistencia. Suelen tener energía estable y, en general, buena salud, aunque con tendencia a la mucosidad o a retener líquidos. Tu digestión es más bien lenta y regular: podés saltear comidas sin problema y hay tendencia a acumular peso. Es común la atracción por lo dulce, salado o graso, que suelen agravar los desequilibrios de este dosha. El sueño suele ser profundo y prolongado. Las mañanas pueden costar más, siendo la tarde-noche la hora con más energía. Tu ritmo es tranquilo: te tomás tu tiempo para decidir y accionar. Tenés una energía calma, paciente y estable, con buena memoria y gran capacidad de sostén en los vínculos. A nivel emocional, puede aparecer apego, melancolía o dificultad para el cambio.</p>
+<p>✨ En equilibrio, Kapha se expresa como estabilidad, compasión y fortaleza.</p>
+<p><strong>V: Aire + Espacio</strong><br>Es posible que te reconozcas en un cuerpo delgado, liviano y en movimiento, con tendencia a manos y pies fríos y piel seca. Tu energía y digestión pueden ser variables, y a veces podés olvidarte de comer o sentir hinchazón o gases. Tu mente es rápida, creativa y adaptable, aunque también puede dispersarse con facilidad. Te cuesta la quietud, tendés al movimiento constante y tu descanso suele ser liviano. A nivel emocional, puede aparecer ansiedad o inquietud con facilidad.</p>
+<p>✨ En equilibrio, Vata se expresa como creatividad, entusiasmo y flexibilidad.</p>
+<p>👉 Para saber cómo equilibrar tu Kapha-Vata con alimentación, rutinas y hábitos concretos, buscá en el <a href="https://www.instagram.com/entrama.ayurveda/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram de En Trama</a> el posteo con recursos para este dosha.</p>
+<div style="text-align: center; margin-top: 1.5rem;">
+  <p style="font-size: 0.9rem; color: var(--muted);">O escanea nuestro código QR para acceder directamente a Instagram:</p>
+  <img src="imagenes/entrama.ayurveda_qr.png" alt="QR de Instagram En Trama" style="width: 120px; height: 120px; margin-top: 0.5rem;">
+</div>`
   };
 
   let titulo, texto;
@@ -1936,10 +2025,7 @@ function mostrarResultado(scores) {
     titulo = descs.vpk.titulo; texto = descs.vpk.texto;
   } else if (constitucion.includes('-')) {
     titulo = nombre;
-    const bio = biDescs[constitucion] || '';
-    const d1desc = descs[constitucion[0]]?.texto || '';
-    const d2desc = descs[constitucion[2]]?.texto || '';
-    texto = `<p>${bio}</p><p>Las constituciones bidóshicas pueden presentarse de formas muy distintas. A continuación encontrarás el perfil de cada uno de los doshas predominantes para que puedas identificar con cuáles características te identificás más.</p>${d1desc}${d2desc}`;
+    texto = biDescs[constitucion] || '';
   } else {
     titulo = descs[constitucion]?.titulo || nombre;
     texto = descs[constitucion]?.texto || '';
@@ -1953,12 +2039,6 @@ function mostrarResultado(scores) {
   document.querySelector('.progress-bar-wrap').style.display = 'none';
   document.getElementById('resultado').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function getDescVata() {
-  return `<p>Vata se presenta en físicos delgados, flexibles y movedizos. El tejido subcutáneo es escaso y pueden percibirse con menos fuerza y resistencia que los otros biotipos. La piel suele ser áspera y seca, y tienen tendencia a sentir frío antes que los demás.</p>
-<p>Su mente es rápida y creativa, se adaptan fácilmente al cambio y responden con velocidad. En equilibrio son alegres y entusiastas. Pueden actuar demasiado rápido antes de sopesar las situaciones. Su atención es dispersa.</p>
-<p>En cuanto al descanso, duermen menos horas y su sueño suele ser más liviano que el resto. En desequilibrio es frecuente el insomnio.</p>`;
 }
 
 function reiniciar() {
