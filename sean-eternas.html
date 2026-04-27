@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sean Eternas — Colectivo de Artistas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --celeste: #74B9E0;
+  --celeste-deep: #3A8CC1;
+  --celeste-pale: #D6ECFA;
+  --celeste-dark: #1A5C8A;
+  --blanco: #FAFBFC;
+  --crema: #F4EFE8;
+  --azul-noche: #0D2235;
+  --gris: #8A9BAA;
+  --gris-claro: #E8EEF3;
+  --dorado: #C9A84C;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'Space Mono', monospace;
+  --nav-h: 72px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--blanco);
+  color: var(--azul-noche);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--celeste-pale); }
+::-webkit-scrollbar-thumb { background: var(--celeste-deep); border-radius: 99px; }
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
+  background: rgba(13, 34, 53, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(116, 185, 224, 0.2);
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  cursor: pointer;
+}
+.nav-logo .logo-top {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--celeste);
+  text-transform: uppercase;
+}
+.nav-logo .logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: var(--celeste-pale);
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--celeste-pale);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--celeste);
+  transition: width 0.3s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--celeste);
+}
+.nav-links a:hover::after, .nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--celeste-pale);
+  transition: all 0.3s;
+}
+
+/* ════════════════════════════════════════
+   PÁGINAS (vistas)
+════════════════════════════════════════ */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+}
+.page.active { display: block; }
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--azul-noche);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(116,185,224,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(58,140,193,0.1) 0%, transparent 60%),
+    linear-gradient(165deg, var(--azul-noche) 50%, #0a1929 100%);
+}
+
+/* Decorative stripes */
+.hero-stripes {
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 0;
+  width: 45%;
+  overflow: hidden;
+  opacity: 0.06;
+}
+.hero-stripes::before, .hero-stripes::after {
+  content: '';
+  position: absolute;
+  top: -20%; bottom: -20%;
+  width: 33%;
+}
+.hero-stripes::before {
+  left: 0;
+  background: var(--celeste);
+}
+.hero-stripes::after {
+  right: 0;
+  background: var(--celeste);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  padding: 6vh 8vw;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--celeste);
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 8vw, 7rem);
+  line-height: 0.92;
+  font-weight: 900;
+  color: var(--blanco);
+  margin-bottom: 0.3em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--celeste);
+}
+
+.hero-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, var(--celeste), transparent);
+  margin: 2rem 0;
+}
+
+.hero-lead {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(214,236,250,0.85);
+  font-style: italic;
+  max-width: 600px;
+}
+
+.hero-cta {
+  margin-top: 3rem;
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-primary {
+  background: var(--celeste-deep);
+  color: var(--blanco);
+}
+.btn-primary:hover {
+  background: var(--celeste);
+  color: var(--azul-noche);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(116,185,224,0.3);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--celeste-pale);
+  border: 1px solid rgba(116,185,224,0.4);
+}
+.btn-outline:hover {
+  border-color: var(--celeste);
+  color: var(--celeste);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════
+   SECCIONES COMUNES
+════════════════════════════════════════ */
+section { padding: 6rem 8vw; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--celeste-deep);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--azul-noche);
+  margin-bottom: 0.5rem;
+}
+
+.section-body {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.85;
+  color: #3a5068;
+  max-width: 680px;
+}
+
+/* ════════════════════════════════════════
+   MISIÓN
+════════════════════════════════════════ */
+.mision {
+  background: var(--crema);
+  position: relative;
+}
+.mision::before {
+  content: '"';
+  position: absolute;
+  top: 2rem; left: 6vw;
+  font-family: var(--font-display);
+  font-size: 18rem;
+  color: var(--celeste-pale);
+  line-height: 1;
+  pointer-events: none;
+  font-style: italic;
+  z-index: 0;
+}
+.mision-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+}
+.mision-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.75;
+  font-style: italic;
+  color: var(--azul-noche);
+}
+
+/* ════════════════════════════════════════
+   ETERNAS GRID (preview)
+════════════════════════════════════════ */
+.eternas-preview {
+  background: var(--azul-noche);
+}
+.eternas-preview .section-title { color: var(--blanco); }
+.eternas-preview .section-label { color: var(--celeste); }
+.eternas-preview .section-body { color: rgba(214,236,250,0.75); }
+
+.eternas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1px;
+  margin-top: 3rem;
+  border: 1px solid rgba(116,185,224,0.1);
+}
+
+.eterna-card-preview {
+  aspect-ratio: 3/4;
+  background: linear-gradient(180deg, rgba(26,92,138,0.3) 0%, rgba(13,34,53,0.8) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+  border: 1px solid rgba(116,185,224,0.05);
+}
+
+.eterna-card-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(26,92,138,0.9) 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.eterna-card-preview:hover::before { opacity: 1; }
+.eterna-card-preview:hover { border-color: rgba(116,185,224,0.3); transform: scale(0.98); }
+
+.eterna-card-preview .eterna-initial {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(116,185,224,0.2);
+  transition: opacity 0.4s;
+}
+.eterna-card-preview:hover .eterna-initial { opacity: 0; }
+
+.eterna-card-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+.eterna-card-years {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--celeste);
+  letter-spacing: 0.2em;
+  margin-top: 0.3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ver-todas-wrap {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* ════════════════════════════════════════
+   ARTISTAS
+════════════════════════════════════════ */
+.artistas {
+  background: var(--gris-claro);
+}
+.artistas-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.artista-item {
+  background: var(--blanco);
+  padding: 1.8rem 1.5rem;
+  border-left: 3px solid var(--celeste);
+  transition: all 0.3s;
+}
+.artista-item:hover {
+  border-color: var(--celeste-dark);
+  transform: translateX(4px);
+  box-shadow: -4px 0 16px rgba(116,185,224,0.15);
+}
+.artista-item .name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--azul-noche);
+}
+.artista-item.director .name {
+  color: var(--celeste-dark);
+}
+.artista-item.director .role {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--celeste);
+  margin-top: 0.3rem;
+}
+
+/* ════════════════════════════════════════
+   CARROUSEL
+════════════════════════════════════════ */
+.galeria {
+  background: var(--azul-noche);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.galeria .section-title { color: var(--blanco); }
+.galeria .section-label { color: var(--celeste); }
+
+.carousel-wrap {
+  position: relative;
+  margin-top: 2.5rem;
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.carousel-slide {
+  flex: 0 0 calc(33.333% - 1rem);
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--celeste-dark), var(--azul-noche));
+  border: 1px solid rgba(116,185,224,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.carousel-slide .slide-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.carousel-slide .slide-icon {
+  font-size: 3rem;
+  opacity: 0.3;
+}
+.carousel-slide .slide-caption {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--celeste-pale);
+  opacity: 0.5;
+  text-align: center;
+  padding: 0 1rem;
+}
+.carousel-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.carousel-btn {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(116,185,224,0.3);
+  background: transparent;
+  color: var(--celeste-pale);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.carousel-btn:hover {
+  background: var(--celeste-deep);
+  border-color: var(--celeste-deep);
+  color: var(--blanco);
+}
+
+/* ════════════════════════════════════════
+   CARTELERA (afiches)
+════════════════════════════════════════ */
+.cartelera {
+  background: var(--crema);
+}
+.afiches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.afiche {
+  aspect-ratio: 2/3;
+  background: none;
+  border: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.afiche:hover {
+  transform: translateY(-6px) rotate(-0.5deg);
+  box-shadow: 0 20px 40px rgba(13,34,53,0.25);
+}
+.afiche-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--celeste);
+  opacity: 0.7;
+}
+.afiche-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--blanco);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.2;
+}
+.afiche-sub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--celeste-pale);
+  text-align: center;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+.afiche-icon {
+  font-size: 2.5rem;
+  opacity: 0.25;
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+}
+.afiche-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  inset: 0;
+}
+.afiche-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(13,34,53,0.85) 0%, rgba(13,34,53,0.3) 60%, transparent 100%);
+}
+
+/* ════════════════════════════════════════
+   PAGE: ETERNAS
+════════════════════════════════════════ */
+.eternas-hero {
+  background: var(--azul-noche);
+  padding: 5rem 8vw 4rem;
+}
+.eternas-hero .section-title { color: var(--blanco); }
+.eternas-hero .section-label { color: var(--celeste); }
+.eternas-hero .section-body { color: rgba(214,236,250,0.75); max-width: 700px; }
+
+.eternas-full-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0;
+  background: var(--gris-claro);
+}
+
+.eterna-card {
+  background: var(--blanco);
+  border: 1px solid var(--gris-claro);
+  padding: 2.2rem 2rem;
+  cursor: pointer;
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+.eterna-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--celeste);
+  transform: scaleY(0);
+  transition: transform 0.3s;
+  transform-origin: bottom;
+}
+.eterna-card:hover::before { transform: scaleY(1); }
+.eterna-card:hover {
+  background: rgba(116,185,224,0.04);
+  padding-left: 2.5rem;
+}
+
+.eterna-card-num {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--gris);
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+}
+.eterna-card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--azul-noche);
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+.eterna-card-dates {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--celeste-deep);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.8rem;
+}
+.eterna-card-excerpt {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--gris);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.eterna-card-arrow {
+  position: absolute;
+  bottom: 1.8rem; right: 1.8rem;
+  font-size: 1.2rem;
+  color: var(--celeste);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.eterna-card:hover .eterna-card-arrow { opacity: 1; transform: translateX(4px); }
+
+/* ════════════════════════════════════════
+   PAGE: ETERNA INDIVIDUAL
+════════════════════════════════════════ */
+.eterna-detail { display: none; }
+.eterna-detail.active { display: block; }
+
+.eterna-detail-hero {
+  background: var(--azul-noche);
+  min-height: 50vh;
+  padding: 5rem 8vw 4rem;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+.eterna-detail-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 0; width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(116,185,224,0.05));
+}
+.eterna-detail-hero-bg-num {
+  position: absolute;
+  right: 5vw; bottom: -2rem;
+  font-family: var(--font-display);
+  font-size: 18rem;
+  font-weight: 900;
+  color: rgba(116,185,224,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.back-btn {
+  position: absolute;
+  top: 2rem; left: 8vw;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--celeste);
+  cursor: pointer;
+  display: flex; align-items: center; gap: 0.5rem;
+  text-decoration: none;
+  transition: color 0.3s;
+  border: none; background: none;
+}
+.back-btn:hover { color: var(--blanco); }
+
+.eterna-detail-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--blanco);
+  line-height: 1;
+}
+.eterna-detail-dates {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--celeste);
+  letter-spacing: 0.25em;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.eterna-detail-tagline {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: rgba(214,236,250,0.7);
+}
+
+.eterna-detail-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  padding: 5rem 8vw;
+  background: var(--blanco);
+}
+.eterna-bio h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--azul-noche);
+  margin-bottom: 1.2rem;
+}
+.eterna-bio p {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: #3a5068;
+  margin-bottom: 1.2rem;
+}
+
+.eterna-sidebar .sidebar-card {
+  background: var(--celeste-pale);
+  border-left: 3px solid var(--celeste-deep);
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.eterna-sidebar .sidebar-card h4 {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--celeste-dark);
+  margin-bottom: 1rem;
+}
+.eterna-sidebar .sidebar-card p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--azul-noche);
+}
+.eterna-sidebar .sidebar-card .artista-obra {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--celeste-dark);
+  margin-top: 0.5rem;
+}
+
+/* ════════════════════════════════════════
+   PAGE: CONTACTO
+════════════════════════════════════════ */
+.contacto-hero {
+  background: var(--azul-noche);
+  padding: 5rem 8vw 4rem;
+}
+.contacto-hero .section-title { color: var(--blanco); }
+.contacto-hero .section-label { color: var(--celeste); }
+
+.contacto-body {
+  padding: 5rem 8vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+
+.contacto-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--azul-noche);
+  margin-bottom: 1rem;
+}
+.contacto-info p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #3a5068;
+  margin-bottom: 1.5rem;
+}
+.contacto-info .redes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+.contacto-info .red-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--azul-noche);
+}
+.contacto-info .red-item span:first-child {
+  color: var(--celeste-deep);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  min-width: 80px;
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-field label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--celeste-dark);
+}
+.form-field input,
+.form-field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--gris-claro);
+  background: var(--blanco);
+  color: var(--azul-noche);
+  outline: none;
+  transition: border-color 0.3s;
+  resize: vertical;
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--celeste);
+}
+.form-field textarea { min-height: 140px; }
+
+.form-success {
+  display: none;
+  padding: 1.5rem;
+  background: rgba(116,185,224,0.1);
+  border-left: 3px solid var(--celeste);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--azul-noche);
+  font-style: italic;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  background: var(--azul-noche);
+  padding: 3rem 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-top: 1px solid rgba(116,185,224,0.15);
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--celeste);
+  letter-spacing: 0.05em;
+}
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(214,236,250,0.4);
+  letter-spacing: 0.2em;
+  text-align: right;
+}
+.footer-bandera {
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+  width: 40px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.footer-bandera div { flex: 1; }
+.footer-bandera .f1, .footer-bandera .f3 { background: var(--celeste); }
+.footer-bandera .f2 { background: var(--blanco); }
+
+/* ════════════════════════════════════════
+   ANIMACIONES
+════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-content > * {
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow { animation-delay: 0.1s; }
+.hero h1 { animation-delay: 0.25s; }
+.hero-divider { animation-delay: 0.35s; }
+.hero-lead { animation-delay: 0.45s; }
+.hero-cta { animation-delay: 0.6s; }
+
+/* ════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+  :root { --nav-h: 64px; }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-h); left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(13,34,53,0.98);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.35s;
+    pointer-events: none;
+    padding: 1rem 0;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-links li { border-bottom: 1px solid rgba(116,185,224,0.1); }
+  .nav-links a {
+    display: block;
+    padding: 1rem 4vw;
+    font-size: 0.9rem;
+  }
+  .nav-burger { display: flex; }
+
+  section { padding: 4rem 6vw; }
+
+  .hero-content { padding: 4vh 6vw; }
+  .hero h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
+  .hero-stripes { width: 100%; opacity: 0.04; }
+
+  .carousel-slide { flex: 0 0 calc(85% - 0.75rem); }
+
+  .afiches-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .eternas-full-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .eterna-detail-body {
+    grid-template-columns: 1fr;
+    padding: 3rem 6vw;
+    gap: 2.5rem;
+  }
+
+  .contacto-body {
+    grid-template-columns: 1fr;
+    padding: 3rem 6vw;
+    gap: 3rem;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-copy { text-align: center; }
+
+  .eternas-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .eterna-detail-hero {
+    min-height: 40vh;
+    padding: 5rem 6vw 3rem;
+  }
+  .eterna-detail-title { font-size: clamp(2rem, 10vw, 3.5rem); }
+
+  .artistas-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .afiches-grid { grid-template-columns: 1fr; }
+  .artistas-list { grid-template-columns: 1fr; }
+  .eternas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav>
+  <div class="nav-logo" onclick="showPage('inicio')">
+    <span class="logo-top">Sean Eternas</span>
+    <span class="logo-sub">Colectivo de Artistas</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('inicio'); return false;" data-page="inicio" class="active">Inicio</a></li>
+    <li><a href="#" onclick="showPage('eternas'); return false;" data-page="eternas">Eternas</a></li>
+    <li><a href="#" onclick="showPage('contacto'); return false;" data-page="contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-burger" id="navBurger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ PAGE: INICIO ═══════════════════════════════ -->
+<div class="page active" id="page-inicio">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stripes"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Colectivo de Artistas · Argentina</p>
+      <h1>Sean<br><em>Eternas</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-lead">Mujeres que sembraron caminos. Arte que las hace inmortales.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="showPage('eternas')">Las Eternas →</button>
+        <button class="btn btn-outline" onclick="document.getElementById('mision-section').scrollIntoView({behavior:'smooth'})">Conocer más</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN -->
+  <section class="mision" id="mision-section">
+    <div class="mision-inner">
+      <p class="section-label">Quiénes somos</p>
+      <h2 class="section-title">El Colectivo</h2>
+      <div style="height:1.5rem"></div>
+      <p class="mision-text">
+        El Colectivo Sean Eternas está conformado por un grupo de mujeres diseñadoras, artistas visuales y escritoras. Nace de la inquietud de transmitir a través de manifestaciones artísticas, el legado invisibilizado o menospreciado de mujeres de todo el país que aportaron a nuestra cultura, ciencia y sociedad, y que hoy trascienden fronteras.
+      </p>
+      <div style="height:1.2rem"></div>
+      <p class="mision-text">
+        Inspiradas en el concepto de instalación, la intervención de objetos y el arte textil, estas obras creadas por mujeres, se vuelven palabra en imagen, se vuelven protesta y bandera, compromiso y arte.
+      </p>
+    </div>
+  </section>
+
+  <!-- LAS ETERNAS (preview) -->
+  <section class="eternas-preview">
+    <p class="section-label">Las protagonistas</p>
+    <h2 class="section-title" style="color:var(--blanco)">Las Eternas</h2>
+    <div style="height:1rem"></div>
+    <p class="section-body">
+      Las Eternas son mujeres nacidas entre fines del 1700 y la primera mitad del 1900, fuertes, visionarias, con sueños, proyectos, ideas e ideales, energía y valor para llevarlo todo adelante, algunas de las que sembraron nuestro camino actual.
+    </p>
+    <div class="eternas-grid" id="eternasPreviewGrid"></div>
+    <div class="ver-todas-wrap">
+      <button class="btn btn-outline" onclick="showPage('eternas')">Ver todas las Eternas →</button>
+    </div>
+  </section>
+
+  <!-- ARTISTAS -->
+  <section class="artistas">
+    <p class="section-label">El colectivo</p>
+    <h2 class="section-title">Las Artistas</h2>
+    <div style="height:1rem"></div>
+    <p class="section-body">Las artistas que participan del colectivo:</p>
+    <div class="artistas-list" id="artistasList"></div>
+  </section>
+
+  <!-- GALERÍA / CARROUSEL -->
+  <section class="galeria">
+    <p class="section-label">Obras y registros</p>
+    <h2 class="section-title" style="color:var(--blanco)">Galería</h2>
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide"><img src="img/car1.webp" alt="Car 1" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car2.webp" alt="Car 2" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car3.webp" alt="Car 3" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car4.webp" alt="Car 4" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car5.webp" alt="Car 5" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car6.webp" alt="Car 6" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car7.webp" alt="Car 7" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car8.webp" alt="Car 8" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car9.webp" alt="Car 9" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car10.webp" alt="Car 10" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car11.webp" alt="Car 11" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car12.webp" alt="Car 12" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car13.webp" alt="Car 13" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car14.webp" alt="Car 14" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car15.webp" alt="Car 15" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="carousel-slide"><img src="img/car16.webp" alt="Car 16" style="width:100%; height:100%; object-fit:cover;"></div>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" onclick="carouselPrev()">←</button>
+      <button class="carousel-btn" onclick="carouselNext()">→</button>
+    </div>
+  </section>
+
+  <!-- CARTELERA -->
+  <section class="cartelera">
+    <p class="section-label">Eventos y participaciones</p>
+    <h2 class="section-title">Cartelera</h2>
+    <div style="height:0.5rem"></div>
+    <p class="section-body">Eventos y muestras en los que ha participado el colectivo.</p>
+    <div class="afiches-grid">
+      <div class="afiche">
+        <img class="afiche-img" src="img/agenda1.webp" alt="Agenda 1">
+      </div>
+      <div class="afiche">
+        <img class="afiche-img" src="img/agenda2.webp" alt="Agenda 2">
+      </div>
+      <div class="afiche">
+        <img class="afiche-img" src="img/agenda3.webp" alt="Agenda 3">
+      </div>
+      <div class="afiche">
+        <img class="afiche-img" src="img/agenda4.webp" alt="Agenda 4">
+      </div>
+      <div class="afiche">
+        <img class="afiche-img" src="img/agenda5.webp" alt="Agenda 5">
+      </div>
+      <div class="afiche">
+        <img class="afiche-img" src="img/agenda6.webp" alt="Agenda 6">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Sean Eternas</div>
+    <div class="footer-bandera">
+      <div class="f1"></div><div class="f2"></div><div class="f3"></div>
+    </div>
+    <div class="footer-copy">
+      COLECTIVO DE ARTISTAS<br>© 2024 SEAN ETERNAS
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: ETERNAS ═══════════════════════════════ -->
+<div class="page" id="page-eternas">
+
+  <div id="eternas-list-view">
+    <section class="eternas-hero">
+      <p class="section-label">Las protagonistas</p>
+      <h2 class="section-title">Las Eternas</h2>
+      <div style="height:1rem"></div>
+      <p class="section-body">
+        Mujeres nacidas entre fines del 1700 y la primera mitad del 1900, fuertes, visionarias, con sueños, proyectos, ideas e ideales, energía y valor para llevarlo todo adelante.
+      </p>
+    </section>
+    <div class="eternas-full-grid" id="eternasFullGrid"></div>
+
+    <footer style="margin-top:0">
+      <div class="footer-logo">Sean Eternas</div>
+      <div class="footer-bandera">
+        <div class="f1"></div><div class="f2"></div><div class="f3"></div>
+      </div>
+      <div class="footer-copy">COLECTIVO DE ARTISTAS<br>© 2024 SEAN ETERNAS</div>
+    </footer>
+  </div>
+
+  <div id="eterna-detail-view" style="display:none">
+    <!-- Se llena dinámicamente -->
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ PAGE: CONTACTO ═══════════════════════════════ -->
+<div class="page" id="page-contacto">
+  <section class="contacto-hero">
+    <p class="section-label">Escribinos</p>
+    <h2 class="section-title">Contacto</h2>
+  </section>
+  <div class="contacto-body">
+    <div class="contacto-info">
+      <h3>Sean Eternas</h3>
+      <p>Somos un colectivo de artistas comprometidas con visibilizar el legado de las mujeres que construyeron la Argentina. Si querés contactarnos para muestras, prensa, colaboraciones o simplemente para conocer más sobre nuestro trabajo, escribinos.</p>
+      <p>Coordinación y dirección a cargo de <strong>Marcela Rivero</strong>.</p>
+      <div class="redes">
+        <div class="red-item"><span>Instagram</span><span>@seaneternas</span></div>
+        <div class="red-item"><span>Facebook</span><span>Sean Eternas Colectivo</span></div>
+        <div class="red-item"><span>Email</span><span>seaneternas@gmail.com</span></div>
+      </div>
+    </div>
+    <form class="contacto-form" onsubmit="handleContacto(event)">
+      <div class="form-field">
+        <label>Nombre</label>
+        <input type="text" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-field">
+        <label>Asunto</label>
+        <input type="text" placeholder="¿En qué podemos ayudarte?">
+      </div>
+      <div class="form-field">
+        <label>Mensaje</label>
+        <textarea placeholder="Tu mensaje..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start">Enviar mensaje →</button>
+      <div class="form-success" id="formSuccess">
+        ¡Gracias por tu mensaje! Nos pondremos en contacto pronto.
+      </div>
+    </form>
+  </div>
+  <footer>
+    <div class="footer-logo">Sean Eternas</div>
+    <div class="footer-bandera">
+      <div class="f1"></div><div class="f2"></div><div class="f3"></div>
+    </div>
+    <div class="footer-copy">COLECTIVO DE ARTISTAS<br>© 2024 SEAN ETERNAS</div>
+  </footer>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   DATOS
+════════════════════════════════════════ */
+const eternas = [
+  {
+    id: "juana-azurduy",
+    nombre: "Juana Azurduy",
+    dates: "12 de Julio de 1780 — 25 de Mayo de 1862",
+    tagline: "Guerrera de la Independencia",
+    bio: [
+      "Juana Azurduy es una heroína de la independencia del Virreinato del Río de la Plata que combatió en los territorios actuales de Bolivia y Argentina. En 1809 se unió al ejército popular luego de estallar la Revolución Independentista en Chuquisaca.",
+      "Combatió hasta estando embarazada y siguió haciéndolo aún luego de la muerte de su marido en combate en 1816. Peleó también junto a Martín Miguel de Güemes en el norte del Alto Perú, donde defendieron seis ataques de las tropas españolas.",
+      "Es admirable el coraje, la astucia y la generosidad con los que Juana Azurduy llevó adelante la lucha contra el ejército realista alcanzando el grado de Teniente Coronela, convirtiéndose en la primera mujer con rango militar. En 1825 Simón Bolívar la nombró Coronela y post morten (en 2009) fue ascendida nuevamente a Generala del Ejército Argentino y Mariscal de la República boliviana).",
+      "Recordarla representa la reivindicación de todas las mujeres que, armas en mano, combatieron por nuestra libertad a la par de los hombres. Su figura desmiente el rol secundario que pretendió atribuirles a las mujeres la historia oficial, que solo las retrató dedicadas a coser banderas, donar alhajas y, sobre todo, esperar pacientemente el regreso de sus esposos del campo de batalla."
+    ],
+    obra: "Instalación textil sobre tela de arpillera intervenida con hilos de seda en celeste y blanco. La obra evoca el uniforme militar y los estandartes de la resistencia.",
+    artista: "Gabriela Mensias"
+  },
+  {
+    id: "tita-merello",
+    nombre: "Tita Merello",
+    dates: "1904 — 2002",
+    tagline: "Reina del Arrabal",
+    bio: [
+      "Laura Ana Merello, conocida como Tita Merello, fue una actriz y cantante argentina nacida en los conventillos del barrio de San Telmo. Su voz ronca y su presencia indomable la convirtieron en un ícono del tango y del cine nacional.",
+      "Criada entre la pobreza más extrema, Tita se abrió camino a fuerza de talento y personalidad. Fue lavaplatos, corista, bailarina de varieté y chanteuse de cabaret antes de llegar al estrellato. Su paso por el teatro y el cine fue arrollador.",
+      "Protagonizó más de 40 películas y grabó decenas de tangos que siguen resonando. Fue la primera mujer en recibir el Premio Konex de Brillante como figura fundamental de la cultura argentina. A sus 98 años, seguía siendo la Reina del Arrabal."
+    ],
+    obra: "Intervención sobre disco de acetato original y tela de terciopelo negro. Bordado en hilo dorado con letras de sus tangos más icónicos.",
+    artista: "Liliana Melesi"
+  },
+  {
+    id: "maria-elena-walsh",
+    nombre: "María Elena Walsh",
+    dates: "1930 — 2011",
+    tagline: "Poeta de la infancia y la libertad",
+    bio: [
+      "María Elena Walsh fue poeta, escritora, cantautora y compositora argentina, considerada la máxima figura de la literatura infantil de América Latina. Sus canciones y poemas acompañaron generaciones enteras de niños y adultos.",
+      "Publicó su primer libro de poesía a los 17 años, ganando el reconocimiento de Pablo Neruda. Vivió en París, donde se vinculó con el mundo artístico e intelectual europeo. De regreso en Argentina, creó un universo poético único donde la fantasía y la rebeldía se entrelazaban.",
+      "Además de su obra infantil, fue una voz crítica y valiente frente a las dictaduras. Su artículo 'Desventuras en el País Jardín de Infantes' fue un alegato contra la censura que circuló clandestinamente durante años. Fue la primera mujer en recibir el Premio Konex de Brillante en Letras."
+    ],
+    obra: "Obra textil sobre lino crudo con fragmentos de versos bordados en hilo azul. Muñecos de trapo que evocan sus personajes más entrañables.",
+    artista: "Zulema Farias"
+  },
+  {
+    id: "rosario-vera-penaloza",
+    nombre: "Rosario Vera Peñaloza",
+    dates: "1873 — 1950",
+    tagline: "La Maestra de la Patria",
+    bio: [
+      "Rosario Vera Peñaloza fue una maestra y pedagoga riojana considerada 'La Maestra de la Patria'. Dedicó su vida a la educación pública, especialmente en las zonas más desfavorecidas de Argentina.",
+      "Fundó el primer jardín de infantes de la provincia de La Rioja e impulsó la creación de escuelas rurales en toda la región. Fue pionera en introducir los materiales didácticos Froebel en Argentina y en promover la educación artística como parte fundamental del aprendizaje.",
+      "A pesar de su enorme contribución, murió en la pobreza. Había vendido todos sus bienes personales para sostener una escuela. El Estado argentino la homenajeó tardíamente: su imagen figura en el billete de cien pesos y se la declara Maestra de la Patria."
+    ],
+    obra: "Instalación con pizarrones de tiza, cuadernos intervenidos y telas estampadas con el abecedario. Un homenaje a la educación como acto político.",
+    artista: "Melina Navarro"
+  },
+  {
+    id: "cecilia-grierson",
+    nombre: "Cecilia Grierson",
+    dates: "1859 — 1934",
+    tagline: "Primera médica argentina",
+    bio: [
+      "Cecilia Grierson fue la primera mujer en graduarse de médica en Argentina, en 1889, en la Universidad de Buenos Aires. Su camino estuvo plagado de obstáculos y discriminación, pero su determinación fue inquebrantable.",
+      "Además de ejercer la medicina, fundó la Asociación Obstétrica Nacional y la Escuela de Enfermería del Hospital San Roque. Luchó activamente por los derechos de las mujeres y fue una de las fundadoras del Consejo Nacional de Mujeres de Argentina.",
+      "Sus contribuciones a la medicina y a la educación sanitaria fueron fundamentales, pero durante décadas fue ignorada por la historia oficial. Su nombre quedó fuera de los libros de texto mientras sus colegas varones eran celebrados."
+    ],
+    obra: "Objeto intervenido: maletín médico de época con instrumentos bordados sobre tela. Fragmentos de su tesis doctoral en tipografía manual sobre seda.",
+    artista: "Monica Morillas"
+  },
+  {
+    id: "lola-mora",
+    nombre: "Lola Mora",
+    dates: "1866 — 1936",
+    tagline: "Escultora de la República",
+    bio: [
+      "Dolores Mora de Hernández, conocida como Lola Mora, fue la primera escultora argentina en alcanzar reconocimiento internacional. Nació en Tucumán y se formó en Roma, donde dominó el arte del mármol con maestría.",
+      "Su obra más conocida es la Fuente de las Nereidas, instalada originalmente en la Plaza de Mayo y luego trasladada a la Costanera Sur. La escultura, de mármol de Carrara, muestra figuras femeninas desnudas que generaron un escándalo mayúsculo en la Buenos Aires de 1903.",
+      "A pesar de su talento excepcional, murió en la pobreza absoluta. Sus obras más importantes adornan espacios públicos argentinos, pero ella vivió sus últimos años olvidada y sin recursos. La historia la recuperó décadas después de su muerte."
+    ],
+    obra: "Escultura en yeso intervenida con pan de oro y aguada. La obra dialoga con las Nereidas y con el escándalo que generó la desnudez femenina en el arte público.",
+    artista: "Karin Ritterband"
+  },
+  {
+    id: "mercedes-sosa",
+    nombre: "Haydeé Mercedes Sosa",
+    dates: "1935 — 2009",
+    tagline: "La Negra · Voz de América",
+    bio: [
+      "Mercedes Sosa, conocida como 'La Negra', fue una cantante tucumana considerada una de las voces más importantes de la música latinoamericana del siglo XX. Su voz profunda y poderosa fue el alma del Nuevo Cancionero Argentino.",
+      "Durante la dictadura militar fue obligada al exilio. Sus conciertos fueron prohibidos, sus discos retirados del mercado. Vivió en Europa entre 1979 y 1982. Sin embargo, al volver, su regreso fue uno de los hechos culturales más importantes de la Argentina democrática.",
+      "Interpretó a todos los grandes compositores latinoamericanos: Violeta Parra, Atahualpa Yupanqui, Víctor Jara, Charly García. Su obra fue un puente entre la tradición y la contemporaneidad, entre el folklore y el rock. 'Gracias a la Vida' se convirtió en un himno."
+    ],
+    obra: "Instalación de audio-textil: poncho intervenido con bordados y fragmentos de letras de sus canciones. La obra puede ser también escuchada.",
+    artista: "Gabriela Mensias"
+  },
+  {
+    id: "eva-peron",
+    nombre: "Eva Perón",
+    dates: "1919 — 1952",
+    tagline: "Evita · La abanderada de los humildes",
+    bio: [
+      "María Eva Duarte de Perón, conocida como Evita, fue una actriz, política y activista argentina que ocupó un lugar central en la historia del siglo XX. Esposa del presidente Juan Domingo Perón, se convirtió en una figura política de enorme poder propio.",
+      "Desde la Fundación Eva Perón, construyó hospitales, hogares de tránsito, escuelas y ciudades estudiantiles. Luchó incansablemente por el sufragio femenino, logrando que en 1947 Argentina reconociera el voto de la mujer.",
+      "Murió a los 33 años de cáncer de útero. Su muerte generó un duelo popular masivo y sin precedentes. Para unos, es santa; para otros, símbolo de demagogia. Para todos, es inevitable. Su cuerpo fue secuestrado, exiliado y devuelto: nunca dejó de ser un campo de batalla político."
+    ],
+    obra: "Obra textil sobre terciopelo rojo y negro. Bordado de su silueta con traje sastre y rodete en hilo de plata. Fragmentos del discurso del 17 de octubre.",
+    artista: "Marcela Rivero"
+  },
+  {
+    id: "alfonsina-storni",
+    nombre: "Alfonsina Storni",
+    dates: "1892 — 1938",
+    tagline: "Poeta del mar y la rebeldía",
+    bio: [
+      "Alfonsina Storni fue una poeta, dramaturga y escritora suizo-argentina, una de las voces más importantes de la literatura latinoamericana de principios del siglo XX. Nació en Suiza y vivió desde pequeña en Argentina.",
+      "Fue madre soltera en una época donde eso significaba la condena social. Trabajó como institutriz, actriz y empleada de comercio para criar a su hijo. Su poesía, valiente y visceral, habló de la condición femenina con una honestidad que escandalizó a muchos.",
+      "Publicó varios libros de poemas y fue reconocida con el Premio Municipal de Literatura. En 1938, enferma de cáncer de mama, se adentró en el mar de Mar del Plata en la madrugada. Sus últimas palabras fueron un poema enviado al diario La Nación horas antes."
+    ],
+    obra: "Instalación sobre papel de agua y tela de organza azul. Poemas manuscritos que se disuelven en el agua, evocando su regreso al mar.",
+    artista: "Zulema Farias"
+  },
+  {
+    id: "alejandra-pizarnik",
+    nombre: "Alejandra Pizarnik",
+    dates: "1936 — 1972",
+    tagline: "Poeta del abismo y la noche",
+    bio: [
+      "Flora Alejandra Pizarnik fue una poeta argentina de ascendencia judía, considerada una de las voces más originales y oscuras de la poesía latinoamericana del siglo XX. Nació en Buenos Aires y vivió varios años en París.",
+      "Su obra poética, densa y hermética, exploró los límites del lenguaje, la soledad, la noche y la muerte. Publicó libros como 'Árbol de Diana', 'Los trabajos y las noches' y 'Extracción de la piedra de locura', textos que la posicionaron como una figura única.",
+      "Luchó toda su vida contra la depresión y los trastornos psiquiátricos, que trataba con medicación y psicoanálisis. Murió de una sobredosis de barbitúricos a los 36 años, en circunstancias que nunca fueron completamente esclarecidas. Su obra siguió creciendo después de su muerte."
+    ],
+    obra: "Cajas de sombra intervenidas con espejos rotos y fragmentos de sus poemas escritos con tinta negra sobre papel japonés translúcido.",
+    artista: "Liliana Melesi"
+  },
+  {
+    id: "nora-cortinas",
+    nombre: "Nora Cortiñas",
+    dates: "1930 — 2024",
+    tagline: "Madre de Plaza de Mayo · Línea Fundadora",
+    bio: [
+      "Nora Cortiñas, conocida como 'Norita', fue una de las fundadoras de Madres de Plaza de Mayo — Línea Fundadora, el movimiento que desafió a la última dictadura militar argentina reclamando por sus hijos desaparecidos.",
+      "Su hijo Gustavo fue detenido-desaparecido en 1977, durante el Proceso de Reorganización Nacional. Desde entonces, Nora no paró. Caminó la Plaza de Mayo por décadas, viajó por el mundo denunciando al terrorismo de Estado y nunca dejó de exigir verdad, memoria y justicia.",
+      "Vivió casi un siglo de lucha. Apoyó causas de derechos humanos en todo el mundo: Palestina, el Pueblo Mapuche, los movimientos feministas. Falleció en 2024, a los 94 años, sin dejar de ser una Madre activa hasta el final. Su pañuelo blanco es un símbolo universal."
+    ],
+    obra: "Instalación de pañuelos blancos bordados con nombres y fechas. La obra puede ser usada por las visitantes, activando el gesto de la Plaza de Mayo.",
+    artista: "Melina Navarro"
+  },
+  {
+    id: "maria-fux",
+    nombre: "María Fux",
+    dates: "1922 — 2022",
+    tagline: "Pionera de la danzaterapia",
+    bio: [
+      "María Fux fue una bailarina y pedagoga argentina que revolucionó el uso de la danza como herramienta terapéutica. Nacida en Buenos Aires, estudió danza clásica y moderna y desarrolló un método propio que llevaría su nombre.",
+      "La 'danzaterapia' de Fux partía de una premisa radical: todos los cuerpos pueden danzar, incluyendo los de personas con discapacidad, enfermos crónicos, adultos mayores y niños con trastornos del desarrollo. Su método fue adoptado en hospitales y centros de salud de todo el mundo.",
+      "Trabajó con personas sordas, ciegas, con parálisis cerebral y con Alzheimer. Demostró que el movimiento es una forma de lenguaje universal que va más allá de las limitaciones físicas. Falleció a los 100 años, habiendo cambiado para siempre la relación entre el arte y la salud."
+    ],
+    obra: "Telas en movimiento suspendidas del techo con hilos invisibles. La instalación invita a mover el cuerpo para percibir cómo el movimiento genera forma y color.",
+    artista: "Monica Morillas"
+  }
+];
+
+const artistasList = [
+  { name: "Gabriela Mensias" },
+  { name: "Liliana Melesi" },
+  { name: "Zulema Farias" },
+  { name: "Melina Navarro" },
+  { name: "Monica Morillas" },
+  { name: "Karin Ritterband" },
+  { name: "Marcela Rivero", role: "Coordinación y dirección", isDirector: true }
+];
+
+/* ════════════════════════════════════════
+   RENDER
+════════════════════════════════════════ */
+function buildEternasPreviewGrid() {
+  const grid = document.getElementById('eternasPreviewGrid');
+  eternas.forEach(e => {
+    const card = document.createElement('div');
+    card.className = 'eterna-card-preview';
+    card.innerHTML = `
+      <span class="eterna-initial">${e.nombre[0]}</span>
+      <div class="eterna-card-name">${e.nombre}</div>
+      <div class="eterna-card-years">${e.dates}</div>
+    `;
+    card.onclick = () => openEterna(e.id);
+    grid.appendChild(card);
+  });
+}
+
+function buildEternasFullGrid() {
+  const grid = document.getElementById('eternasFullGrid');
+  eternas.forEach((e, i) => {
+    const card = document.createElement('a');
+    card.className = 'eterna-card';
+    card.href = '#' + e.id;
+    const num = String(i + 1).padStart(2, '0');
+    card.innerHTML = `
+      <div class="eterna-card-num">${num}</div>
+      <div class="eterna-card-title">${e.nombre}</div>
+      <div class="eterna-card-dates">${e.dates}</div>
+      <div class="eterna-card-excerpt">${e.tagline} — ${e.bio[0]}</div>
+      <span class="eterna-card-arrow">→</span>
+    `;
+    card.onclick = (event) => {
+      event.preventDefault();
+      openEterna(e.id);
+    };
+    grid.appendChild(card);
+  });
+}
+
+function buildArtistasList() {
+  const list = document.getElementById('artistasList');
+  artistasList.forEach(a => {
+    const item = document.createElement('div');
+    item.className = `artista-item${a.isDirector ? ' director' : ''}`;
+    item.innerHTML = `<div class="name">${a.name}</div>${a.role ? `<div class="role">${a.role}</div>` : ''}`;
+    list.appendChild(item);
+  });
+}
+
+function openEterna(id) {
+  const e = eternas.find(x => x.id === id);
+  if (!e) return;
+
+  const detailView = document.getElementById('eterna-detail-view');
+  const bioHTML = e.bio.map(p => `<p>${p}</p>`).join('');
+  const idx = eternas.indexOf(e) + 1;
+
+  detailView.innerHTML = `
+    <div class="eterna-detail-hero">
+      <button class="back-btn" onclick="closeEterna()">← Las Eternas</button>
+      <div class="eterna-detail-hero-bg-num">${String(idx).padStart(2,'0')}</div>
+      <div>
+        <div class="eterna-detail-dates">${e.dates}</div>
+        <div class="eterna-detail-title">${e.nombre}</div>
+        <div class="eterna-detail-tagline">${e.tagline}</div>
+      </div>
+    </div>
+    <div class="eterna-detail-body">
+      <div class="eterna-bio">
+        <h3>Biografía</h3>
+        ${bioHTML}
+      </div>
+      <div class="eterna-sidebar">
+        <div class="sidebar-card">
+          <h4>La obra</h4>
+          <p>${e.obra}</p>
+        </div>
+        <div class="sidebar-card">
+          <h4>La artista</h4>
+          <p>Esta obra fue creada por</p>
+          <div class="artista-obra">${e.artista}</div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-logo">Sean Eternas</div>
+      <div class="footer-bandera">
+        <div class="f1"></div><div class="f2"></div><div class="f3"></div>
+      </div>
+      <div class="footer-copy">COLECTIVO DE ARTISTAS<br>© 2024 SEAN ETERNAS</div>
+    </footer>
+  `;
+
+  document.getElementById('eternas-list-view').style.display = 'none';
+  detailView.style.display = 'block';
+  window.location.hash = e.id;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeEterna() {
+  document.getElementById('eterna-detail-view').style.display = 'none';
+  document.getElementById('eternas-list-view').style.display = 'block';
+  window.location.hash = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════════
+   NAVEGACIÓN
+════════════════════════════════════════ */
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelector(`[data-page="${name}"]`).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  closeMenu();
+
+  // Reset eternas view when navigating back
+  if (name !== 'eternas') {
+    const detailView = document.getElementById('eterna-detail-view');
+    if (detailView) {
+      detailView.style.display = 'none';
+      document.getElementById('eternas-list-view').style.display = 'block';
+    }
+  }
+}
+
+function toggleMenu() {
+  const links = document.getElementById('navLinks');
+  links.classList.toggle('open');
+}
+
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+/* ════════════════════════════════════════
+   CARROUSEL
+════════════════════════════════════════ */
+let carouselIndex = 0;
+function getSlideWidth() {
+  const track = document.getElementById('carouselTrack');
+  if (!track) return 0;
+  const slide = track.querySelector('.carousel-slide');
+  if (!slide) return 0;
+  return slide.offsetWidth + 24; // gap
+}
+function carouselNext() {
+  const track = document.getElementById('carouselTrack');
+  const total = track.querySelectorAll('.carousel-slide').length;
+  const visible = window.innerWidth < 768 ? 1 : 3;
+  if (carouselIndex < total - visible) {
+    carouselIndex++;
+    track.style.transform = `translateX(-${carouselIndex * getSlideWidth()}px)`;
+  }
+}
+function carouselPrev() {
+  const track = document.getElementById('carouselTrack');
+  if (carouselIndex > 0) {
+    carouselIndex--;
+    track.style.transform = `translateX(-${carouselIndex * getSlideWidth()}px)`;
+  }
+}
+
+/* ════════════════════════════════════════
+   CONTACTO FORM
+════════════════════════════════════════ */
+function handleContacto(e) {
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display = 'block';
+  e.target.querySelector('button[type=submit]').style.display = 'none';
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+buildEternasPreviewGrid();
+buildEternasFullGrid();
+buildArtistasList();
+
+// Handle hash for eternas
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.substring(1);
+  if (hash && eternas.find(x => x.id === hash)) {
+    showPage('eternas');
+    openEterna(hash);
+  } else if (hash === '') {
+    closeEterna();
+  }
+});
+
+// Check initial hash
+if (window.location.hash) {
+  const hash = window.location.hash.substring(1);
+  if (eternas.find(x => x.id === hash)) {
+    showPage('eternas');
+    openEterna(hash);
+  }
+}
+</script>
+</body>
+</html>
