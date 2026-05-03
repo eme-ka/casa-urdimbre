@@ -137,6 +137,15 @@ nav {
 }
 .page.active { display: block; }
 
+.page > section + section::before {
+  content: '';
+  display: block;
+  width: min(360px, 80%);
+  height: 56px;
+  margin: 0 auto 2rem;
+  background: url('img/separador.png') center/contain no-repeat;
+}
+
 /* ════════════════════════════════════════
    HERO
 ════════════════════════════════════════ */
@@ -349,6 +358,9 @@ section { padding: 6rem 8vw; }
 .eterna-card-preview {
   aspect-ratio: 3/4;
   background: linear-gradient(180deg, rgba(26,92,138,0.3) 0%, rgba(13,34,53,0.8) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1442,11 +1454,39 @@ const artistasList = [
 /* ════════════════════════════════════════
    RENDER
 ════════════════════════════════════════ */
+
+const eternaImageMap = {
+  "juana-azurduy": "Azurduy.jpg",
+  "tita-merello": "Merello.jpg",
+  "maria-elena-walsh": "Walsh.jpg",
+  "rosario-vera-penaloza": "Peñaloza.jpg",
+  "cecilia-grierson": "Grierson.jpg",
+  "lola-mora": "Mora.jpg",
+  "mercedes-sosa": "Sosa.jpg",
+  "eva-peron": "Evita.jpg",
+  "alfonsina-storni": "Storni.jpg",
+  "alejandra-pizarnik": "Pizarnik.jpg",
+  "nora-cortinas": "Cortiñas.jpg",
+  "maria-fux": "Fux.jpg"
+};
+
+function getEternaImagePath(id) {
+  const filename = eternaImageMap[id];
+  return filename ? `img/${filename}` : null;
+}
+
 function buildEternasPreviewGrid() {
   const grid = document.getElementById('eternasPreviewGrid');
   eternas.forEach(e => {
     const card = document.createElement('div');
     card.className = 'eterna-card-preview';
+    const imagePath = getEternaImagePath(e.id);
+    if (imagePath) {
+      card.style.backgroundImage = `linear-gradient(180deg, rgba(26,92,138,0.25) 0%, rgba(13,34,53,0.9) 100%), url('${imagePath}')`;
+      card.style.backgroundSize = 'cover';
+      card.style.backgroundPosition = 'center';
+      card.style.backgroundRepeat = 'no-repeat';
+    }
     card.innerHTML = `
       <span class="eterna-initial">${e.nombre[0]}</span>
       <div class="eterna-card-name">${e.nombre}</div>
