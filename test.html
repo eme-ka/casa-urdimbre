@@ -635,10 +635,14 @@
 
 <div id="email-modal" class="email-modal">
   <div class="email-modal-content">
-    <h2>Ingresa tu email para continuar</h2>
+    <h2>Si querés recibir más información, poné tu mail acá</h2>
+    <p style="margin-bottom: 1rem; color: var(--muted); font-size: 0.95rem;">Es opcional: si no querés recibir más información, podés cerrar este cuadro.</p>
     <form id="email-form">
-      <input type="email" id="email-input" placeholder="tu@email.com" required>
-      <button type="submit">Continuar</button>
+      <input type="email" id="email-input" placeholder="tu@email.com">
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <button type="submit">Enviar</button>
+        <button type="button" onclick="closeEmailModal()">No, gracias</button>
+      </div>
     </form>
   </div>
 </div>
@@ -1733,24 +1737,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const emailForm = document.getElementById('email-form');
   const quizForm = document.getElementById('quiz-form');
 
-  // Hide quiz initially
-  // quizForm.style.display = 'none';
-
-  // Show modal
-  emailModal.style.display = 'flex';
+  // El quiz se muestra desde el inicio; el email se pide al finalizar.
+  quizForm.style.display = 'block';
 
   emailForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const email = document.getElementById('email-input').value.trim();
-    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email) {
+      emailModal.style.display = 'none';
+      return;
+    }
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       saveEmail(email);
       emailModal.style.display = 'none';
-      quizForm.style.display = 'block';
     } else {
       alert('Por favor ingresa un email válido.');
     }
   });
 });
+
+function closeEmailModal() {
+  document.getElementById('email-modal').style.display = 'none';
+}
 
 function saveEmail(email) {
   // Send to Formspree
@@ -2039,6 +2047,7 @@ function mostrarResultado(scores) {
   document.querySelector('.progress-bar-wrap').style.display = 'none';
   document.getElementById('resultado').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('email-modal').style.display = 'flex';
 }
 
 function reiniciar() {
