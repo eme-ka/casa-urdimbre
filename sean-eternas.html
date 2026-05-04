@@ -146,6 +146,26 @@ nav {
   background: url('img/separador.png') center/contain no-repeat;
 }
 
+/* ── CRONOLOGÍA ── */
+.crono-sec{background:var(--crema);padding:6rem 8vw}
+.ev-list{margin-top:3.5rem;position:relative}
+.ev-list::before{content:'';position:absolute;left:108px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(58,140,193,.35) 5%,rgba(58,140,193,.35) 95%,transparent)}
+.ev{display:grid;grid-template-columns:100px 1fr;gap:2.5rem;margin-bottom:2rem;position:relative;align-items:start}
+.ev:last-child{margin-bottom:0}
+.ev-dot{position:absolute;left:calc(100px + 2.5rem - 5px);top:.6rem;width:10px;height:10px;border-radius:50%;background:var(--celeste-deep);border:2px solid var(--crema);box-shadow:0 0 0 2px var(--celeste-deep);z-index:1}
+.ev-date{text-align:right;display:flex;flex-direction:column;gap:.1rem;padding-top:.2rem}
+.ev-day{font-family:var(--font-display);font-size:1.9rem;font-weight:900;color:var(--celeste-deep);line-height:1}
+.ev-my{font-family:var(--font-mono);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+.ev-card{background:var(--blanco);border:1px solid rgba(116,185,224,.15);border-left:3px solid var(--celeste);padding:1.2rem 1.5rem;transition:all .3s}
+.ev-card:hover{border-left-color:var(--celeste-dark);background:var(--celeste-pale);transform:translateX(4px)}
+.ev-type{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--celeste-deep);margin-bottom:.35rem}
+.ev-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--azul-noche);line-height:1.2;margin-bottom:.35rem}
+.ev-sub{font-family:var(--font-body);font-size:.9rem;font-style:italic;color:#3a5068;line-height:1.55}
+.ev-loc{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.06em;color:var(--gris);margin-top:.5rem;padding-left:.9rem;position:relative}
+.ev-loc::before{content:'\25CE';position:absolute;left:0;color:var(--celeste-deep);opacity:.7}
+
+
+
 /* ════════════════════════════════════════
    HERO
 ════════════════════════════════════════ */
@@ -1160,7 +1180,7 @@ footer {
     </div>
   </section>
 
-  <!-- CARTELERA -->
+<!--   Cartelera
   <section class="cartelera">
     <p class="section-label">Eventos y participaciones</p>
     <h2 class="section-title">Cartelera</h2>
@@ -1184,6 +1204,126 @@ footer {
       </div>
       <div class="afiche">
         <img class="afiche-img" src="img/agenda6.webp" alt="Agenda 6">
+      </div>
+    </div>
+  </section> -->
+
+  
+  <section class="crono-sec">
+    <p class="section-label">Presencia y actividad</p>
+    <h2 class="section-title">Cronolog&iacute;a</h2>
+    <div style="height:.5rem"></div>
+    <p class="section-body">Muestras, inauguraciones, conciertos y eventos en los que el colectivo ha participado.</p>
+    <div class="ev-list">
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Nov 2024</span><span class="ev-my">8, 9 y 10</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Inauguración</div>
+          <div class="ev-title">Centro Cultural MORA LOLA</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Los Cerros 987 – Loma Verde / Escobar</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Dic 2024</span><span class="ev-my">7 y 8</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Inauguración</div>
+          <div class="ev-title">La Casa sin techo</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Italia 1440 – Av. El Dorado y Mendoza / Ingeniero Maschwitz</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Dic 2024</span><span class="ev-my">13</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Celebración</div>
+          <div class="ev-title">100 años del Pasaje Rivarola</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Pasaje Rodolfo Rivarola 158 / CABA</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Mar 2025</span><span class="ev-my">8</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Instalación artística</div>
+          <div class="ev-title">Día Internacional de la Mujer</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Calle Ricardo Fernández – Plaza Principal Emilio Mitre / Ingeniero Maschwitz</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Jun 2025</span><span class="ev-my">25</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Distinción oficial</div>
+          <div class="ev-title">Declaración de Interés Cultural</div>
+          <div class="ev-sub">Honorable Concejo Deliberante de Escobar — Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Av. Tapia de Cruz 1280 / Escobar</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Jul 2025</span><span class="ev-my">12</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Concierto</div>
+          <div class="ev-title">Diego Frías / Alicia Benítez</div>
+          <div class="ev-sub">Centro Cultural Materia Gris — Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Rivadavia 250 / Escobar</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Jul 2025</span><span class="ev-my">22</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Conversatorio</div>
+          <div class="ev-title">Mujeres de nuestra Historia</div>
+          <div class="ev-sub">Honorable Concejo Deliberante Escobar</div>
+          <div class="ev-loc">Av. Tapia de Cruz 1280 / Escobar</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Ago 2025</span><span class="ev-my">29</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Jornadas</div>
+          <div class="ev-title">Pensamiento Filosófico y Pedagógico Latinoamericano</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas" — Instituto Superior Formación Docente y Técnica 15</div>
+          <div class="ev-loc">Bv. Dellepiane y Av. Varela / Campana</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Sep 2025</span><span class="ev-my">13</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Concierto</div>
+          <div class="ev-title">«Amores» · Quinteto IRREAL</div>
+          <div class="ev-sub">Exposición "Memorias olvidadas del Tango" — Obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Club Cultural Materia Gris · Rivadavia 250 / Escobar</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Oct 2025</span><span class="ev-my">6 al 12</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Feria nacional</div>
+          <div class="ev-title">62ª Fiesta Nacional de la Flor</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas" — Predio Floral</div>
+          <div class="ev-loc">Mateo Gelvez 1050 / Escobar</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-dot"></div>
+        <div class="ev-date"><span class="ev-day">Nov 2025</span><span class="ev-my">13 y 14</span></div>
+        <div class="ev-card">
+          <div class="ev-type">Día de la Tradición</div>
+          <div class="ev-title">EES Nº 1</div>
+          <div class="ev-sub">Exposición de obras de la Muestra "Sean Eternas"</div>
+          <div class="ev-loc">Pueyrredón 3852 / Garín, Pcia. Bs. As.</div>
+        </div>
       </div>
     </div>
   </section>
