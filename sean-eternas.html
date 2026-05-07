@@ -156,8 +156,19 @@ footer{background:var(--azul-noche);padding:3rem 8vw;display:flex;align-items:ce
 .footer-bandera{display:flex;flex-direction:column;width:52px;height:32px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
 .footer-bandera div{flex:1;width:100%}
 .footer-bandera .f1,.footer-bandera .f3{background:var(--celeste)}
-.footer-bandera .f2{background:var(--blanco)}
-/* ANIMACIONES */
+.footer-bandera .f2{background:var(--blanco)}  .mision-logo{display:block;max-width:100%;max-height:180px;width:auto;margin:0 auto}
+  .section-title img{display:block;max-width:100%;height:auto;margin:0 auto}
+  .whatsapp-float{min-width:auto;min-height:auto}
+  @media(max-width:768px){
+    .mision-logo{max-height:140px}
+    .whatsapp-float{width:50px;height:50px;bottom:16px;right:16px}
+    .whatsapp-float img{width:24px;height:24px}
+  }
+  @media(max-width:480px){
+    .mision-logo{max-height:120px}
+    .whatsapp-float{width:44px;height:44px;bottom:12px;right:12px}
+    .whatsapp-float img{width:20px;height:20px}
+  }/* ANIMACIONES */
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .hero-content>*{animation:fadeUp .8s ease both}
 .hero-eyebrow{animation-delay:.1s}.hero h1{animation-delay:.25s}.hero-divider{animation-delay:.35s}.hero-lead{animation-delay:.45s}.hero-cta{animation-delay:.6s}
@@ -172,7 +183,8 @@ footer{background:var(--azul-noche);padding:3rem 8vw;display:flex;align-items:ce
   section{padding:4rem 6vw}
   .hero-content{padding:4vh 6vw}
   .hero h1{font-size:clamp(2.8rem,14vw,5rem)}
-  .carousel-slide{flex:0 0 calc(85% - .75rem)}
+  .carousel-slide,.carousel-slide2{flex:0 0 calc(70% - 1rem)}
+  .carousel-track{gap:1rem}
   .eterna-detail-body{grid-template-columns:1fr;padding:3rem 6vw;gap:2.5rem}
   .contacto-body{grid-template-columns:1fr;padding:3rem 6vw;gap:3rem}
   footer{flex-direction:column;text-align:center}
@@ -254,7 +266,7 @@ footer{background:var(--azul-noche);padding:3rem 8vw;display:flex;align-items:ce
   <section class="mision" id="mision-sec">
     <div class="mision-inner">
       <p class="section-label">Qui&eacute;nes somos</p>
-      <h2 class="section-title"><img src="img/logo.png" alt="Sean Eternas Logo" style="height:200px;"></h2>
+      <h2 class="section-title"><img src="img/logo.png" alt="Sean Eternas Logo" class="mision-logo"></h2>
       <div style="height:1.5rem"></div>
       <p class="mision-text">El Colectivo Sean Eternas est&aacute; conformado por un grupo de mujeres dise&ntilde;adoras, artistas visuales y escritoras. Nace de la inquietud de transmitir a trav&eacute;s de manifestaciones art&iacute;sticas, el legado invisibilizado o menospreciado de mujeres de todo el pa&iacute;s que aportaron a nuestra cultura, ciencia y sociedad, y que hoy trascienden fronteras.</p>
       <div style="height:1.2rem"></div>
@@ -282,7 +294,7 @@ footer{background:var(--azul-noche);padding:3rem 8vw;display:flex;align-items:ce
     <h2 class="section-title" style="color:var(--blanco)">Galería</h2>
     <div class="carousel-wrap">
       <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="img/car1.png" alt="Car 1" style="width:100%; height:100%; object-fit:scale-down;"></div>
+        <div class="carousel-slide"><img src="img/car1.png" alt="Car 1" style="width:100%; height:100%; object-fit:cover;"></div>
         <div class="carousel-slide"><img src="img/car3.png" alt="Car 3" style="width:100%; height:100%; object-fit:cover;"></div>
         <div class="carousel-slide"><img src="img/car4.png" alt="Car 4" style="width:100%; height:100%; object-fit:cover;"></div>
         <div class="carousel-slide"><img src="img/car5.png" alt="Car 5" style="width:100%; height:100%; object-fit:cover;"></div>
