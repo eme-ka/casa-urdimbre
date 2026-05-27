@@ -1,225 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-74T1DF3WSM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-74T1DF3WSM');
-</script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talleres – Casa Urdimbre</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+  <title>Talleres — Casa Urdimbre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<nav>
-  <div class="nav-links">
-    <a href="index.html">Inicio</a>
-    <a href="" class="activo">Talleres</a>
-    <!-- <a href="manifiesto.html">Manifiesto</a> -->
-    <a href="quienessomos.html">Quiénes Somos</a>
-    <a href="index.html#contacto">Contacto</a>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Casa Urdimbre</a>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#que-es">Sobre Casa Urdimbre</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
   </div>
 </nav>
 
-  <header>
-    <div class="hero">
-      <h1>Casa Urdimbre</h1>
-      <p>Un espacio para tejer cuerpo, mente y comunidad</p>
-    </div>
-
-  </header>
-
-  <main>
-<section id="talleres" class="bios">
-  <h2>Talleres</h2>
-  
-  <div class="bio-card">
-    <img src="imagenes/CirCula.jpg" alt="Foto de CirCula">
-    <div class="bio-content">
-      <h3>CirCula</h3>
-      <p class="bio-intro">
-      Sábado 20/9 de 17 a 19:30hs. Facilita <a href="quienessomos.html#Yul">Juliana Bach</a>
-      </p>
-      <div>
-        <p>Un taller vivencial para mujeres que deseen reconectar con su cuerpo, explorando su energía erótica y vital en un espacio seguro y contenedor.</p>
-
-<p>La Danza es la Matriz del encuentro: mover el caldero pélvico como un rezo ancestral, despertando un vórtice de gozo, erotismo lúdico y sensibilizándonos a todas las historias que emergen cuando un cuerpo se abre a habitar el placer.</p>
-
-<p>Acompañamos este viaje sensorial y espiritual con meditaciones activas, prácticas somáticas y el alivio de la palabra resignificadora, sensible, compartida en círculo.</p>
-
-<p>Un caminito de regreso al centro jugoso de nuestra energía, a reconocernos, habilitarnos, y celebrar juntas esa parte animal, tierna y salvaje, blandita y potente, que la socialización y sus mandatos nos fueron recortando, emparchando, acallando.</p>
-
-<p>La geometría del círculo es el fractal que nos dará sostén para cultivar recíprocamente confianza, intimidad, y una profundidad para poder acceder a estados de conciencia y corporalidad ampliados: donde algo nuevo se permita circular, emerger, aparecer.</p>
-
-<p><strong>No se requiere ninguna experiencia en danza, exploraremos movimiento sentido, no performático.</strong></p>
-
-  </div>
-</div>
+<div class="page-hero">
+  <span class="eyebrow">Actividades</span>
+  <h1>Talleres</h1>
 </div>
 
-  <div class="bio-card">
-    <img src="imagenes/impro-emi.jpeg" alt="Foto de Yoga Impro">
-    <div class="bio-content">
-      <h3>Yoga Impro</h3>
-      <p class="bio-intro">
-              Facilita <a href="quienessomos.html#emi">Emilia Reinhold</a>
-           <p>
-Posturas y secuencias de Yoga como disparadores de un movimiento/danza libre y creativo.
-Espacio abierto, lúdico y expansivo que nos invita a mover, expresar y hacer cuerpo lo que quiere y necesita ser manifestado/liberado, o simplemente gozar del moverse “porque si”. 
-      </p>
-      <p>
-Salir un rato de la mente y que el cuerpo “mande”.
-      </p>
-      <p>No hace falta tener experiencia en Yoga, ni mucho menos “saber bailar”, solo ganas de mover y explorar una práctica distinta.
-</p>
-      <p>
-Cerramos la clase con una relajación sonora (cuencos, pines y campanas tubulares, etc) para acompañar el proceso y terminar de liberar o integrar todo lo que se movió.
-
-      </p>
-      <blockquote>
-        “La vida tiene, es, una imprevisibilidad irreducible a cualquier cuenta, a cualquier certeza.
-        La existencia es un tiempo de riesgo: es el espacio temporal que permite el juego de las
-        decisiones, que permite la movilidad, la transformación y el crecimiento.  
-        Lo que la vida tiene para darnos es lo que ella aún no es: ese espacio abierto en el que nos
-        invita a nacer, ese riesgo que nos llama a recorrer.”  
-        <em>(Hugo Mujica)</em>
-      </blockquote>
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;max-width:680px;margin:0 auto 3rem;">
+      <p style="font-size:1.1rem;">En Casa Urdimbre organizamos encuentros de meditación, tantra, respiración consciente y muchos otros. Los talleres rotan y se anuncian en nuestras redes. Seguinos para enterarte de las próximas fechas.</p>
+      <div class="btn-row" style="justify-content:center;margin-top:1.5rem;">
+        <a href="https://www.instagram.com/casa.urdimbre" target="_blank" class="btn-warm">📷 Seguir en Instagram</a>
+        <a href="https://wa.me/541162509362" target="_blank" class="btn-green">💬 Consultar por WhatsApp</a>
       </div>
-</div>
-
-<div class="bio-card">
-  <img src="imagenes/saludoalsol.jpeg" alt="Taller Saludos al Sol">
-  <div class="bio-content">
-    <h3>Saludos al Sol</h3>
-    <p class="bio-intro">
-      Facilita <a href="quienessomos.html#emi">Emilia Reinhold</a>
-    </p>
-      <p>
-        El saludo al sol (<em>Surya Namaskar</em>) es una secuencia de posturas (<em>āsana</em>) 
-        enlazadas mediante <em>vinyasa</em> y respiración. La práctica aborda progresivamente diferentes variantes, sumándole posturas y complejidad a medida que va avanzando y termina con una relajación profunda.
-      </p>
-      <p>
-      Es una práctica intensa y dinámica, una meditación en movimiento en la que la respiración y la atención plena son los pilares fundamentales para regular y optimizar la fuerza, la flexibilidad y la energía, y llegar así a habitar “lo sutil” desde un lugar consciente, relajado y de absoluta presencia.
-      </p>
-      <p>
-        <blockquote>“Mover nos sumerge, respirar nos impulsa, meditar nos conecta”</blockquote>
-      </p>
-  </div>
-  </div>
-</div>
-<!-- 
-<div class="bio-card">
-  <img src="bioenergetica.jpg" alt="Taller grupal de Bioenergética">
-  <div class="bio-content">
-    <h3>Bioenergética</h3>
-    <p class="bio-intro">
-      Brindado por <a href="quienessomos.html#meri">María Díaz Ringlestein</a>
-    </p>
-      <p>
-        El trabajo desde la bioenergética propone adentrarse en el cuerpo y entregarse al 
-        autoconocimiento a través de ejercicios que permiten profundizar y ampliar la respiración, 
-        activar los músculos y las articulaciones para liberar tensiones y favorecer la libre 
-        circulación del flujo energético.
-      </p>
-      <p>
-        En una sesión individual, comenzamos conversando, poniendo en palabras lo que está presente. 
-        Luego, nos adentramos en el cuerpo con ejercicios corporales y respiratorios que ayudan a 
-        desbloquear y recuperar vitalidad.
-      </p>
-      <p>
-        El abordaje busca integrar cuerpo, mente y emoción, permitiendo mayor conexión interna y 
-        disponibilidad energética para la vida cotidiana.
-      </p>
-          </div>
     </div>
-</div>
-</section> -->
 
-<section id="actividades">
-  <h2>Otras actividades</h2>
-  <div class="cards">
-    
-    <a href="consultorio.html" class="card-link">
-      <div class="card">
-        <img src="imagenes/consultorio.jpg" alt="Consultorio" />
-        <h3>Consultorios</h3>
-      <p>Medicina Integral con enfoque Ayurveda, Medicina General y Familiar y Fonoaudiología integral. <u>Conocé</u> a profesionales que brindan su espacio de consulta bajo un paradigma integral de la salud.</p>
-    </div> 
-    </a>
-
-      
-    <a href="osteopatia.html" class="card-link">
-      <div class="card">
-        <img src="imagenes/osteo-index.JPEG" alt="Consultorio" />
-        <h3>Osteopatía, masajes y sesiones</h3>
-      <p>Distintas terapias que abordan la mecánica y la salud de los tejidos corporales. <u>Enterate</u> qué técnicas y modalidades trabajamos y quiénes son les terapeutas.</p>
-    </div> 
-    </a>
-
-    <a href="yogamovimiento.html" class="card-link">
-      <div class="card">
-        <img src="imagenes/yoga-index.JPEG" alt="Clase de yoga" />
-        <h3>Yoga y movimiento</h3>
-      <p>Conocé todas las clases grupales que suceden en Casa Urdimbre. <u>Sumate</u> a Yoga y probá los distintos horarios y modalidades.</p>
+    <div class="cards-grid">
+      <div class="card fade-in">
+        <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Meditación" /></div>
+        <div class="card-body"><h3>Meditación</h3><p>Encuentros para cultivar la quietud interior y el autoconocimiento.</p></div>
+      </div>
+      <div class="card fade-in">
+        <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Respiración" /></div>
+        <div class="card-body"><h3>Respiración Consciente</h3><p>Técnicas de breathwork para activar el sistema nervioso y liberar el cuerpo.</p></div>
+      </div>
+      <div class="card fade-in">
+        <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80" alt="Tantra" /></div>
+        <div class="card-body"><h3>Tantra</h3><p>Una exploración del placer, la energía y la conexión desde una perspectiva sagrada.</p></div>
+      </div>
     </div>
-    </a>
-
+  </div>
 </section>
 
-
-
-  </main>
-
-<footer style="display: flex; gap: 20px; padding: 20px; background: #f9f9f9;">
-  <!-- Columna mapa -->
-  <div class="footer-mapa" style="flex: 0 0 65%;">
-	  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.497457293818!2d-58.510555187882645!3d-34.59158037284586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb64ad763014f%3A0x459964440946b576!2sLlavallol%204574%2C%20C1419AKL%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1749763430190!5m2!1ses!2sar" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+<section class="related-section">
+  <div class="container">
+    <span class="eyebrow">También en Casa Urdimbre</span>
+    <h2>Otras actividades</h2>
+    <div class="cards-grid">
+      <a href="consultorio.html" class="card"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Consultorio" /></div><div class="card-body"><h3>Consultorio</h3><p>Medicina integrativa, general y kinesiología.</p><span class="card-link">Ver más →</span></div></a>
+      <a href="masajes.html" class="card"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80" alt="Masajes" /></div><div class="card-body"><h3>Osteopatía · Masajes · Sesiones</h3><p>Tratamientos corporales de equilibrio profundo.</p><span class="card-link">Ver más →</span></div></a>
+      <a href="yoga.html" class="card"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=80" alt="Yoga" /></div><div class="card-body"><h3>Yoga · Movimiento</h3><p>Hatha Yoga, Yoga Integral y más.</p><span class="card-link">Ver más →</span></div></a>
+    </div>
   </div>
+</section>
 
-  <!-- Columna contactos -->
-  <div style="flex: 0 0 35%; display: flex; flex-direction: column; gap: 15px;">
-    
-    <a class="item-contacto mapa" href="https://maps.app.goo.gl/xa9LdecfpBnqSvfJ6" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>
-      </svg>
-      <span>Llavallol 4574</span>
-    </a>
-
-    <a class="item-contacto whatsapp" href="https://wa.me/541162509362" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20.52 3.48A11.72 11.72 0 0 0 2.1 17.89L1 23l5.24-1.38a11.66 11.66 0 0 0 5.39 1.37h.05a11.71 11.71 0 0 0 8.3-20.51zm-8.3 18.19a9.91 9.91 0 0 1-5.03-1.37l-.36-.21-3.11.82.83-3.03-.24-.31a9.9 9.9 0 1 1 17.53-6.64 9.89 9.89 0 0 1-9.62 10.74h0zm5.41-7.43c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.19.3-.76.97-.93 1.17-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.46a8.82 8.82 0 0 1-1.63-2c-.17-.3 0-.46.13-.6.14-.15.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.91-2.2-.24-.58-.49-.5-.66-.51h-.56c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.5 1.07 2.88 1.22 3.08c.15.2 2.11 3.22 5.13 4.5.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.13-.27-.2-.57-.34z"/>
-      </svg>
-      <span>1162509362</span>
-    </a>
-
-    <a class="item-contacto instagram" href="https://www.instagram.com/casa.urdimbre" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm4.75-.88a.88.88 0 1 1 0 1.76.88.88 0 0 1 0-1.76z"/>
-      </svg>
-      <span>@casa.urdimbre</span>
-    </a>
-
-    <a class="item-contacto gmail" href="mailto:urdimbrecasa@gmail.com" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-.4 2L12 11 4.4 6h15.2zM4 18V8l8 5 8-5v10H4z"/>
-      </svg>
-      <span>urdimbrecasa@gmail.com</span>
-    </a>
-    <p style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">&copy; 2025 Casa Urdimbre — Diseñado con ❤️</p>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">Casa Urdimbre</span>
+      <p>Espacio de salud en el corazón de Devoto, Buenos Aires.</p>
+    </div>
+    <div class="footer-info">
+      <h4>Encontranos</h4>
+      <ul>
+        <li><a href="https://maps.app.goo.gl/W1yUWSnAortkktRe8" target="_blank">📍 Llavallol 4574, Devoto</a></li>
+        <li><a href="https://wa.me/541162509362" target="_blank">💬 11 6250-9362</a></li>
+        <li><a href="https://www.instagram.com/casa.urdimbre" target="_blank">📷 @casa.urdimbre</a></li>
+        <li><a href="mailto:urdimbrecasa@gmail.com">✉️ urdimbrecasa@gmail.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-map">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.497456220316!2d-58.507974899999994!3d-34.5915804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb7a8316ca7c5%3A0xa8a568a21f5de9e2!2sCasa%20Urdimbre!5e0!3m2!1ses-419!2sar!4v1779916629802!5m2!1ses-419!2sar" 
+        width="100%" height="200" style="border:0;border-radius:12px;" 
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Casa Urdimbre · Todos los derechos reservados</p>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
 
-
+<script src="main.js"></script>
 </body>
 </html>

@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Daniela Gayoso — Medicina Integrativa Ayurveda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3ED;
+    --warm-white: #FAFAF7;
+    --linen: #EDE8DF;
+    --sage: #8DA896;
+    --sage-light: #B4C4BB;
+    --sage-pale: #E4EBE7;
+    --dusty-blue: #8FA3B1;
+    --dusty-blue-pale: #EBF0F4;
+    --moss: #5E7A68;
+    --stone: #6B7B72;
+    --charcoal: #2D3530;
+    --text-mid: #4A5A52;
+    --text-light: #7A8F84;
+    --accent: #A67C5B;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Jost',sans-serif; background:var(--warm-white); color:var(--charcoal); overflow-x:hidden; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 60px; display:flex; justify-content:space-between; align-items:center; transition:background 0.4s,padding 0.4s; }
+  nav.scrolled { background:rgba(250,250,247,0.96); backdrop-filter:blur(10px); padding:14px 60px; box-shadow:0 1px 24px rgba(45,53,48,0.07); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:500; letter-spacing:0.06em; color:white; transition:color 0.4s; text-decoration:none; }
+  nav.scrolled .nav-logo { color:var(--charcoal); }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.82); text-decoration:none; transition:color 0.3s; }
+  nav.scrolled .nav-links a { color:var(--text-mid); }
+  .nav-links a:hover { color:var(--sage-light); }
+  nav.scrolled .nav-links a:hover { color:var(--moss); }
+
+  /* HERO */
+  #home { min-height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
+  .hero-img { position:absolute; inset:0; background:url('banner_dani.png') center/cover no-repeat; }
+  .hero-img::after { content:''; position:absolute; inset:0; background:linear-gradient(100deg,rgba(22,34,28,0.74) 0%,rgba(22,34,28,0.52) 45%,rgba(22,34,28,0.12) 100%); }
+  .hero-content { position:relative; z-index:2; max-width:660px; padding:120px 60px 80px; }
+  .hero-eyebrow { font-size:0.68rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--sage-light); margin-bottom:22px; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.3s forwards; }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,5.5vw,5rem); font-weight:300; line-height:1.1; color:white; margin-bottom:22px; opacity:0; transform:translateY(30px); animation:fadeUp 0.9s 0.5s forwards; }
+  .hero-title em { font-style:italic; color:#CBE0D2; }
+  .hero-subtitle { font-size:0.98rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.7); max-width:480px; margin-bottom:42px; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.7s forwards; }
+  .hero-cta { display:flex; gap:13px; flex-wrap:wrap; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.9s forwards; }
+  .scroll-hint { position:absolute; bottom:38px; left:60px; display:flex; align-items:center; gap:12px; color:rgba(255,255,255,0.35); font-size:0.64rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0; animation:fadeUp 0.8s 1.4s forwards; }
+  .scroll-line { width:40px; height:1px; background:rgba(180,196,187,0.3); position:relative; overflow:hidden; }
+  .scroll-line::after { content:''; position:absolute; left:-100%; top:0; width:100%; height:100%; background:var(--sage-light); animation:scanLine 2s 1.5s infinite; }
+
+  /* BUTTONS */
+  .btn-primary { display:inline-flex; align-items:center; gap:9px; padding:14px 28px; background:var(--moss); color:white; text-decoration:none; font-size:0.77rem; letter-spacing:0.12em; text-transform:uppercase; transition:background 0.3s,transform 0.25s; border:none; cursor:pointer; }
+  .btn-primary:hover { background:#4A6355; transform:translateY(-2px); }
+  .btn-secondary { display:inline-flex; align-items:center; gap:9px; padding:14px 28px; border:1px solid rgba(255,255,255,0.42); color:rgba(255,255,255,0.88); text-decoration:none; font-size:0.77rem; letter-spacing:0.12em; text-transform:uppercase; transition:border-color 0.3s,color 0.3s,transform 0.25s; }
+  .btn-secondary:hover { border-color:white; color:white; transform:translateY(-2px); }
+  .btn-ghost { display:inline-flex; align-items:center; gap:8px; padding:11px 18px; color:rgba(255,255,255,0.48); text-decoration:none; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; border:none; background:none; cursor:pointer; }
+  .btn-ghost:hover { color:white; }
+  .btn-sage { display:inline-flex; align-items:center; gap:9px; padding:14px 32px; background:var(--moss); color:white; text-decoration:none; font-size:0.77rem; font-weight:500; letter-spacing:0.13em; text-transform:uppercase; transition:background 0.3s,transform 0.2s; }
+  .btn-sage:hover { background:#4A6355; transform:translateY(-2px); }
+  .btn-outline-sage { display:inline-flex; align-items:center; gap:9px; padding:14px 28px; border:1px solid var(--sage); color:var(--moss); text-decoration:none; font-size:0.77rem; letter-spacing:0.12em; text-transform:uppercase; transition:all 0.3s; }
+  .btn-outline-sage:hover { border-color:var(--moss); background:var(--sage-pale); }
+
+  /* SECTIONS */
+  section { padding:100px 60px; }
+  .section-label { font-size:0.66rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--moss); margin-bottom:13px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.1rem,3.8vw,3.2rem); font-weight:400; line-height:1.15; color:var(--charcoal); }
+  .divider { width:44px; height:2px; background:linear-gradient(90deg,var(--sage),transparent); margin:22px 0; }
+
+  /* IMAGE PLACEHOLDERS */
+  .img-ph { position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; }
+  .img-ph::before { content:''; position:absolute; inset:0; }
+  .img-ph svg { position:relative; z-index:1; }
+  .img-ph span { position:relative; z-index:1; font-size:0.66rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); opacity:0.65; }
+  .img-ph .ph-icon { position:relative; z-index:1; font-size:0.7rem; letter-spacing:0.08em; color:var(--stone); opacity:0.45; font-style:italic; font-family:'Cormorant Garamond',serif; }
+  .ph-turmeric::before  { background:linear-gradient(145deg,#F5EDD0,#EDD498); }
+  .ph-ginger::before    { background:linear-gradient(145deg,#F0E8D6,#D9BE98); }
+  .ph-ghee::before      { background:linear-gradient(145deg,#FBF3D6,#EEE0A8); }
+  .ph-cumin::before     { background:linear-gradient(145deg,#EDE0CC,#C9A880); }
+  .ph-herbs::before     { background:linear-gradient(145deg,#DAEADA,#A8C8A8); }
+  .ph-fennel::before    { background:linear-gradient(145deg,#E2ECD8,#B4CCAA); }
+  .ph-coriander::before { background:linear-gradient(145deg,#E8E0D0,#CCBAA0); }
+  .ph-spices::before    { background:linear-gradient(145deg,#EDE4D6,#C8A87A); }
+
+  /* INGREDIENT STRIP */
+  .ing-strip { display:grid; grid-template-columns:repeat(6,1fr); height:190px; }
+  .ing-cell { position:relative; overflow:hidden; }
+  .ing-cell .img-ph { width:100%; height:100%; transition:transform 0.5s; }
+  .ing-cell:hover .img-ph { transform:scale(1.05); }
+  .ing-label { position:absolute; bottom:10px; left:0; right:0; text-align:center; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-mid); z-index:2; opacity:0; transform:translateY(5px); transition:opacity 0.3s,transform 0.3s; }
+  .ing-cell:hover .ing-label { opacity:1; transform:translateY(0); }
+
+  /* QUE ES */
+  #que-es { background:var(--cream); position:relative; overflow:hidden; }
+  #que-es::before { content:'&#x906;&#x92F;&#x941;&#x930;&#x94D;&#x935;&#x947;&#x926;'; position:absolute; right:-10px; top:50%; transform:translateY(-50%) rotate(90deg); font-family:serif; font-size:10rem; color:rgba(94,122,104,0.045); white-space:nowrap; pointer-events:none; }
+  .que-es-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; max-width:1100px; margin:0 auto; }
+  .que-es-text p { font-size:1.02rem; line-height:1.9; color:var(--text-mid); margin-bottom:18px; font-weight:300; }
+  .pilares { display:flex; flex-direction:column; gap:22px; }
+  .pilar { padding:24px 26px; border-left:2px solid var(--sage); background:white; transition:transform 0.3s,box-shadow 0.3s; }
+  .pilar:hover { transform:translateX(5px); box-shadow:-4px 0 20px rgba(94,122,104,0.11); }
+  .pilar h4 { font-family:'Cormorant Garamond',serif; font-size:1.07rem; font-weight:600; color:var(--charcoal); margin-bottom:6px; }
+  .pilar p { font-size:0.85rem; line-height:1.73; color:var(--text-light); font-weight:300; }
+  .que-es-imgs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; max-width:1100px; margin:44px auto 0; }
+  .que-es-imgs .img-ph { height:175px; border-radius:2px; }
+
+  /* SOBRE MI */
+  #sobre-mi { background:white; }
+  .sobre-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:center; max-width:1100px; margin:0 auto; }
+  .sobre-visual { position:relative; }
+  .sobre-frame { width:100%; aspect-ratio:3/4; background:var(--sage-pale); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; overflow:hidden; }
+  .sobre-frame svg { opacity:0.22; }
+  .sobre-frame span { font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--stone); opacity:0.55; }
+  .sobre-badge { position:absolute; bottom:-16px; right:-16px; width:100px; height:100px; background:var(--moss); display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; text-align:center; }
+  .sobre-badge strong { font-family:'Cormorant Garamond',serif; font-size:1.9rem; line-height:1; }
+  .sobre-badge span { font-size:0.58rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.85; margin-top:2px; }
+  .sobre-bio { font-size:1rem; line-height:1.88; color:var(--text-mid); font-weight:300; margin:18px 0; }
+  .credenciales { display:flex; flex-direction:column; gap:10px; margin:24px 0 30px; }
+  .cred-item { display:flex; align-items:flex-start; gap:12px; font-size:0.86rem; color:var(--text-mid); }
+  .cred-dot { width:5px; height:5px; min-width:5px; background:var(--sage); margin-top:7px; border-radius:50%; }
+
+  /* VISUAL BREAK */
+  .visual-break { display:grid; grid-template-columns:repeat(3,1fr); height:240px; gap:3px; }
+  .visual-break .img-ph { height:100%; }
+
+  /* SERVICIOS */
+  #servicios { background:var(--charcoal); }
+  #servicios .section-label { color:var(--sage-light); }
+  #servicios .section-title { color:white; }
+  .servicios-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:50px; max-width:1100px; }
+  .servicio-card { background:rgba(255,255,255,0.04); padding:36px 24px; border-top:1px solid rgba(180,196,187,0.11); transition:background 0.3s; position:relative; overflow:hidden; }
+  .servicio-card::after { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--sage-light); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
+  .servicio-card:hover { background:rgba(255,255,255,0.07); }
+  .servicio-card:hover::after { transform:scaleX(1); }
+  .serv-numero { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300; color:rgba(180,196,187,0.16); line-height:1; margin-bottom:14px; }
+  .serv-titulo { font-family:'Cormorant Garamond',serif; font-size:1.32rem; font-weight:500; color:white; margin-bottom:10px; line-height:1.22; }
+  .serv-desc { font-size:0.82rem; line-height:1.73; color:rgba(250,250,247,0.48); font-weight:300; margin-bottom:18px; }
+  .serv-meta { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(180,196,187,0.52); border-top:1px solid rgba(255,255,255,0.07); padding-top:13px; line-height:1.8; }
+  .serv-cta { margin-top:50px; display:flex; gap:13px; flex-wrap:wrap; max-width:1100px; }
+
+  /* BLOG */
+  #blog { background:var(--linen); }
+  .blog-intro { font-size:1rem; line-height:1.88; color:var(--text-mid); max-width:580px; font-weight:300; margin-bottom:48px; }
+  .blog-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:1100px; }
+  .blog-card { background:white; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; cursor:pointer; }
+  .blog-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(45,53,48,0.09); }
+  .blog-thumb { height:162px; position:relative; overflow:hidden; }
+  .blog-thumb-bg { width:100%; height:100%; transition:transform 0.5s; }
+  .blog-card:hover .blog-thumb-bg { transform:scale(1.04); }
+  .bt-1 { background:linear-gradient(135deg,#7A9E88,#5E7A68); }
+  .bt-2 { background:linear-gradient(135deg,#8FA3B1,#6A8898); }
+  .bt-3 { background:linear-gradient(135deg,#C4A07A,#A67C5B); }
+  .bt-4 { background:linear-gradient(135deg,#A0B49A,#7A9470); }
+  .blog-body { padding:20px 17px; }
+  .blog-tag { font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--moss); margin-bottom:6px; }
+  .blog-title { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:500; line-height:1.3; color:var(--charcoal); }
+
+  /* FOOTER */
+  footer { background:var(--charcoal); color:rgba(250,250,247,0.46); padding:60px 60px 40px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+  .footer-brand { font-family:'Cormorant Garamond',serif; font-size:1.22rem; color:white; font-weight:500; letter-spacing:0.04em; margin-bottom:9px; }
+  .footer-sub { font-size:0.74rem; letter-spacing:0.07em; line-height:1.8; }
+  footer h5 { font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage-light); margin-bottom:13px; }
+  footer ul { list-style:none; }
+  footer ul li { font-size:0.82rem; margin-bottom:7px; }
+  footer ul li a { color:rgba(250,250,247,0.46); text-decoration:none; transition:color 0.3s; }
+  footer ul li a:hover { color:white; }
+  footer ul li[onclick] { color:rgba(250,250,247,0.46); cursor:pointer; transition:color 0.3s; }
+  footer ul li[onclick]:hover { color:white; }
+  .footer-bottom { grid-column:1/-1; border-top:1px solid rgba(255,255,255,0.06); padding-top:20px; font-size:0.69rem; text-align:center; }
+
+  /* SCROLL ANIMATIONS */
+  .reveal { opacity:0; transform:translateY(36px); transition:opacity 0.8s ease,transform 0.8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-left { opacity:0; transform:translateX(-36px); transition:opacity 0.8s ease,transform 0.8s ease; }
+  .reveal-left.visible { opacity:1; transform:translateX(0); }
+  .reveal-right { opacity:0; transform:translateX(36px); transition:opacity 0.8s ease,transform 0.8s ease; }
+  .reveal-right.visible { opacity:1; transform:translateX(0); }
+  .stagger > * { opacity:0; transform:translateY(26px); transition:opacity 0.6s ease,transform 0.6s ease; }
+  .stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0s; }
+  .stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.11s; }
+  .stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.22s; }
+  .stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.33s; }
+  .stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay:0.44s; }
+  .stagger.visible > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay:0.55s; }
+
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+  @keyframes scanLine { 0% { left:-100%; } 100% { left:100%; } }
+
+  /* MODAL */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(22,34,28,0.62); z-index:200; backdrop-filter:blur(5px); align-items:center; justify-content:center; }
+  .modal-overlay.active { display:flex; }
+  .modal { background:var(--warm-white); max-width:490px; width:90%; padding:44px; position:relative; animation:fadeUp 0.35s ease; }
+  .modal-close { position:absolute; top:16px; right:20px; background:none; border:none; font-size:1.35rem; cursor:pointer; color:var(--text-light); }
+  .modal h3 { font-family:'Cormorant Garamond',serif; font-size:1.72rem; margin-bottom:8px; color:var(--charcoal); }
+  .modal p { font-size:0.87rem; color:var(--text-mid); line-height:1.7; margin-bottom:12px; }
+  .modal-options { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+  .modal-option { display:flex; justify-content:space-between; align-items:center; padding:14px 17px; border:1px solid var(--linen); cursor:pointer; transition:all 0.2s; text-decoration:none; color:inherit; }
+  .modal-option:hover { border-color:var(--sage); background:var(--sage-pale); }
+  .modal-option-title { font-size:0.87rem; font-weight:500; color:var(--charcoal); }
+  .modal-option-meta { font-size:0.72rem; color:var(--text-light); margin-top:2px; }
+  .modal-option-arrow { color:var(--moss); }
+
+  /* POST VIEW */
+  #post-view { display:none; min-height:100vh; background:var(--warm-white); }
+  .post-page { display:none; }
+  .post-page.active { display:block; }
+  .post-nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(250,250,247,0.96); backdrop-filter:blur(8px); box-shadow:0 1px 20px rgba(45,53,48,0.07); padding:15px 60px; display:flex; align-items:center; justify-content:space-between; }
+  .post-back { display:inline-flex; align-items:center; gap:9px; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-mid); background:none; border:none; cursor:pointer; transition:color 0.3s; }
+  .post-back:hover { color:var(--moss); }
+  .post-hero { height:290px; margin-top:62px; }
+  .post-content { max-width:700px; margin:0 auto; padding:50px 40px 96px; }
+  .post-meta { display:flex; align-items:center; gap:14px; margin-bottom:17px; }
+  .post-tag-inline { font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--moss); background:var(--sage-pale); padding:4px 10px; }
+  .post-read { font-size:0.75rem; color:var(--text-light); }
+  .post-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,3.8vw,2.9rem); font-weight:400; line-height:1.15; color:var(--charcoal); }
+  .post-divider { width:44px; height:2px; background:linear-gradient(90deg,var(--sage),transparent); margin:20px 0 28px; }
+  .post-body p { font-size:1.02rem; line-height:1.93; color:var(--text-mid); font-weight:300; margin-bottom:20px; }
+  .post-body strong { font-weight:500; color:var(--charcoal); }
+  .post-body em { font-style:italic; color:var(--moss); }
+  .post-cta-box { margin-top:42px; padding:30px 34px; background:var(--sage-pale); border-left:3px solid var(--sage); }
+  .post-cta-box p { font-size:0.94rem; color:var(--text-mid); margin-bottom:17px; line-height:1.62; }
+
+  /* RESPONSIVE */
+  @media (max-width:900px) {
+    nav,nav.scrolled { padding:14px 24px; }
+    section { padding:66px 24px; }
+    .hero-content { padding:100px 24px 60px; }
+    .que-es-grid,.sobre-grid { grid-template-columns:1fr; gap:36px; }
+    .que-es-imgs { grid-template-columns:1fr 1fr; }
+    .servicios-grid { grid-template-columns:1fr 1fr; }
+    .blog-grid { grid-template-columns:1fr 1fr; }
+    .ing-strip { grid-template-columns:repeat(3,1fr); height:240px; }
+    .visual-break { grid-template-columns:1fr 1fr; }
+    footer { grid-template-columns:1fr; }
+    .scroll-hint { left:24px; }
+    .nav-links { display:none; }
+    .post-nav { padding:13px 24px; }
+    .post-content { padding:36px 22px 70px; }
+    .post-hero { height:190px; }
+  }
+  @media (max-width:600px) {
+    .servicios-grid,.blog-grid,.ing-strip { grid-template-columns:1fr; }
+    .hero-title { font-size:2.5rem; }
+    .visual-break,.que-es-imgs { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Dra. Daniela Gayoso</a>
+  <ul class="nav-links">
+    <li><a href="#que-es">Medicina</a></li>
+    <li><a href="#sobre-mi">Sobre m&#237;</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#" onclick="openModal('consulta')" style="color:var(--moss)">Consulta</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Medicina Integrativa &middot; Ayurveda &middot; GinecoEcolog&#237;a</p>
+    <h1 class="hero-title">Te acompa&#241;o a cuidar<br>tu salud de manera<br><em>integral y acorde a vos</em></h1>
+    <p class="hero-subtitle">Un modelo de salud que combina medicina convencional con el milenario conocimiento Ayurveda, para un cuidado global, personalizado y preventivo.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-primary" onclick="openModal('consulta')">Agend&#225; tu consulta</a>
+      <a href="#" class="btn-secondary" onclick="openModal('espera')">Lista de espera &middot; Depuraci&#243;n</a>
+      <a href="#que-es" class="btn-ghost">&#8595; Ver m&#225;s</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Descubr&#237; m&#225;s</div>
+</section>
+
+<!-- STRIP INGREDIENTES -->
+<div class="ing-strip">
+  <div class="ing-cell">
+    <div class="img-ph ph-turmeric" style="width:100%;height:100%;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A6830" stroke-width="1.1" opacity="0.5"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z"/></svg>
+    </div>
+    <div class="ing-label">C&#250;rcuma</div>
+  </div>
+  <div class="ing-cell">
+    <div class="img-ph ph-ginger" style="width:100%;height:100%;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A5C38" stroke-width="1.1" opacity="0.5"><path d="M3 17c3-3 6-3 9 0s6 3 9 0"/><path d="M3 12c3-3 6-3 9 0s6 3 9 0"/><path d="M3 7c3-3 6-3 9 0s6 3 9 0"/></svg>
+    </div>
+    <div class="ing-label">Jengibre</div>
+  </div>
+  <div class="ing-cell">
+    <div class="img-ph ph-ghee" style="width:100%;height:100%;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A7030" stroke-width="1.1" opacity="0.5"><path d="M6 8h12l-1.5 10H7.5L6 8z"/><path d="M4 8h16"/><path d="M9 4h6l1 4H8L9 4z"/></svg>
+    </div>
+    <div class="ing-label">Ghee</div>
+  </div>
+  <div class="ing-cell">
+    <div class="img-ph ph-cumin" style="width:100%;height:100%;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6A5038" stroke-width="1.1" opacity="0.5"><ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(-30 12 12)"/><ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(30 12 12)"/></svg>
+    </div>
+    <div class="ing-label">Comino</div>
+  </div>
+  <div class="ing-cell">
+    <div class="img-ph ph-coriander" style="width:100%;height:100%;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5E7A68" stroke-width="1.1" opacity="0.5"><path d="M12 22V10"/><path d="M12 10C12 6 8 3 4 4c0 4 3 7 8 6"/><path d="M12 10c0-4 4-7 8-6 0 4-3 7-8 6"/></svg>
+    </div>
+    <div class="ing-label">Coriandro</div>
+  </div>
+  <div class="ing-cell">
+    <div class="img-ph ph-fennel" style="width:100%;height:100%;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A7060" stroke-width="1.1" opacity="0.5"><path d="M12 22V12"/><path d="M12 12c-2-4-6-6-9-4 1 4 5 6 9 4"/><path d="M12 12c2-4 6-6 9-4-1 4-5 6-9 4"/><path d="M12 3v9"/></svg>
+    </div>
+    <div class="ing-label">Hinojo</div>
+  </div>
+</div>
+
+<!-- QUE ES -->
+<section id="que-es">
+  <div class="que-es-grid">
+    <div class="que-es-text">
+      <p class="section-label reveal">&#191;Qu&#233; es?</p>
+      <h2 class="section-title reveal">Medicina Integrativa<br>con enfoque Ayurveda</h2>
+      <div class="divider reveal"></div>
+      <p class="reveal">La <strong>Medicina Integrativa</strong> combina los avances y diagn&#243;sticos de la medicina convencional con terapias complementarias de probada eficacia. No se trata de elegir entre una u otra, sino de sumar recursos para un cuidado global de la persona.</p>
+      <p class="reveal">El enfoque <strong>Ayurveda</strong> &#8212;el milenario &#8220;conocimiento de la vida&#8221; de la India&#8212; aporta nociones de constituci&#243;n d&#243;shica, asegurando un seguimiento personalizado. Prioriza la prevenci&#243;n con recursos que acompa&#241;an la vida diaria para mantener la vitalidad y la longevidad.</p>
+      <a href="#sobre-mi" class="btn-primary reveal" style="display:inline-flex;margin-top:14px;">Conoc&#233; a la Dra. Gayoso &#8594;</a>
+    </div>
+    <div class="pilares stagger">
+      <div class="pilar"><h4>Individualidad biol&#243;gica</h4><p>En Ayurveda no existe una dieta o tratamiento &#250;nico. Cada persona tiene una constituci&#243;n &#250;nica (Prakriti), por lo que lo que es medicina para alguien puede no serlo para todos.</p></div>
+      <div class="pilar"><h4>La ra&#237;z, no solo el s&#237;ntoma</h4><p>Mientras la medicina convencional suele enfocarse en apagar el s&#237;ntoma, desde esta medicina buscamos aquello que genera el desequilibrio: h&#225;bitos, digesti&#243;n y ambiente mental-emocional.</p></div>
+      <div class="pilar"><h4>V&#237;nculo Cuerpo &middot; Mente &middot; Esp&#237;ritu</h4><p>Tus pensamientos y emociones impactan directamente en tu fisiolog&#237;a. La salud es siempre el estado de armon&#237;a entre estos tres aspectos.</p></div>
+    </div>
+  </div>
+  <!-- Fotos ayurvédicas -->
+  <div class="que-es-imgs stagger">
+    <div class="img-ph ph-spices reveal" style="height:170px;border-radius:2px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8A6838" stroke-width="0.9" opacity="0.4"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5.64 5.64l1.42 1.42M16.95 16.95l1.41 1.41M5.64 18.36l1.42-1.42M16.95 7.05l1.41-1.41"/></svg>
+      <span>Especias Ayurv&#233;dicas</span>
+    </div>
+    <div class="img-ph ph-herbs reveal" style="height:170px;border-radius:2px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5E7A68" stroke-width="0.9" opacity="0.4"><path d="M12 22V10"/><path d="M12 10C12 6 8 3 4 4c0 4 3 7 8 6"/><path d="M12 10c0-4 4-7 8-6 0 4-3 7-8 6"/></svg>
+      <span>Plantas medicinales</span>
+    </div>
+    <div class="img-ph ph-turmeric reveal" style="height:170px;border-radius:2px;">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8A6830" stroke-width="0.9" opacity="0.4"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z"/></svg>
+      <span>C&#250;rcuma fresca</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="sobre-mi">
+  <div class="sobre-grid">
+    <div class="sobre-visual reveal-left">
+      <div class="sobre-frame">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#8DA896" stroke-width="0.7"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Foto Dra. Gayoso</span>
+      </div>
+      <div class="sobre-badge"><strong>6</strong><span>a&#241;os de<br>pr&#225;ctica</span></div>
+    </div>
+    <div class="sobre-content reveal-right">
+      <p class="section-label">Sobre m&#237;</p>
+      <h2 class="section-title">Dra. Daniela<br>Gayoso</h2>
+      <div class="divider"></div>
+      <p class="sobre-bio">Me recib&#237; de m&#233;dica (UBA) en 2019, el mismo a&#241;o en que inici&#233; mi formaci&#243;n en medicina Ayurveda. A partir de 2020 tuve mis primeras pr&#225;cticas supervisadas en la disciplina, y entre 2021 y 2022 form&#233; parte del cuerpo docente de la escuela donde me form&#233;.</p>
+      <p class="sobre-bio">Hoy llevo 6 a&#241;os de pr&#225;ctica en consultorio, en continua ampliaci&#243;n de mis herramientas profesionales, enfocadas en la atenci&#243;n integral de la salud.</p>
+      <div class="credenciales">
+        <div class="cred-item"><div class="cred-dot"></div><span>M&#233;dica egresada de la UBA (2019)</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>Especializaci&#243;n en Medicina Ayurveda</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>GinecoEcolog&#237;a&#174; certificada</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>Educadora certificada del M&#233;todo Sintot&#233;rmico</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>Formaci&#243;n en Biocosm&#233;tica, Fitomedicina y Masaje Abhyanga</span></div>
+        <div class="cred-item"><div class="cred-dot"></div><span>Facilitadora de Tantra (trauma informed) &#8212; Sexualidad t&#225;ntrica</span></div>
+      </div>
+      <a href="#servicios" class="btn-primary">Ver servicios &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL BREAK -->
+<div class="visual-break">
+  <div class="img-ph ph-ginger" style="height:100%;">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7A5C38" stroke-width="0.85" opacity="0.4"><path d="M3 17c3-3 6-3 9 0s6 3 9 0"/><path d="M3 12c3-3 6-3 9 0s6 3 9 0"/><path d="M3 7c3-3 6-3 9 0s6 3 9 0"/></svg>
+    <span>Jengibre</span>
+  </div>
+  <div class="img-ph ph-fennel" style="height:100%;">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4A7060" stroke-width="0.85" opacity="0.4"><path d="M12 22V12"/><path d="M12 12c-2-4-6-6-9-4 1 4 5 6 9 4"/><path d="M12 12c2-4 6-6 9-4-1 4-5 6-9 4"/><path d="M12 3v9"/></svg>
+    <span>Hinojo</span>
+  </div>
+  <div class="img-ph ph-cumin" style="height:100%;">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6A5038" stroke-width="0.85" opacity="0.4"><ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(-30 12 12)"/><ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(30 12 12)"/></svg>
+    <span>Comino</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div style="max-width:1100px;">
+    <p class="section-label reveal">Servicios</p>
+    <h2 class="section-title reveal">Consultas<br>y seguimiento</h2>
+    <div class="divider reveal" style="background:linear-gradient(90deg,var(--sage-light),transparent);"></div>
+  </div>
+  <div class="servicios-grid stagger">
+    <div class="servicio-card"><div class="serv-numero">01</div><div class="serv-titulo">Primera vez Ayurveda</div><div class="serv-desc">Consulta de salud general con evaluaci&#243;n de constituci&#243;n d&#243;shica (Prakriti) y dise&#241;o de un plan integral personalizado.</div><div class="serv-meta">90 &#8211; 120 min<br>Virtual o presencial</div></div>
+    <div class="servicio-card"><div class="serv-numero">02</div><div class="serv-titulo">Primera vez GinecoEcolog&#237;a</div><div class="serv-desc">Consulta con motivo ginecol&#243;gico u hormonal. Incluye fertilidad, anticoncepci&#243;n y patolog&#237;as del sistema sexual-reproductor.</div><div class="serv-meta">~90 min o m&#225;s<br>Virtual o presencial</div></div>
+    <div class="servicio-card"><div class="serv-numero">03</div><div class="serv-titulo">Seguimiento</div><div class="serv-desc">Consultas posteriores a la primera vez. Pueden ser mensuales o m&#225;s espaciadas seg&#250;n el momento del proceso. Se pautan en conjunto.</div><div class="serv-meta">Hasta 60 min<br>Virtual o presencial</div></div>
+    <div class="servicio-card"><div class="serv-numero">04</div><div class="serv-titulo">Consulta corta</div><div class="serv-desc">Disponible solo en casos de seguimiento cercano donde es necesario indicar o leer estudios antes de la consulta mensual.</div><div class="serv-meta">Hasta 30 min<br>&#218;nicamente virtual</div></div>
+  </div>
+  <div class="serv-cta reveal">
+    <a href="#" class="btn-sage" onclick="openModal('consulta')">Agend&#225; tu primera consulta</a>
+    <a href="https://wa.me/" class="btn-outline-sage" target="_blank">Escribime para seguimiento &#8594;</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div style="max-width:1100px;">
+    <p class="section-label reveal">Blog</p>
+    <h2 class="section-title reveal">Recursos para tu salud</h2>
+    <div class="divider reveal"></div>
+    <p class="blog-intro reveal">Informaci&#243;n, fundamentos y herramientas de la medicina Ayurveda para incorporar a tu vida diaria.</p>
+  </div>
+  <div class="blog-grid stagger">
+    <div class="blog-card" onclick="openPost('ayurveda-intro')">
+      <div class="blog-thumb"><div class="blog-thumb-bg bt-1"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"><path d="M12 22V10"/><path d="M12 10C12 6 8 3 4 4c0 4 3 7 8 6"/><path d="M12 10c0-4 4-7 8-6 0 4-3 7-8 6"/></svg></div></div>
+      <div class="blog-body"><div class="blog-tag">Fundamentos</div><div class="blog-title">Breve introducci&#243;n al Ayurveda</div></div>
+    </div>
+    <div class="blog-card" onclick="openPost('constitucion')">
+      <div class="blog-thumb"><div class="blog-thumb-bg bt-2"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="11"/></svg></div></div>
+      <div class="blog-body"><div class="blog-tag">Constituci&#243;n</div><div class="blog-title">Tu constituci&#243;n individual: Vata, Pitta y Kapha</div></div>
+    </div>
+    <div class="blog-card" onclick="openPost('agni-ama')">
+      <div class="blog-thumb"><div class="blog-thumb-bg bt-3"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"><path d="M12 2c0 6-7 8-7 14a7 7 0 0014 0c0-6-7-8-7-14z"/></svg></div></div>
+      <div class="blog-body"><div class="blog-tag">Digesti&#243;n y vitalidad</div><div class="blog-title">Agni y Ama: la clave de la salud, vitalidad y longevidad</div></div>
+    </div>
+    <div class="blog-card" onclick="openPost('slow-life')">
+      <div class="blog-thumb"><div class="blog-thumb-bg bt-4"></div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z"/><circle cx="12" cy="10" r="2"/></svg></div></div>
+      <div class="blog-body"><div class="blog-tag">Slow life</div><div class="blog-title">Recursos slow life para tu salud</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- POSTS -->
+<div id="post-view">
+  <article class="post-page" data-post="ayurveda-intro">
+    <div class="post-hero bt-1"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Fundamentos</span><span class="post-read">5 min de lectura</span></div>
+      <h1 class="post-title">Breve introducci&#243;n al Ayurveda</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+        <p>Ayurveda, que en s&#225;nscrito significa literalmente &#8220;conocimiento de la vida&#8221;, es un sistema m&#233;dico originado en la India hace m&#225;s de 5.000 a&#241;os. No es simplemente una colecci&#243;n de remedios o t&#233;cnicas: es una ciencia de la vida que entiende al ser humano como parte inseparable del cosmos, de los ciclos naturales y de los cinco elementos (&#233;ter, aire, fuego, agua y tierra) que componen toda la materia.</p>
+        <p>A diferencia de la medicina occidental moderna, el Ayurveda parte de una visi&#243;n hol&#237;stica: cuerpo, mente y esp&#237;ritu son una unidad indivisible. La salud no es la ausencia de s&#237;ntomas, sino un estado din&#225;mico de equilibrio entre estos tres planos y entre la persona y su entorno.</p>
+        <p>Su legado se transmite a trav&#233;s de textos cl&#225;sicos como el <em>Charaka Samhita</em> y el <em>Sushruta Samhita</em>, y contin&#250;a vigente hoy como medicina complementaria reconocida por la OMS.</p>
+      </div>
+      <div class="post-cta-box"><p>&#191;Quer&#233;s saber m&#225;s sobre tu constituci&#243;n Ayurv&#233;dica y c&#243;mo este enfoque puede acompa&#241;ar tu salud?</p><a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a></div>
+    </div>
+  </article>
+  <article class="post-page" data-post="constitucion">
+    <div class="post-hero bt-2"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Constituci&#243;n</span><span class="post-read">7 min de lectura</span></div>
+      <h1 class="post-title">Tu constituci&#243;n individual: Vata, Pitta y Kapha</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+        <p>Uno de los conceptos m&#225;s distintivos del Ayurveda es el de <em>Prakriti</em>: tu constituci&#243;n individual, la combinaci&#243;n &#250;nica de energ&#237;as que te define desde el momento de la concepci&#243;n y permanece estable a lo largo de toda tu vida.</p>
+        <p>La Prakriti se expresa a trav&#233;s de tres principios fundamentales llamados <em>doshas</em>: <strong>Vata</strong> (&#233;ter + aire), que rige el movimiento y la creatividad; <strong>Pitta</strong> (fuego + agua), que gobierna la transformaci&#243;n y la digesti&#243;n; y <strong>Kapha</strong> (agua + tierra), que sostiene la estructura y la inmunidad. Todas las personas tenemos los tres doshas, pero en proporciones &#250;nicas.</p>
+        <p>Conocer tu constituci&#243;n no solo explica tus tendencias f&#237;sicas &#8212;tipo de digesti&#243;n, complexi&#243;n, calidad del sue&#241;o&#8212; sino tambi&#233;n tus patrones emocionales y cognitivos. Es el punto de partida para un plan de salud verdaderamente personalizado.</p>
+      </div>
+      <div class="post-cta-box"><p>En la consulta de primera vez determinamos juntas tu Prakriti y c&#243;mo trabajar desde ella.</p><a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a></div>
+    </div>
+  </article>
+  <article class="post-page" data-post="agni-ama">
+    <div class="post-hero bt-3"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Digesti&#243;n y vitalidad</span><span class="post-read">6 min de lectura</span></div>
+      <h1 class="post-title">Agni y Ama: la clave de la salud, vitalidad y longevidad</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+        <p>En Ayurveda existe un principio que podr&#237;a resumir toda la medicina digestiva: <em>&#8220;cuando el Agni est&#225; bien, todo est&#225; bien&#8221;</em>. <strong>Agni</strong> es el fuego digestivo, la inteligencia metab&#243;lica que transforma los alimentos en nutrici&#243;n, las experiencias en aprendizaje y las emociones en sabidur&#237;a.</p>
+        <p>Cuando el Agni funciona bien, el alimento se digiere completamente y se convierte en <em>Ojas</em>: la esencia de vitalidad e inmunidad. Cuando se desequilibra &#8212;por estr&#233;s, horarios irregulares o emociones no procesadas&#8212; aparece el <strong>Ama</strong>: residuo metab&#243;lico considerado el origen de la mayor&#237;a de las enfermedades cr&#243;nicas.</p>
+        <p>Cuidar el Agni no se trata solo de qu&#233; comemos, sino de c&#243;mo, cu&#225;ndo y en qu&#233; estado interno comemos. El Ayurveda ofrece herramientas concretas &#8212;especias, ritmos, pr&#225;cticas de dinacharya&#8212; para mantener ese fuego encendido de forma sostenida.</p>
+      </div>
+      <div class="post-cta-box"><p>Los programas de Depuraci&#243;n Ayurveda trabajan espec&#237;ficamente sobre el Agni y la eliminaci&#243;n del Ama acumulado.</p><a href="#" class="btn-outline-sage" onclick="closePost();openModal('espera');return false;">Anotarme en lista de espera</a></div>
+    </div>
+  </article>
+  <article class="post-page" data-post="slow-life">
+    <div class="post-hero bt-4"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Slow life</span><span class="post-read">5 min de lectura</span></div>
+      <h1 class="post-title">Recursos slow life para tu salud</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+        <p>El Ayurveda no es una medicina de crisis: es una medicina de todos los d&#237;as. Sus herramientas m&#225;s poderosas no son las m&#225;s espectaculares, sino las m&#225;s constantes. La <em>dinacharya</em> &#8212;rutina diaria&#8212; es uno de sus pilares fundamentales: despertar antes del amanecer, raspar la lengua, hacer abhyanga, moverse, meditar, comer en horarios regulares.</p>
+        <p>El concepto de <em>slow life</em> resuena naturalmente con esta filosof&#237;a. No se trata de hacer menos, sino de hacer con m&#225;s presencia y coherencia con el propio ritmo. Frente a una cultura que promueve el rendimiento constante, el Ayurveda propone escuchar las se&#241;ales del cuerpo antes de que se conviertan en s&#237;ntomas.</p>
+        <p>Algunos recursos concretos: reducir los est&#237;mulos digitales antes de dormir, comer sin pantallas, salir al sol por la ma&#241;ana, incorporar hierbas adapt&#243;genas como la ashwagandha o el tulsi, y reconocer cu&#225;ndo tu sistema nervioso est&#225; en modo alerta.</p>
+      </div>
+      <div class="post-cta-box"><p>Si quer&#233;s incorporar estas pr&#225;cticas de forma personalizada y sostenible, podemos trabajarlo juntas en consulta.</p><a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a></div>
+    </div>
+  </article>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Dra. Daniela Gayoso</div>
+    <div class="footer-sub">Medicina Integrativa con enfoque Ayurveda<br>Especializada en Medicina Ayurveda y GinecoEcolog&#237;a&#174;</div>
+  </div>
+  <div>
+    <h5>Navegaci&#243;n</h5>
+    <ul>
+      <li><a href="#que-es">&#191;Qu&#233; es Ayurveda?</a></li>
+      <li><a href="#sobre-mi">Sobre m&#237;</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#blog">Blog</a></li>
+    </ul>
+  </div>
+  <div>
+    <h5>Consultas</h5>
+    <ul>
+      <li onclick="openModal('consulta')">Agend&#225; tu primera consulta</li>
+      <li>Consulta de seguimiento (WhatsApp)</li>
+      <li onclick="openModal('espera')">Lista de espera &#8212; Depuraci&#243;n</li>
+    </ul>
+  </div>
+  <div class="footer-bottom">&#169; 2025 Dra. Daniela Gayoso &#8212; dradanigayoso.com</div>
+</footer>
+
+<!-- MODAL CONSULTA -->
+<div class="modal-overlay" id="modal-consulta">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('consulta')">&#215;</button>
+    <h3>Agend&#225; tu consulta</h3>
+    <p>Eleg&#237; el tipo de consulta que necesit&#225;s.</p>
+    <div class="modal-options">
+      <a href="https://forms.google.com" target="_blank" class="modal-option"><div><div class="modal-option-title">Primera vez Ayurveda</div><div class="modal-option-meta">90&#8211;120 min &middot; Virtual o presencial</div></div><span class="modal-option-arrow">&#8594;</span></a>
+      <a href="https://forms.google.com" target="_blank" class="modal-option"><div><div class="modal-option-title">Primera vez GinecoEcolog&#237;a</div><div class="modal-option-meta">~90 min &middot; Virtual o presencial</div></div><span class="modal-option-arrow">&#8594;</span></a>
+    </div>
+    <p style="margin-top:16px;font-size:0.77rem;">&#191;No sab&#233;s cu&#225;l elegir? <a href="#servicios" onclick="closeModal('consulta')" style="color:var(--moss)">Ver la gu&#237;a &#8594;</a></p>
+  </div>
+</div>
+
+<!-- MODAL ESPERA -->
+<div class="modal-overlay" id="modal-espera">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('espera')">&#215;</button>
+    <h3>Depuraci&#243;n Ayurveda</h3>
+    <p>Los programas de Depuraci&#243;n Ayurveda tienen cupos limitados. Anot&#225;te en la lista de espera para ser notificada cuando se abran nuevas fechas.</p>
+    <div class="modal-options">
+      <a href="https://forms.google.com" target="_blank" class="modal-option"><div><div class="modal-option-title">Anotarme en la lista de espera</div><div class="modal-option-meta">Te avisamos cuando haya nuevas fechas</div></div><span class="modal-option-arrow">&#8594;</span></a>
+      <a href="#blog" onclick="closeModal('espera')" class="modal-option"><div><div class="modal-option-title">Leer sobre depuraci&#243;n Ayurveda</div><div class="modal-option-meta">Fundamentos y qu&#233; esperar del proceso</div></div><span class="modal-option-arrow">&#8594;</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- POST NAV -->
+<div id="post-nav" class="post-nav" style="display:none;">
+  <button class="post-back" onclick="closePost()">&#8592; Volver al blog</button>
+  <span style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--charcoal);">Dra. Daniela Gayoso</span>
+  <a href="#" class="btn-primary" style="font-size:0.7rem;padding:10px 17px;" onclick="closePost();openModal('consulta');return false;">Consulta</a>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+
+  function openModal(id) { document.getElementById('modal-'+id).classList.add('active'); document.body.style.overflow='hidden'; return false; }
+  function closeModal(id) { document.getElementById('modal-'+id).classList.remove('active'); document.body.style.overflow=''; }
+  document.querySelectorAll('.modal-overlay').forEach(o => {
+    o.addEventListener('click', function(e) { if(e.target===this){ this.classList.remove('active'); document.body.style.overflow=''; } });
+  });
+
+  const postView = document.getElementById('post-view');
+  const postNav  = document.getElementById('post-nav');
+  function openPost(slug) {
+    document.querySelectorAll('body > *:not(#post-view):not(#post-nav):not(.modal-overlay)').forEach(el => el.style.display='none');
+    postView.style.display='block'; postNav.style.display='flex';
+    document.querySelectorAll('.post-page').forEach(p => p.classList.remove('active'));
+    const t = document.querySelector('.post-page[data-post="'+slug+'"]');
+    if(t) t.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  function closePost() {
+    document.querySelectorAll('body > *:not(#post-view):not(#post-nav):not(.modal-overlay)').forEach(el => el.style.display='');
+    postView.style.display='none'; postNav.style.display='none';
+    document.querySelectorAll('.post-page').forEach(p => p.classList.remove('active'));
+    setTimeout(() => document.getElementById('blog')?.scrollIntoView({behavior:'smooth'}), 50);
+  }
+</script>
+</body>
+</html>
