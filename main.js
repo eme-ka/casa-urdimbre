@@ -39,8 +39,22 @@ document.querySelectorAll('.ver-mas-btn').forEach(btn => {
 // Contact form
 function handleSubmit(e) {
   e.preventDefault();
-  const form = e.target;
-  form.innerHTML = `
+  const inputs = e.target.querySelectorAll('input, textarea');
+  const nombre  = inputs[0].value;
+  const correo  = inputs[1].value;
+  const mensaje = inputs[2].value;
+
+  const url = 'https://docs.google.com/forms/d/e/1FAIpQLScvcBDoNApLCu10J2OKbEiExCfr8F8DbxvoU6qDt019H-9lVA/formResponse';
+
+  const body = new URLSearchParams({
+    'entry.67401514':  nombre,
+    'emailAddress':    correo,
+    'entry.242044334': mensaje,
+  });
+
+  fetch(url, { method: 'POST', body, mode: 'no-cors' });
+
+  e.target.innerHTML = `
     <div class="form-success">
       <div style="font-size:2.5rem;margin-bottom:1rem">🌿</div>
       <p>¡Gracias por tu mensaje! Te contactaremos pronto.</p>
